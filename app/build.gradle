@@ -74,4 +74,7 @@ dependencies {
 
     //Firebase Storage
     implementation 'com.google.firebase:firebase-storage'
+
+    //image slider or carousel
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 }
