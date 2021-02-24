@@ -1,8 +1,10 @@
-package com.ifixhubke.kibu_olx;
+package com.ifixhubke.kibu_olx.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.ifixhubke.kibu_olx.R;
 
 public class MainActivity extends AppCompatActivity {
 
