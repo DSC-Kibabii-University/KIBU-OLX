@@ -2,4 +2,12 @@
     <string name="app_name">KIBU-OLX</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="cheap_and_affordable">Cheap and Affordable</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac libero ultricies, condimentum arcu vitae, ultrices purus. Nam tristique lectus in arcu consequat ornare.</string>
+    <string name="easy_and_accessible">Easy and Accessible</string>
+    <string name="all_items_in_one_place">All Items in One Place</string>
+    <string name="filter">Filter</string>
+    <string name="search">Search...</string>
 </resources>
