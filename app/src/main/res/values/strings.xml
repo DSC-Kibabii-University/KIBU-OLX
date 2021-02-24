@@ -10,4 +10,8 @@
     <string name="all_items_in_one_place">All Items in One Place</string>
     <string name="filter">Filter</string>
     <string name="search">Search...</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
 </resources>
