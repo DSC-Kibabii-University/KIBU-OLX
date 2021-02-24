@@ -1,5 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/my_nav">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/splashFragment">
 
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_screenOne"
+            app:destination="@id/screenOne" />
+    </fragment>
+    <fragment
+        android:id="@+id/screenOne"
+        android:name="com.ifixhubke.kibu_olx.onboarding.ScreenOne"
+        android:label="fragment_screen_one"
+        tools:layout="@layout/fragment_screen_one" >
+        <action
+            android:id="@+id/action_screenOne_to_screenTwo"
+            app:destination="@id/screenTwo" />
+    </fragment>
+    <fragment
+        android:id="@+id/screenTwo"
+        android:name="com.ifixhubke.kibu_olx.onboarding.ScreenTwo"
+        android:label="fragment_screen_two"
+        tools:layout="@layout/fragment_screen_two" >
+        <action
+            android:id="@+id/action_screenTwo_to_screenThree"
+            app:destination="@id/screenThree" />
+    </fragment>
+    <fragment
+        android:id="@+id/screenThree"
+        android:name="com.ifixhubke.kibu_olx.onboarding.ScreenThree"
+        android:label="fragment_screen_three"
+        tools:layout="@layout/fragment_screen_three" >
+        <action
+            android:id="@+id/action_screenThree_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.authentication.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.authentication.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment2_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/favoritesFragment2"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/settingsFragment2"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/sellFragmentOne"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.sell.SellFragmentOne"
+        android:label="fragment_sell_one"
+        tools:layout="@layout/fragment_sell_one" >
+        <action
+            android:id="@+id/action_sellFragmentOne_to_sellFragmentTwo"
+            app:destination="@id/sellFragmentTwo" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellFragmentTwo"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.sell.SellFragmentTwo"
+        android:label="fragment_sell_two"
+        tools:layout="@layout/fragment_sell_two" />
 </navigation>
