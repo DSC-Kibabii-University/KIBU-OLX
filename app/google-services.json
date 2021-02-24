@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "984228394784",
+    "project_id": "kibu-olx",
+    "storage_bucket": "kibu-olx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984228394784:android:972506bb936ab3e31cc945",
+        "android_client_info": {
+          "package_name": "com.ifixhubke.kibu_olx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984228394784-5tmvbg5gje3ce1n4bc3ik2gnpajhcdm8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFsNd0zoTSOL4DDgneL9LQ1-QfeDT5lN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984228394784-5tmvbg5gje3ce1n4bc3ik2gnpajhcdm8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

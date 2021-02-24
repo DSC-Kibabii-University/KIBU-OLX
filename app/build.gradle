@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -33,12 +35,43 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //ConstraintLayout
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    //Material Design
+    implementation 'com.google.android.material:material:1.3.0'
+
+    //Navigation Components
+    implementation 'androidx.navigation:navigation-fragment:2.3.3'
+    implementation 'androidx.navigation:navigation-ui:2.3.3'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Timber for logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //Firebase BOM
+    implementation platform('com.google.firebase:firebase-bom:26.5.0')
+
+    //FirebaseAuth
+    implementation 'com.google.firebase:firebase-auth'
+
+    //Firebase Realtime Db
+    implementation 'com.google.firebase:firebase-database'
+
+    //Google analytics
+    implementation 'com.google.firebase:firebase-analytics'
+
+    //Firebase Storage
+    implementation 'com.google.firebase:firebase-storage'
 }
