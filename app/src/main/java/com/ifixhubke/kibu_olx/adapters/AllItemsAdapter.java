@@ -12,10 +12,9 @@ import com.ifixhubke.kibu_olx.data.Item;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
-
 public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHolder>{
 
-    private ArrayList<Item> items;
+    private final ArrayList<Item> items;
 
     public AllItemsAdapter(ArrayList<Item> itemList){
         items = itemList;
@@ -31,7 +30,10 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.item_name.setText(items.get(position).getItemName());
         holder.item_price.setText(items.get(position).getItemPrice());
-        Picasso.get().load(items.get(position).getItemImage()).into(holder.item_image);
+        Picasso.get()
+                .load(items.get(position).getItemImage())
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(holder.item_image);
     }
 
     @Override
@@ -55,10 +57,5 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
             add_item_to_favorites = itemView.findViewById(R.id.favoriteItemImg);
 
         }
-    }
-
-    public void filterList(ArrayList<Item> itemArrayList){
-        items = itemArrayList;
-        notifyDataSetChanged();
     }
 }

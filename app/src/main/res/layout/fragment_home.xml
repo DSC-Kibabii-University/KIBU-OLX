@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:background="@color/white"
-        android:padding="5dp"
-        android:theme="@style/ThemeOverlay.AppCompat"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,27 +25,28 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/filter_menu"
-                app:title="KIBU-OLX"
-                app:layout_scrollFlags="scroll|enterAlways"/>
+                app:title="KIBU-OLX" />
 
-                <EditText
-                    android:id="@+id/searchForItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:drawableStart="@drawable/ic_search"
-                    android:drawableTint="@color/gray"
-                    android:textColorHint="@color/gray"
-                    android:textColor="@color/black"
-                    android:drawablePadding="5dp"
-                    android:background="@drawable/search_background"
-                    android:hint="@string/search"
-                    tools:ignore="UnusedAttribute"
-                    android:importantForAutofill="no"
-                    android:inputType="text" />
+            <EditText
+                android:id="@+id/searchForItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/search_background"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/gray"
+                android:hint="@string/search"
+                android:textStyle="italic"
+                android:textSize="14sp"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="UnusedAttribute" />
 
         </LinearLayout>
 
@@ -68,17 +67,18 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
-        android:text="Sell"
-        android:textAlignment="center"
+        android:text="@string/sell"
+        android:gravity="center"
         android:textColor="@color/white"
         app:backgroundTint="@color/main"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true" />
 
     <ProgressBar
         android:id="@+id/allItemsProgressBar"
