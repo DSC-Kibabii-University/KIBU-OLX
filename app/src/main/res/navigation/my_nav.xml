@@ -11,35 +11,20 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
-            android:id="@+id/action_splashFragment_to_screenOne"
-            app:destination="@id/screenOne" />
-    </fragment>
-    <fragment
-        android:id="@+id/screenOne"
-        android:name="com.ifixhubke.kibu_olx.onboarding.ScreenOne"
-        android:label="fragment_screen_one"
-        tools:layout="@layout/fragment_screen_one" >
+            android:id="@+id/action_splashFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_screenOne_to_screenTwo"
-            app:destination="@id/screenTwo" />
-    </fragment>
-    <fragment
-        android:id="@+id/screenTwo"
-        android:name="com.ifixhubke.kibu_olx.onboarding.ScreenTwo"
-        android:label="fragment_screen_two"
-        tools:layout="@layout/fragment_screen_two" >
+            android:id="@+id/action_splashFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_screenTwo_to_screenThree"
-            app:destination="@id/screenThree" />
-    </fragment>
-    <fragment
-        android:id="@+id/screenThree"
-        android:name="com.ifixhubke.kibu_olx.onboarding.ScreenThree"
-        android:label="fragment_screen_three"
-        tools:layout="@layout/fragment_screen_three" >
-        <action
-            android:id="@+id/action_screenThree_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -67,6 +52,9 @@
         <action
             android:id="@+id/action_homeFragment2_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_sellFragmentOne"
+            app:destination="@id/sellFragmentOne" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -97,4 +85,15 @@
         android:name="com.ifixhubke.kibu_olx.ui.fragments.sell.SellFragmentTwo"
         android:label="fragment_sell_two"
         tools:layout="@layout/fragment_sell_two" />
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.ifixhubke.kibu_olx.onboarding.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:popUpTo="@id/viewPagerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

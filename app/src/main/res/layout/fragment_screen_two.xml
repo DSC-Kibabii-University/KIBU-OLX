@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.18" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView6"
+        android:id="@+id/next2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView13"
+        android:id="@+id/skip2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
