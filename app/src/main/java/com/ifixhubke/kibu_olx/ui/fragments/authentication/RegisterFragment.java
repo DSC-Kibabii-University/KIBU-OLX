@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +88,7 @@ public class RegisterFragment extends Fragment {
                 }
 
 
-                firebaseAuth.createUserWithEmailAndPassword(mail,pass).addOnCompleteListener(getContext(), new OnCompleteListener<AuthResult>() {
+                firebaseAuth.createUserWithEmailAndPassword(mail,pass).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
@@ -102,7 +103,7 @@ public class RegisterFragment extends Fragment {
                             Timber.d("createUserWithEmailAndPassword: Failed");
                         }
                     }
-                })
+                });
 
             }
         });
@@ -110,6 +111,10 @@ public class RegisterFragment extends Fragment {
 
 
         return view;
+    }
+
+    private boolean isvalidemail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
     public void saveUserDetails(String mail,String firstName,String lastName,String phoneNumber){
