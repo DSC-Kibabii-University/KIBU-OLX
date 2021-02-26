@@ -5,13 +5,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.navigation.ActionOnlyNavDirections;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
+import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
+
+import timber.log.Timber;
 
 public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHolder>{
 
@@ -33,15 +41,16 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         holder.item_price.setText(items.get(position).getItemPrice());
         Picasso.get()
                 .load(items.get(position).getItemImage())
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_image_placeholder)
                 .into(holder.item_image);
 
 
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        holder.card.setOnClickListener(v -> {
 
-            }
+            Item item = new Item(items.get(position).getItemImage(),items.get(position).getItemName(),items.get(position).getItemPrice());
+            NavDirections action =  HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
+            Navigation.findNavController(v).navigate(action);
+            Timber.d("card clicked");
         });
     }
 

@@ -18,13 +18,14 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/user_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="Ifix Hub"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 
@@ -41,64 +42,71 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_lastseen_hours"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="1 hour ago"
         android:textColor="@color/main"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_lastseen"
+        app:layout_constraintEnd_toEndOf="@+id/user_name"
         app:layout_constraintStart_toEndOf="@+id/tv_lastseen"
         app:layout_constraintTop_toTopOf="@+id/tv_lastseen" />
 
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/image_slider"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
-        app:iss_delay="0"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:iss_auto_cycle="true"
-        app:iss_period="1000"
         app:iss_corner_radius="5"
+        app:iss_delay="0"
+        app:iss_period="1000"
+        app:iss_title_background="@drawable/gradient"
+        app:iss_placeholder="@drawable/ic_image_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
+        android:id="@+id/detailsItemName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Item Name"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/image_slider"
+        app:layout_constraintStart_toStartOf="@+id/image_slider"
         app:layout_constraintTop_toBottomOf="@+id/image_slider" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
+        android:id="@+id/detailsItemPrice"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Ksh. 1400"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintEnd_toEndOf="@+id/detailsItemName"
+        app:layout_constraintStart_toStartOf="@+id/detailsItemName"
+        app:layout_constraintTop_toBottomOf="@+id/detailsItemName" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
+        android:id="@+id/detailsDatePosted"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="24/02/2021"
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintEnd_toEndOf="@+id/detailsItemPrice"
+        app:layout_constraintStart_toStartOf="@+id/detailsItemPrice"
+        app:layout_constraintTop_toBottomOf="@+id/detailsItemPrice" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView19"
@@ -110,13 +118,13 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/image_slider"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsDatePosted" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView20"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="8dp"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et orci tortor. Curabitur rhoncus turpis eget semper laoreet. Nam nec suscipit turpis"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/image_slider"
@@ -125,10 +133,10 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/show_contacts"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/main"
         android:clickable="true"
         android:focusable="true"

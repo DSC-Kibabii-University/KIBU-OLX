@@ -55,12 +55,19 @@
         <action
             android:id="@+id/action_homeFragment2_to_sellFragmentOne"
             app:destination="@id/sellFragmentOne" />
+        <argument
+            android:name="details_to_fragDetails"
+            app:argType="com.ifixhubke.kibu_olx.data.Item" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.ifixhubke.kibu_olx.ui.fragments.details.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="itemDetails"
+            app:argType="com.ifixhubke.kibu_olx.data.Item" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment2"
         android:name="com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragment"
