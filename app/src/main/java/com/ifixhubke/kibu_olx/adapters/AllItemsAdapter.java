@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
@@ -34,6 +35,14 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
                 .load(items.get(position).getItemImage())
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(holder.item_image);
+
+
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -47,6 +56,8 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         TextView item_name;
         TextView item_price;
         ImageView add_item_to_favorites;
+        CardView card;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -55,6 +66,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
             item_name = itemView.findViewById(R.id.itemNameTxt);
             item_price = itemView.findViewById(R.id.itemPriceTxt);
             add_item_to_favorites = itemView.findViewById(R.id.favoriteItemImg);
+            card = itemView.findViewById(R.id.item_card_layout);
 
         }
     }
