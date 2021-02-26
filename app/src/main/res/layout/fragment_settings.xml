@@ -25,22 +25,23 @@
 
                 <ImageView
                     android:id="@+id/profile_image"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:src="@drawable/ic_profile_user"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/profile_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Ifix Hub"
+                    tools:text="Ifix Hub"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Edit"
+                    android:text="@string/edit"
                     android:textAlignment="textEnd"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/main"
@@ -81,7 +82,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="Item Posted  History"
+        android:text="@string/items_posted_history"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -118,6 +119,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

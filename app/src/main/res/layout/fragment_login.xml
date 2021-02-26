@@ -9,15 +9,18 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signinButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="@color/main"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:text="@string/sign_in"
         android:textAllCaps="false"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="14sp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/passwordEditText"
+        app:layout_constraintStart_toStartOf="@+id/passwordEditText"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -58,14 +61,15 @@
         android:id="@+id/materialTextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:text="@string/login"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/googleSignipButton"
@@ -75,30 +79,32 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:drawableLeft="@drawable/ic_google"
-        android:text="Sign in with google"
+        android:text="@string/sign_in_with_google"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="14sp"
+        app:cornerRadius="10dp"
         app:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signinButton"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="1dp"
+        tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/dontHaveAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Don't Have An Account? Register"
+        android:layout_marginBottom="16dp"
+        android:text="@string/don_t_have_an_account_register"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/googleSignipButton"
-        app:layout_constraintStart_toStartOf="@+id/googleSignipButton"
-        app:layout_constraintTop_toBottomOf="@+id/googleSignipButton" />
+        app:layout_constraintStart_toStartOf="@+id/googleSignipButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

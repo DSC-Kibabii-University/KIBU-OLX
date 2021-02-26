@@ -4,38 +4,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="8dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="10dp"
+        android:padding="8dp"
         android:layout_height="match_parent">
 
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/guideline5"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Item Name Name Name Name Name Name"
+            android:layout_marginEnd="8dp"
+            tools:text="Item Name Name Name Name Name Name"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toTopOf="@+id/item_image" />
 
@@ -44,40 +46,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Ksh. 10000"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="Ksh. 10000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@+id/item_name"
             app:layout_constraintStart_toStartOf="@+id/item_name"
             app:layout_constraintTop_toBottomOf="@+id/item_name" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.04" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="6dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

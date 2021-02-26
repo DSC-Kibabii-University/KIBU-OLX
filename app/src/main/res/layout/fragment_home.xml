@@ -67,18 +67,18 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:clickable="true"
-        android:text="@string/sell"
+        android:focusable="true"
         android:gravity="center"
+        android:text="@string/sell"
         android:textColor="@color/white"
         app:backgroundTint="@color/main"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:focusable="true" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ProgressBar
         android:id="@+id/allItemsProgressBar"

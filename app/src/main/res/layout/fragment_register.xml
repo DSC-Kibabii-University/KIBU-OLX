@@ -10,8 +10,8 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Register"
+        android:layout_marginTop="16dp"
+        android:text="@string/register"
         android:textColor="@color/black"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
-        android:hint="Enter Email"
+        android:hint="@string/enter_email"
         android:inputType="textEmailAddress"
         android:textColorHint="@color/black"
         android:textSize="15sp"
@@ -43,7 +43,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
-        android:hint="Enter Password"
+        android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:textColorHint="@color/black"
         android:textSize="15sp"
@@ -60,7 +60,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
-        android:hint="First Name"
+        android:hint="@string/first_name"
         android:textColorHint="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
-        android:hint="Last Name"
+        android:hint="@string/last_name"
         android:textColorHint="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
-        android:hint="Phone Number"
+        android:hint="@string/phone_number"
         android:textColorHint="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,37 +102,30 @@
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/materialCheckBox"
-        android:layout_width="24dp"
+        android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:text="@string/i_agree_with_the_rules"
         android:checked="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="I agree with the rules"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/materialCheckBox"
-        app:layout_constraintStart_toEndOf="@+id/materialCheckBox"
-        app:layout_constraintTop_toTopOf="@+id/materialCheckBox" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerlButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:id="@+id/registerButton"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/main"
-        android:text="Register"
+        android:text="@string/register"
         android:textAllCaps="false"
+        app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/materialCheckBox" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/googleSignipButton"
@@ -142,31 +135,32 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:drawableLeft="@drawable/ic_google"
-        android:paddingLeft="90dp"
-        android:text="Sign up with google"
-        android:textAlignment="textStart"
+        android:text="@string/sign_up_with_google"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:backgroundTint="@color/white"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerlButton"
+        app:layout_constraintTop_toBottomOf="@+id/registerButton"
         app:strokeColor="#000000"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="1dp"
+        tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/signupTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Already Have An Acoount? Sign In"
+        android:layout_marginBottom="8dp"
+        android:text="@string/already_have_an_account_sign_in"
         android:textColor="@color/black"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/googleSignipButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

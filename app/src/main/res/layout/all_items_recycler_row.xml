@@ -34,12 +34,12 @@
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textAlignment="textStart"
             android:text="6X6 High Density Mattress"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/itemImageImg"
             app:layout_constraintStart_toStartOf="@+id/itemImageImg"
             app:layout_constraintTop_toBottomOf="@+id/itemImageImg" />
 
@@ -50,7 +50,7 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Ksh.1000000"
+            android:text="Ksh.10000"
             android:textColor="@color/gray"
             android:textSize="13sp"
             android:textStyle="bold"
