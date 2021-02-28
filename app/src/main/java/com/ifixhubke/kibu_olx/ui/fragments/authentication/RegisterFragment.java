@@ -50,7 +50,7 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        binding.registerlButton.setOnClickListener(new View.OnClickListener() {
+        binding.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

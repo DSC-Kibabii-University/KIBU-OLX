@@ -7,75 +7,70 @@
     android:id="@+id/item_card_layout"
     app:cardElevation="3dp"
     app:cardCornerRadius="10dp"
-    android:padding="5dp"
-    android:layout_margin="5dp"
+    android:padding="8dp"
+    android:layout_margin="8dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:padding="30dp"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
+
+        <ImageView
+            android:id="@+id/itemImageImg"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_marginTop="8dp"
-            android:id="@+id/cardView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="5dp"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/itemImageImg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                tools:srcCompat="@tools:sample/avatars" />
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="#dddddd" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/itemNameTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="5dp"
+            android:background="#dddddd"
             android:ellipsize="end"
             android:maxLines="2"
-            tools:text="6X6 High Density Mattress"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintEnd_toEndOf="@+id/itemImageImg"
+            app:layout_constraintStart_toStartOf="@+id/itemImageImg"
+            app:layout_constraintTop_toBottomOf="@+id/itemImageImg" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/itemPriceTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:background="#dddddd"
             android:ellipsize="end"
             android:maxLines="1"
-            tools:text="Ksh.10000"
             android:textColor="@color/gray"
             android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/itemNameTxt"
             app:layout_constraintStart_toStartOf="@+id/itemNameTxt"
             app:layout_constraintTop_toBottomOf="@+id/itemNameTxt" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/favoriteItemImg"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            android:background="#dddddd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt"
-            app:srcCompat="@drawable/ic_star"
-            tools:ignore="ContentDescription" />
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
