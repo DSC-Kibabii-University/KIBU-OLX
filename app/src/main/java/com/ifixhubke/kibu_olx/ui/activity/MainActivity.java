@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        bottomNavigationView = findViewById(R.id.bottom_nav);
 
         navController = Navigation.findNavController(this,R.id.fragment);
 
