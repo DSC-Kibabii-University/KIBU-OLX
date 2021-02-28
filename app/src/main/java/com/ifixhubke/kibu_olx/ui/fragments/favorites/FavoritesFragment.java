@@ -40,10 +40,27 @@ public class FavoritesFragment extends Fragment {
         View view1 = binding.getRoot();
         models=new ArrayList<>();
         fetchFavoritePosts();
+        /*checkConnection();*/
         return view1;
 
 
+
+
     }
+
+
+    /*private void checkConnection() {
+        ConnectivityManager connectivityManager= (ConnectivityManager).getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo!=null && networkInfo.isConnected()){
+            fetchFavoritePosts();
+        }
+        else {
+            Toast.makeText(getContext(),"NO INTERNET!",Toast.LENGTH_SHORT).show();
+        }
+
+    }*/
 
 
     private void fetchFavoritePosts() {
