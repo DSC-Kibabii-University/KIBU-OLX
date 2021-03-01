@@ -7,6 +7,8 @@
     tools:context=".ui.fragments.favorites.FavoritesFragment">
 
 
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favorite_recycler_View"
             android:layout_width="match_parent"
@@ -14,11 +16,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/favorite_row" />
+
 
     <ProgressBar
         android:id="@+id/favprogressBar"
@@ -30,6 +32,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/favorite_recycler_View"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/favorite_recycler_View"
+            app:layout_constraintTop_toTopOf="@+id/favorite_recycler_View" />
+
 
 
 
