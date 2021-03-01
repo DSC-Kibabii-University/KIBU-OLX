@@ -10,16 +10,81 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.R;
+import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
+import com.ifixhubke.kibu_olx.adapters.SettingsAdapter;
+import com.ifixhubke.kibu_olx.data.Item;
+import com.ifixhubke.kibu_olx.data.SettingsModels;
+import com.ifixhubke.kibu_olx.databinding.FragmentHomeBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentSettingsBinding;
 
+import timber.log.Timber;
+
 public class SettingsFragment extends Fragment {
     FragmentSettingsBinding binding;
+    SettingsAdapter adapter;
+    private DatabaseReference databaseReference;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = FragmentSettingsBinding.inflate(inflater,container,false);
+        View view = binding.getRoot();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        initializeRecycler();
+        return view;
+    }
+
+    private void initializeRecycler() {
+        Timber.d("initilize method call");
+        Query query = databaseReference.child("posted_items_history");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    Timber.d("data exist");
+                    binding.progressBar.setVisibility(View.INVISIBLE);
+                }else{
+                    binding.progressBar.setVisibility(View.INVISIBLE);
+                    Timber.d("data does not exist");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<SettingsModels> options = new FirebaseRecyclerOptions.Builder<SettingsModels>()
+                .setQuery(query, SettingsModels.class)
+                .build();
+
+        adapter = new SettingsAdapter(options);
+        Timber.d("adapter");
+        binding.yourPostRecyclerview.setAdapter(adapter);
+    }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        binding = FragmentSettingsBinding.bind(view);
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }
