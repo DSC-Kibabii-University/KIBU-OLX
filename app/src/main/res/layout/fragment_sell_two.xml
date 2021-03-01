@@ -31,8 +31,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
-        android:hint="@string/product_name"
-        android:textColorHint="@color/black"
+        android:hint="Item Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsTextView" />
@@ -44,7 +43,6 @@
         android:layout_marginTop="10dp"
         android:hint="@string/condition"
         android:background="@drawable/curved_edittext"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/productNameEditText"
         app:layout_constraintStart_toStartOf="@+id/productNameEditText"
         app:layout_constraintTop_toBottomOf="@+id/productNameEditText" />
@@ -56,7 +54,6 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/curved_edittext"
         android:hint="@string/price"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/conditionEditTtext"
         app:layout_constraintStart_toStartOf="@+id/conditionEditTtext"
         app:layout_constraintTop_toBottomOf="@+id/conditionEditTtext" />
@@ -68,35 +65,25 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/curved_edittext"
         android:hint="@string/phone_number"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/priceEditText"
         app:layout_constraintStart_toStartOf="@+id/priceEditText"
         app:layout_constraintTop_toBottomOf="@+id/priceEditText" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/sellerNameEditText"
+        android:id="@+id/itemDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:minLines="5"
+        android:maxLines="10"
         android:layout_marginTop="10dp"
         android:background="@drawable/curved_edittext"
-        android:hint="@string/seller_name"
-        android:textColorHint="@color/black"
+        android:hint="Item Description"
+        android:gravity="top"
         app:layout_constraintEnd_toEndOf="@+id/phoneNumberEditText"
         app:layout_constraintStart_toStartOf="@+id/phoneNumberEditText"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditText" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/previous2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/previous"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/main"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/postAdButton"
@@ -107,10 +94,10 @@
         android:text="@string/post_advertisement"
         app:cornerRadius="10dp"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/sellerNameEditText"
+        app:layout_constraintEnd_toEndOf="@+id/itemDescription"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/sellerNameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/sellerNameEditText" />
+        app:layout_constraintStart_toStartOf="@+id/itemDescription"
+        app:layout_constraintTop_toBottomOf="@+id/itemDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

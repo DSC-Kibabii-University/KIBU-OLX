@@ -2,6 +2,8 @@ package com.ifixhubke.kibu_olx.ui.fragments.home;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentHomeBinding;
@@ -49,6 +52,13 @@ public class HomeFragment extends Fragment implements ItemClickListener {
             @Override
             public void afterTextChanged(Editable s) {
                 //filter(s.toString());
+            }
+        });
+
+        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_homeFragment2_to_sellFragmentOne);
             }
         });
 

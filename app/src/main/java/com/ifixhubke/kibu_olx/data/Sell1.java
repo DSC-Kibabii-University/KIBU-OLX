@@ -6,41 +6,36 @@ import android.os.Parcelable;
 
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import java.util.ArrayList;
+
 public class Sell1 implements Parcelable {
 
     private String category;
     private String location;
-    private Uri image1;
-    private Uri image2;
-    private Uri image3;
     private String productName;
     private String price;
     private String condition;
     private String phoneNumber;
     private  String datePosted;
+    private ArrayList<Uri> imagesList;
 
-    public Sell1(String category, String location, Uri image1, Uri image2, Uri image3) {
+    public Sell1(String category, String location, String productName, String price, String condition, String phoneNumber, String datePosted, ArrayList<Uri> imagesList) {
         this.category = category;
         this.location = location;
-        this.image1 = image1;
-        this.image2 = image2;
-        this.image3 = image3;
-    }
-
-    public Sell1(String category, String location, Uri image1, Uri image2, Uri image3, String productName, String price, String condition, String phoneNumber, String datePosted) {
-        this.category = category;
-        this.location = location;
-        this.image1 = image1;
-        this.image2 = image2;
-        this.image3 = image3;
         this.productName = productName;
         this.price = price;
         this.condition = condition;
         this.phoneNumber = phoneNumber;
         this.datePosted = datePosted;
+        this.imagesList = imagesList;
     }
 
-    public Sell1(AppCompatSpinner categorySpinner, AppCompatSpinner locationSpinner, String downloadURL1, String downloadURL2, String downloadURL3, String date){}
+
+    public Sell1(String category, String location, ArrayList<Uri> imagesList) {
+        this.category = category;
+        this.location = location;
+        this.imagesList = imagesList;
+    }
 
     public String getCategory() {
         return category;
@@ -56,30 +51,6 @@ public class Sell1 implements Parcelable {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public Uri getImage1() {
-        return image1;
-    }
-
-    public void setImage1(Uri image1) {
-        this.image1 = image1;
-    }
-
-    public Uri getImage2() {
-        return image2;
-    }
-
-    public void setImage2(Uri image2) {
-        this.image2 = image2;
-    }
-
-    public Uri getImage3() {
-        return image3;
-    }
-
-    public void setImage3(Uri image3) {
-        this.image3 = image3;
     }
 
     public String getProductName() {
@@ -122,6 +93,13 @@ public class Sell1 implements Parcelable {
         this.datePosted = datePosted;
     }
 
+    public ArrayList<Uri> getImagesList() {
+        return imagesList;
+    }
+
+    public void setImagesList(ArrayList<Uri> imagesList) {
+        this.imagesList = imagesList;
+    }
 
     @Override
     public int describeContents() {
@@ -132,40 +110,34 @@ public class Sell1 implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.category);
         dest.writeString(this.location);
-        dest.writeParcelable(this.image1, flags);
-        dest.writeParcelable(this.image2, flags);
-        dest.writeParcelable(this.image3, flags);
         dest.writeString(this.productName);
         dest.writeString(this.price);
         dest.writeString(this.condition);
         dest.writeString(this.phoneNumber);
         dest.writeString(this.datePosted);
+        dest.writeTypedList(this.imagesList);
     }
 
     public void readFromParcel(Parcel source) {
         this.category = source.readString();
         this.location = source.readString();
-        this.image1 = source.readParcelable(Uri.class.getClassLoader());
-        this.image2 = source.readParcelable(Uri.class.getClassLoader());
-        this.image3 = source.readParcelable(Uri.class.getClassLoader());
         this.productName = source.readString();
         this.price = source.readString();
         this.condition = source.readString();
         this.phoneNumber = source.readString();
         this.datePosted = source.readString();
+        this.imagesList = source.createTypedArrayList(Uri.CREATOR);
     }
 
     protected Sell1(Parcel in) {
         this.category = in.readString();
         this.location = in.readString();
-        this.image1 = in.readParcelable(Uri.class.getClassLoader());
-        this.image2 = in.readParcelable(Uri.class.getClassLoader());
-        this.image3 = in.readParcelable(Uri.class.getClassLoader());
         this.productName = in.readString();
         this.price = in.readString();
         this.condition = in.readString();
         this.phoneNumber = in.readString();
         this.datePosted = in.readString();
+        this.imagesList = in.createTypedArrayList(Uri.CREATOR);
     }
 
     public static final Parcelable.Creator<Sell1> CREATOR = new Parcelable.Creator<Sell1>() {

@@ -41,4 +41,18 @@
     <string name="last_seen">Last seen</string>
     <string name="description">Description</string>
     <string name="contact">Contact</string>
+
+    <string-array name="category">
+        <item>Electronics</item>
+        <item>Furniture</item>
+        <item>Beddings</item>
+        <item>Utensils</item>
+    </string-array>
+
+    <string-array name="location">
+        <item>Tuuti</item>
+        <item>Dominion</item>
+        <item>Kibabii</item>
+        <item>Mayanja</item>
+    </string-array>
 </resources>

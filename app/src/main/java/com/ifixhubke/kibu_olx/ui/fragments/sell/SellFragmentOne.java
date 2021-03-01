@@ -39,8 +39,6 @@ import com.ifixhubke.kibu_olx.data.Sell1;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentSellOneBinding;
 
-import net.alhazmy13.mediapicker.Image.ImagePicker;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,18 +59,16 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
     public Uri imageURI2;
     public Uri imageURI3;
 
-    private ArrayList<Uri> imagesList;
+
     private static final int IMAGE_REQUEST1 = 1;
     private static final int IMAGE_REQUEST2 = 2;
     private static final int IMAGE_REQUEST3 = 3;
 
-    private int uploadCount = 0;
+   private ArrayList<Uri> imagesArrayList = new ArrayList<>();
 
     private String category,location;
 
-    DatabaseReference databaseReference;
-    private StorageReference storageReference;
-    //private DatabaseReference mDatabaseReference;
+
 
 
     @Nullable
@@ -81,73 +77,74 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
         binding = FragmentSellOneBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
 
-        imagesList = new ArrayList<>();
 
-
-        storageReference = FirebaseStorage.getInstance().getReference("images");
-        //Uploading spinner data to firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         //categorySpinner  and locationSpinner
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(requireContext(),R.array.category, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> arrayAdapter1 = ArrayAdapter.createFromResource(requireContext(),R.array.location, android.R.layout.simple_spinner_item);
-        //arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.categorySpinner.setAdapter(arrayAdapter);
         binding.locationSpinner.setAdapter(arrayAdapter1);
         binding.categorySpinner.setOnItemSelectedListener(this);
         binding.locationSpinner.setOnItemSelectedListener(this);
 
-        binding.imagePick1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.imagePick1.setOnClickListener(v -> {
 
-                openFileChooser(IMAGE_REQUEST1);
-                binding.imagePick1.setVisibility(View.GONE);
+            openFileChooser(IMAGE_REQUEST1);
+            binding.imagePick1.setVisibility(View.GONE);
 
-                    binding.imageRemove1.setVisibility(View.VISIBLE);
+                binding.imageRemove1.setVisibility(View.VISIBLE);
 
-            }
         });
 
-        binding.imagePick2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.imagePick2.setOnClickListener(v -> {
 
-                openFileChooser(IMAGE_REQUEST2);
-                binding.imagePick2.setVisibility(View.GONE);
+            openFileChooser(IMAGE_REQUEST2);
+            binding.imagePick2.setVisibility(View.GONE);
 
-                binding.imageRemove2.setVisibility(View.VISIBLE);
+            binding.imageRemove2.setVisibility(View.VISIBLE);
 
-            }
         });
 
-        binding.imagePick3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.imagePick3.setOnClickListener(v -> {
 
-                openFileChooser(IMAGE_REQUEST3);
-                binding.imagePick3.setVisibility(View.GONE);
+            openFileChooser(IMAGE_REQUEST3);
+            binding.imagePick3.setVisibility(View.GONE);
 
-                binding.imageRemove3.setVisibility(View.VISIBLE);
+            binding.imageRemove3.setVisibility(View.VISIBLE);
 
-            }
         });
+
+        binding.imageRemove1.setOnClickListener(v -> {
+            binding.imageView1.setImageURI(null);
+
+            imagesArrayList.remove(0);
+            openFileChooser(IMAGE_REQUEST1);
+        });
+
+        binding.imageRemove2.setOnClickListener(v -> {
+            binding.imageView2.setImageURI(null);
+            imagesArrayList.remove(1);
+            openFileChooser(IMAGE_REQUEST2);
+        });
+
+        binding.imageRemove3.setOnClickListener(v -> {
+            binding.imageView3.setImageURI(null);
+            imagesArrayList.remove(2);
+            openFileChooser(IMAGE_REQUEST3);
+        });
+
 
 
         binding.nextButton.setOnClickListener(v -> {
 
             //Passing data to sell2
-            Sell1 sell = new Sell1(category,location,imageURI1,imageURI2,imageURI3);
+            Sell1 sell = new Sell1(category,location,imagesArrayList);
             NavDirections action = SellFragmentOneDirections.actionSellFragmentOneToSellFragmentTwo(sell);
             Navigation.findNavController(v).navigate(action);
-            //NavHostFragment.findNavController(SellFragmentOne.this).navigate(R.id.sellFragmentTwo);
-
-            uploadFirebase();
         });
 
         return view;
     }
-
 
     //choosing image
     public void openFileChooser(int requestCode) {
@@ -164,24 +161,46 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
         if(requestCode == IMAGE_REQUEST1  && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             imageURI1 = data.getData();
-            imagesList.add(imageURI1);
-            Timber.d(imagesList.toString());
+            try {
+                Bitmap bm1 = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), imageURI1);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bm1.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
+                byte[] fileInBytes = byteArrayOutputStream.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            imagesArrayList.add(imageURI1);
             binding.imageView1.setImageURI(imageURI1);
         }
 
         if(requestCode == IMAGE_REQUEST2  && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             imageURI2 = data.getData();
-            imagesList.add(imageURI2);
-            Timber.d(imagesList.toString());
+            try {
+                Bitmap bm2 = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), imageURI2);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bm2.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
+                byte[] fileInBytes = byteArrayOutputStream.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            imagesArrayList.add(imageURI2);
             binding.imageView2.setImageURI(imageURI2);
         }
 
         if(requestCode == IMAGE_REQUEST3  && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             imageURI3 = data.getData();
-            imagesList.add(imageURI3);
-            Timber.d(imagesList.toString());
+            try {
+                Bitmap bm3 = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), imageURI3);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bm3.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
+                byte[] fileInBytes = byteArrayOutputStream.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            imagesArrayList.add(imageURI3);
             binding.imageView3.setImageURI(imageURI3);
 
 
@@ -190,104 +209,6 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
 
     }
 
-
-
-
-
-    //upload Image
-  /* public void uploadImage(){
-        if (imageURI1 != null){
-            try {
-                //compressing images
-                Bitmap bm1 = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), imageURI1);
-                Bitmap bm2 = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), imageURI2);
-                Bitmap bm3 = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), imageURI3);
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                bm1.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
-                bm2.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
-                bm3.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
-                byte[] fileInBytes = byteArrayOutputStream.toByteArray();
-
-                //uploading images
-                StorageReference imageStorageReference1 = storageReference.child(imageURI1.getLastPathSegment());
-                StorageReference imageStorageReference2 = storageReference.child(imageURI2.getLastPathSegment());
-                StorageReference imageStorageReference3 = storageReference.child(imageURI3.getLastPathSegment());
-
-                UploadTask uploadTask1 = imageStorageReference1.putBytes(fileInBytes);
-
-                uploadTask1.continueWithTask(task -> {
-                    if (!task.isSuccessful()){
-                        throw Objects.requireNonNull(task.getException());
-                    }
-                    return imageStorageReference1.getDownloadUrl();
-                }).addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Uri downloadUri = task.getResult();
-                        assert downloadUri != null;
-                        String downloadURL1 = downloadUri.toString();
-                        String downloadURL2 = downloadUri.toString();
-                        String downloadURL3 = downloadUri.toString();
-
-                        String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
-                        Sell1 sell1 = new Sell1(binding.categorySpinner, binding.locationSpinner,downloadURL1,downloadURL2,downloadURL3,date);
-
-                        databaseReference.child(UUID.randomUUID().toString()).setValue(sell1);
-                    }
-
-                }).addOnFailureListener(e -> {
-                    Toast.makeText(requireContext(), "Image1 Upload Failed", Toast.LENGTH_SHORT).show();
-                });
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }else {
-            Toast.makeText(requireContext(), "No image selected", Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
-    public void uploadFirebase(){
-    Timber.d("upload method called");
-
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("items_image");
-        for (uploadCount = 0; uploadCount < imagesList.size(); uploadCount++){
-            Timber.d("for loop for looping");
-
-            Uri individualImage = imagesList.get(uploadCount);
-
-            final  StorageReference imageRefence = storageReference.child("Image"+individualImage.getLastPathSegment());
-
-            imageRefence.putFile(individualImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    imageRefence.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            String imageUrl = String.valueOf(uri);
-
-                            StoreUrl(imageUrl);
-                        }
-
-
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Timber.d("Failed "+e.getMessage());
-                        }
-                    });
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Timber.d("Storage "+e.getMessage());
-                }
-            });
-        }
-
-
-
-    }
 
     //category spinner onitemselected methods
     @Override
@@ -305,15 +226,4 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
 
     }
 
-    private void StoreUrl(String imageUrl) {
-        Timber.d("method to store url called");
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Items_imagesUrl");
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("Imglink", imageUrl);
-
-        databaseReference.push().setValue(hashMap);
-
-        Toast.makeText(requireContext(),"Uploaded Successfully", Toast.LENGTH_SHORT).show();
-
-    }
 }
