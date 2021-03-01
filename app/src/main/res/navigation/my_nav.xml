@@ -95,7 +95,11 @@
         android:id="@+id/sellFragmentTwo"
         android:name="com.ifixhubke.kibu_olx.ui.fragments.sell.SellFragmentTwo"
         android:label="fragment_sell_two"
-        tools:layout="@layout/fragment_sell_two" />
+        tools:layout="@layout/fragment_sell_two" >
+        <argument
+            android:name="sellTwoArguments"
+            app:argType="com.ifixhubke.kibu_olx.data.Sell1" />
+    </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.ifixhubke.kibu_olx.onboarding.ViewPagerFragment"
