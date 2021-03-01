@@ -41,7 +41,7 @@
     <string name="last_seen">Last seen</string>
     <string name="description">Description</string>
     <string name="contact">Contact</string>
-
+    <string name="nothing_found">Nothing Found</string>
     <string-array name="category">
         <item>Electronics</item>
         <item>Furniture</item>
@@ -50,9 +50,9 @@
     </string-array>
 
     <string-array name="location">
-        <item>Tuuti</item>
-        <item>Dominion</item>
         <item>Kibabii</item>
-        <item>Mayanja</item>
+        <item>Tuuti</item>
+        <item>Dorminion</item>
+        <item>Booster</item>
     </string-array>
 </resources>

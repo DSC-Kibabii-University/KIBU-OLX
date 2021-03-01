@@ -1,6 +1,8 @@
 package com.ifixhubke.kibu_olx.ui.fragments.home;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -12,9 +14,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
 import com.ifixhubke.kibu_olx.data.Item;
@@ -23,6 +28,8 @@ import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
+
+import timber.log.Timber;
 
 public class HomeFragment extends Fragment implements ItemClickListener {
     FragmentHomeBinding binding;
@@ -80,6 +87,27 @@ public class HomeFragment extends Fragment implements ItemClickListener {
     private void initializeRecycler() {
 
         Query query = databaseReference.child("all_items");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    //Toast.makeText(requireContext(),"data exists",Toast.LENGTH_SHORT).show();
+                    Timber.d("data exists");
+                    binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
+                    binding.allItemsRecyclerview.setVisibility(View.VISIBLE);
+                }
+                else{
+                    //Toast.makeText(requireContext(),"No data exists",Toast.LENGTH_SHORT).show();
+                    binding.imageView2.setVisibility(View.VISIBLE);
+                    binding.textView.setVisibility(View.VISIBLE);
+                    binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
 
         FirebaseRecyclerOptions<Item> options = new FirebaseRecyclerOptions.Builder<Item>()
                         .setQuery(query, Item.class)

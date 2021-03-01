@@ -27,18 +27,6 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<FavouritesModel,F
     }
 
     @Override
-    public void onDataChanged() {
-        super.onDataChanged();
-        Timber.d("data loaded");
-    }
-
-    @Override
-    public void onError(@NonNull DatabaseError error) {
-        super.onError(error);
-        Timber.d(error.getMessage());
-    }
-
-    @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull FavouritesModel model) {
         holder.itemName.setText(model.getItemName());
         holder.itemPrice.setText(model.getItemPrice());

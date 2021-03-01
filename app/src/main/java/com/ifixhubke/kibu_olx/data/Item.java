@@ -8,14 +8,24 @@ public class Item implements Parcelable {
     private String itemImage;
     private String itemName;
     private String itemPrice;
+    Boolean itemStarred;
 
     public Item() {
     }
 
-    public Item(String itemImage, String itemName, String itemPrice) {
+    public Item(String itemImage, String itemName, String itemPrice, Boolean itemStarred) {
         this.itemImage = itemImage;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
+        this.itemStarred = itemStarred;
+    }
+
+    public Boolean getItemStarred(){
+        return itemStarred;
+    }
+
+    public void setItemStarred(Boolean itemStarred){
+        this.itemStarred = itemStarred;
     }
 
     public String getItemImage() {

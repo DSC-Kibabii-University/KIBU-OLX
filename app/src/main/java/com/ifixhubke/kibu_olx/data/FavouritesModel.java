@@ -5,9 +5,7 @@ public class FavouritesModel {
     public String itemName;
     public String itemPrice;
 
-    public FavouritesModel() {
-
-    }
+    public FavouritesModel() { }
 
     public FavouritesModel(String favImage, String favItemName, String favItemPrice) {
         this.itemImage = favImage;

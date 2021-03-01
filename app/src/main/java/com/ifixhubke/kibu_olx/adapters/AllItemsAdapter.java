@@ -44,6 +44,14 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Item model) {
+        if (model.getItemStarred()){
+            holder.starredItem.setVisibility(View.VISIBLE);
+            holder.add_item_to_favorites.setVisibility(View.INVISIBLE);
+        }
+        else if (!model.getItemStarred()){
+            holder.starredItem.setVisibility(View.INVISIBLE);
+        }
+
         holder.item_name.setText(model.getItemName());
         holder.item_price.setText(model.getItemPrice());
         Picasso.get()
@@ -54,14 +62,15 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
 
         holder.card.setOnClickListener(v -> {
 
-            Item item = new Item(model.getItemImage(),model.getItemName(),model.getItemPrice());
+            Item item = new Item(model.getItemImage(),model.getItemName(),model.getItemPrice(),false);
             NavDirections action =  HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);
             Timber.d("card clicked");
         });
 
         holder.add_item_to_favorites.setOnClickListener(v -> {
-            Item item = new Item(model.getItemImage(),model.getItemName(),model.getItemPrice());
+            model.setItemStarred(true);
+            Item item = new Item(model.getItemImage(),model.getItemName(),model.getItemPrice(),model.getItemStarred());
             itemClickListener.addItemToFavorites(item,position);
             Timber.d("clicked");
         });
@@ -80,6 +89,7 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
         TextView item_price;
         ImageView add_item_to_favorites;
         CardView card;
+        ImageView starredItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -88,6 +98,7 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
             item_price = itemView.findViewById(R.id.itemPriceTxt);
             add_item_to_favorites = itemView.findViewById(R.id.favoriteItemImg);
             card = itemView.findViewById(R.id.item_card_layout);
+            starredItem = itemView.findViewById(R.id.starredfavoriteItemImg);
         }
     }
 }
