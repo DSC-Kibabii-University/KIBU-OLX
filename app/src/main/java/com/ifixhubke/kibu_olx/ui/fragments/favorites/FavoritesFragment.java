@@ -8,101 +8,67 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.adapters.FavouritesAdapter;
 import com.ifixhubke.kibu_olx.data.FavouritesModel;
 import com.ifixhubke.kibu_olx.databinding.FragmentFavoritesBinding;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-import timber.log.Timber;
-
-import static android.content.ContentValues.TAG;
-
 public class FavoritesFragment extends Fragment {
     FragmentFavoritesBinding binding;
-    private DatabaseReference databaseReference;
-   // RecyclerView recyclerView;
-    private ArrayList<FavouritesModel> models;
     private FavouritesAdapter adapter;
+    private DatabaseReference databaseReference;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding= FragmentFavoritesBinding.inflate(inflater, container, false);
         View view1 = binding.getRoot();
-        models=new ArrayList<>();
-        fetchFavoritePosts();
-        /*checkConnection();*/
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        initializeRecycler();
         return view1;
-
-
-
-
-    }
-
-
-    /*private void checkConnection() {
-        ConnectivityManager connectivityManager= (ConnectivityManager).getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        if (networkInfo!=null && networkInfo.isConnected()){
-            fetchFavoritePosts();
-        }
-        else {
-            Toast.makeText(getContext(),"NO INTERNET!",Toast.LENGTH_SHORT).show();
-        }
-
-    }*/
-
-
-    private void fetchFavoritePosts() {
-        binding.progressBar4.setVisibility(View.VISIBLE);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("favoriteitems");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-               if(snapshot.exists()){
-                   for (DataSnapshot i: snapshot.getChildren()){
-                       Timber.d(i.toString());
-                       FavouritesModel model=i.getValue(FavouritesModel.class);
-                       models.add(model);
-
-                       binding.progressBar4.setVisibility(View.INVISIBLE);
-                       Collections.reverse(models);
-                       initializeRecycler();
-                   }
-               }
-               else {
-                   Timber.d("Snapshot not found");
-               }
-            }
-
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Timber.tag(TAG).w(error.toException(), "loadPost:onCancelled");
-            }
-        });
-
-
     }
 
     private void initializeRecycler() {
-        binding.favoriteRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter=new FavouritesAdapter(models);
+        Query query = databaseReference.child("favoriteitems");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    binding.favprogressBar.setVisibility(View.INVISIBLE);
+                }else {
+                    binding.favprogressBar.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+
+        FirebaseRecyclerOptions<FavouritesModel> options = new FirebaseRecyclerOptions
+                .Builder<FavouritesModel>()
+                .setQuery(query, FavouritesModel.class).build();
+
+        adapter = new FavouritesAdapter(options);
         binding.favoriteRecyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
 }
