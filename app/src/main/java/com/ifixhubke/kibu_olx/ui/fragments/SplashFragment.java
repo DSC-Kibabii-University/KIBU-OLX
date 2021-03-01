@@ -19,15 +19,25 @@ import android.widget.Toast;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentSplashBinding;
+import com.ifixhubke.kibu_olx.others.CheckInternet;
+
+import timber.log.Timber;
 
 public class SplashFragment extends Fragment {
     FragmentSplashBinding binding;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSplashBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+
+        if (!(CheckInternet.isConnected(requireContext()))){
+            Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+            Timber.d("No Internet");
+        }
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
