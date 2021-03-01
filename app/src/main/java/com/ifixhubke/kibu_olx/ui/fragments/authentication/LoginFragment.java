@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentLoginBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
+import com.ifixhubke.kibu_olx.others.CheckInternet;
 
 import timber.log.Timber;
 
@@ -58,6 +59,14 @@ public class LoginFragment extends Fragment {
                     binding.passwordEditText.setError("Field can't be empty!!");
                     return;
                 }
+                else if (!(CheckInternet.isConnected(requireContext()))){
+                    Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                    Timber.d("No Internet");
+                }
+                else
+                {
+                    binding.loginProgressBar.setVisibility(View.VISIBLE);
+                }
 
                 firebaseAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -66,7 +75,7 @@ public class LoginFragment extends Fragment {
                             Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_homeFragment2);
                             Toast.makeText(getContext(), "welcome", Toast.LENGTH_SHORT).show();
                             Timber.d("signInWithEmailAndPassword: success");
-                        }
+                            binding.loginProgressBar.setVisibility(View.INVISIBLE);}
                         else {
                             Toast.makeText(getContext(), "Something Went Wrong.\n please check your details and try again", Toast.LENGTH_SHORT).show();
                             Timber.d("signInWithEmailAndPassword: Failed");

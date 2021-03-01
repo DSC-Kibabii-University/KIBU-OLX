@@ -19,12 +19,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/enterEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
         android:hint="@string/enter_email"
@@ -93,6 +94,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
         android:hint="@string/phone_number"
+        android:inputType="number"
         android:textColorHint="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -127,29 +129,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCheckBox" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/googleSignipButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:drawableLeft="@drawable/ic_google"
-        android:text="@string/sign_up_with_google"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:backgroundTint="@color/white"
-        app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton"
-        app:strokeColor="#000000"
-        app:strokeWidth="1dp"
-        tools:ignore="RtlHardcoded" />
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/signupTextView"
         android:layout_width="wrap_content"
@@ -161,6 +140,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/register_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:elevation="10dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.829" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

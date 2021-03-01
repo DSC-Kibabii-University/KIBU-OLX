@@ -1,10 +1,16 @@
 package com.ifixhubke.kibu_olx.ui.fragments.authentication;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
@@ -16,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +31,7 @@ import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.User;
 import com.ifixhubke.kibu_olx.databinding.FragmentRegisterBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
+import com.ifixhubke.kibu_olx.others.CheckInternet;
 
 import timber.log.Timber;
 
@@ -43,6 +51,8 @@ public class RegisterFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
 
+
+
         binding.signupTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,11 +69,14 @@ public class RegisterFragment extends Fragment {
                 String first_Name = binding.firstName.getText().toString().trim();
                 String last_Name  = binding.lastName.getText().toString().trim();
                 String phone_Number = binding.phoneNumber.getText().toString().trim();
+                Boolean agree_with_rules = binding.materialCheckBox.callOnClick();
+
 
                 if (TextUtils.isEmpty(binding.enterEmail.getText().toString())){
                     binding.enterEmail.setError("Field can't be empty!");
                     return;
                 }
+
                 else if (TextUtils.isEmpty(binding.enterPassword.getText().toString())){
                     binding.enterPassword.setError("Field can't be empty!");
                     return;
@@ -80,11 +93,22 @@ public class RegisterFragment extends Fragment {
                     binding.phoneNumber.setError("Field can't be empty!");
                     return;
                 }
+                else if (binding.phoneNumber.length()<10){
+                    binding.phoneNumber.setError("Put correct Fields");
+                    return;
+                }
                 else if (binding.enterPassword.length()<6){
                     binding.enterPassword.setError("Password should be 6 characters or more!");
                 }
                 else if (!isvalidemail(binding.enterEmail.getText().toString())){
                     binding.enterEmail.setError("Invalid Email!");
+                }
+                else if (!binding.materialCheckBox.isChecked()){
+                    binding.materialCheckBox.setError("please check here!");
+                    return;
+                }
+                else {
+                    binding.registerProgressBar.setVisibility(View.VISIBLE);
                 }
 
 
@@ -97,10 +121,19 @@ public class RegisterFragment extends Fragment {
                             Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_loginFragment);
                             Toast.makeText(getContext(), "Welcome", Toast.LENGTH_SHORT).show();
                             Timber.d("createUserWithEmailAndPassword: Success");
+                            binding.registerProgressBar.setVisibility(View.INVISIBLE);
                         }
                         else {
-                            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                            Timber.d("createUserWithEmailAndPassword: Failed");
+                             if (!(CheckInternet.isConnected(requireContext()))){
+                                Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                                Timber.d("No Internet");
+                                 binding.registerProgressBar.setVisibility(View.INVISIBLE);
+                            }
+                             else {
+                                 Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                                 binding.registerProgressBar.setVisibility(View.INVISIBLE);
+                                 Timber.d("createUserWithEmailAndPassword: Failed");
+                             }
                         }
                     }
                 });
@@ -112,6 +145,8 @@ public class RegisterFragment extends Fragment {
 
         return view;
     }
+
+
 
     private boolean isvalidemail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
