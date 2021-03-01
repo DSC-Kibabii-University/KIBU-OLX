@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +25,7 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
 
     ItemClickListener itemClickListener;
 
-    public AllItemsAdapter(@NonNull FirebaseRecyclerOptions<Item> options,  ItemClickListener itemClickListener) {
+    public AllItemsAdapter(@NonNull FirebaseRecyclerOptions<Item> options, ItemClickListener itemClickListener) {
         super(options);
         this.itemClickListener = itemClickListener;
     }
