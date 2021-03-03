@@ -1,6 +1,8 @@
 package com.ifixhubke.kibu_olx.ui.fragments.sell;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -13,8 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -37,6 +45,9 @@ public class SellFragmentTwo extends Fragment {
     String imageUrl2;
     String imageUrl3;
     Sell sellArgs;
+    String f_name;
+    String s_name;
+    String lastSeen;
 
     @Nullable
     @Override
@@ -50,6 +61,8 @@ public class SellFragmentTwo extends Fragment {
 
         storageReference = FirebaseStorage.getInstance().getReference("images");
         databaseReference = FirebaseDatabase.getInstance().getReference("all_images");
+
+        getCurrentUserDetails();
 
         binding.postAdButton.setOnClickListener(v -> {
             if (TextUtils.isEmpty(binding.productNameEditText.getText().toString())) {
@@ -126,9 +139,24 @@ public class SellFragmentTwo extends Fragment {
         Timber.d("method to store url called");
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("all_items");
         String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-        Sell sell = new Sell(sellArgs.getCategory(),sellArgs.getLocation(),binding.productNameEditText.getText().toString(),
-                binding.priceEditText.getText().toString(),binding.conditionEditTtext.getText().toString(),binding.phoneNumberEditText.getText().toString(),date,
-                imageUrl2,imageUrl1,imageUrl3,false);
+
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userProfile", Context.MODE_PRIVATE);
+
+        Sell sell = new Sell(
+                sellArgs.getCategory(),
+                sellArgs.getLocation(),
+                binding.productNameEditText.getText().toString(),
+                binding.priceEditText.getText().toString(),
+                binding.conditionEditTtext.getText().toString(),
+                binding.phoneNumberEditText.getText().toString(),
+                date,
+                imageUrl2,
+                imageUrl1,
+                imageUrl3,
+                false,
+                binding.itemDescription.getText().toString(),
+                sharedPreferences.getString("USERNAME", "default"),
+                "Thursday 2020");
 
         databaseReference.push().setValue(sell);
     }
@@ -146,6 +174,32 @@ public class SellFragmentTwo extends Fragment {
                 imageUrl3 = imagesUrls.get(2);
             }
         }
+    }
+
+    private void getCurrentUserDetails(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        String userid = user.getUid();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                f_name = Objects.requireNonNull(dataSnapshot.child("f_Name").getValue()).toString();
+                s_name = Objects.requireNonNull(dataSnapshot.child("l_Name").getValue()).toString();
+
+                SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userProfile", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("USERNAME", f_name+" "+s_name);
+                editor.apply();
+                editor.commit();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
 }

@@ -104,17 +104,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
+
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/materialCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
-        android:text="@string/i_agree_with_the_rules"
         android:checked="false"
+        android:text="@string/i_agree_with_the_rules"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerButton"

@@ -14,27 +14,57 @@ public class Sell implements Parcelable {
     private String itemPrice;
     private String condition;
     private Boolean itemStarred;
-    private String phoneNumber;
+    private String sellerPhoneNum;
     private  String datePosted;
     private ArrayList<Uri> imagesList;
     private String itemImage;
     private String itemImage2;
     private String itemImage3;
+    private String itemDescription;
+    private String sellerName;
+    private String sellerLastSeen;
 
     public Sell(String category, String location, String itemName,
-                String itemPrice, String condition, String phoneNumber,
-                String datePosted, String image1, String image2, String image3, Boolean isStarred) {
+                String itemPrice, String condition, String sellerPhoneNum,
+                String datePosted, String image1, String image2, String image3, Boolean isStarred, String itemDescription, String sellerName, String sellerLastSeen) {
         this.category = category;
         this.location = location;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.condition = condition;
-        this.phoneNumber = phoneNumber;
+        this.sellerPhoneNum = sellerPhoneNum;
         this.datePosted = datePosted;
         this.itemImage = image1;
         this.itemImage2 = image2;
         this.itemImage3 = image3;
         this.itemStarred = isStarred;
+        this.itemDescription = itemDescription;
+        this.sellerName = sellerName;
+        this.sellerLastSeen = sellerLastSeen;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public String getSellerLastSeen() {
+        return sellerLastSeen;
+    }
+
+    public void setSellerLastSeen(String sellerLastSeen) {
+        this.sellerLastSeen = sellerLastSeen;
+    }
+
+    public String getItemDescription(){
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription){
+        this.itemDescription = itemDescription;
     }
 
     public String getItemImage() {
@@ -115,12 +145,12 @@ public class Sell implements Parcelable {
         this.condition = condition;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getSellerPhoneNum() {
+        return sellerPhoneNum;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setSellerPhoneNum(String sellerPhoneNum) {
+        this.sellerPhoneNum = sellerPhoneNum;
     }
 
     public String getDatePosted() {
@@ -151,7 +181,7 @@ public class Sell implements Parcelable {
         dest.writeString(this.itemName);
         dest.writeString(this.itemPrice);
         dest.writeString(this.condition);
-        dest.writeString(this.phoneNumber);
+        dest.writeString(this.sellerPhoneNum);
         dest.writeString(this.datePosted);
         dest.writeTypedList(this.imagesList);
     }
@@ -162,7 +192,7 @@ public class Sell implements Parcelable {
         this.itemName = source.readString();
         this.itemPrice = source.readString();
         this.condition = source.readString();
-        this.phoneNumber = source.readString();
+        this.sellerPhoneNum = source.readString();
         this.datePosted = source.readString();
         this.imagesList = source.createTypedArrayList(Uri.CREATOR);
     }
@@ -173,7 +203,7 @@ public class Sell implements Parcelable {
         this.itemName = in.readString();
         this.itemPrice = in.readString();
         this.condition = in.readString();
-        this.phoneNumber = in.readString();
+        this.sellerPhoneNum = in.readString();
         this.datePosted = in.readString();
         this.imagesList = in.createTypedArrayList(Uri.CREATOR);
     }

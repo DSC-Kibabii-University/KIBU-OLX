@@ -54,12 +54,27 @@
         app:layout_constraintStart_toEndOf="@+id/tv_lastseen"
         app:layout_constraintTop_toTopOf="@+id/tv_lastseen" />
 
+    <TextView
+        android:id="@+id/sellerPhoneNum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="0706003891"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/main"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lastseen" />
+
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/image_slider"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="200dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         app:iss_auto_cycle="true"
         app:iss_corner_radius="5"
@@ -69,7 +84,7 @@
         app:iss_title_background="@drawable/gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/sellerPhoneNum" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detailsItemName"
@@ -110,20 +125,41 @@
         app:layout_constraintStart_toStartOf="@+id/detailsItemPrice"
         app:layout_constraintTop_toBottomOf="@+id/detailsItemPrice" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_location"
+        app:layout_constraintStart_toStartOf="@+id/detailsDatePosted"
+        app:layout_constraintTop_toBottomOf="@+id/detailsDatePosted" />
+
+    <TextView
+        android:id="@+id/itemDetailsLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:text="@string/description"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/image_slider"
-        app:layout_constraintTop_toBottomOf="@+id/detailsDatePosted" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textView20"
+        android:id="@+id/itemDetailsDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -189,5 +225,7 @@
         app:layout_constraintEnd_toEndOf="@+id/message_button"
         app:layout_constraintStart_toStartOf="@+id/message_button"
         tools:ignore="ContentDescription" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
