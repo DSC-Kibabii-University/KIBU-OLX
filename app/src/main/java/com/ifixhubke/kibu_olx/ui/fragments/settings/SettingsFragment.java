@@ -1,13 +1,15 @@
 package com.ifixhubke.kibu_olx.ui.fragments.settings;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,8 +20,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.ifixhubke.kibu_olx.R;
+import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
 import com.ifixhubke.kibu_olx.adapters.SettingsAdapter;
-import com.ifixhubke.kibu_olx.data.Settings;
+import com.ifixhubke.kibu_olx.data.Item;
+import com.ifixhubke.kibu_olx.data.SettingsModels;
+import com.ifixhubke.kibu_olx.databinding.FragmentHomeBinding;
+import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentSettingsBinding;
 
 import timber.log.Timber;
@@ -28,17 +35,27 @@ public class SettingsFragment extends Fragment {
     FragmentSettingsBinding binding;
     SettingsAdapter adapter;
     private DatabaseReference databaseReference;
+    String F_Name;
+    String L_Name;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentSettingsBinding.inflate(inflater, container, false);
+        binding = FragmentSettingsBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         initializeRecycler();
         getUserDetails();
+
+        binding.editUserName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateData();
+            }
+        });
+
         return view;
     }
 
@@ -49,10 +66,10 @@ public class SettingsFragment extends Fragment {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
+                if (snapshot.exists()){
                     Timber.d("data exist");
                     binding.progressBar.setVisibility(View.INVISIBLE);
-                } else {
+                }else{
                     binding.progressBar.setVisibility(View.INVISIBLE);
                     Timber.d("data does not exist");
                 }
@@ -60,11 +77,12 @@ public class SettingsFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
-        FirebaseRecyclerOptions<Settings> options = new FirebaseRecyclerOptions.Builder<Settings>()
-                .setQuery(query, Settings.class)
+        FirebaseRecyclerOptions<SettingsModels> options = new FirebaseRecyclerOptions.Builder<SettingsModels>()
+                .setQuery(query, SettingsModels.class)
                 .build();
 
         adapter = new SettingsAdapter(options);
@@ -92,12 +110,12 @@ public class SettingsFragment extends Fragment {
         reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String fName = snapshot.child("f_Name").getValue().toString();
-                String lName = snapshot.child("l_Name").getValue().toString();
+                F_Name = snapshot.child("f_Name").getValue().toString();
+                L_Name = snapshot.child("l_Name").getValue().toString();
                 String email = snapshot.child("e_Mail").getValue().toString();
 
                 Timber.d("Text set");
-                binding.userName.setText(fName+ " "+ lName);
+                binding.userName.setText(F_Name+ " "+ L_Name);
                 binding.userEmail.setText(email);
             }
 
@@ -107,4 +125,34 @@ public class SettingsFragment extends Fragment {
             }
         });
     }
+
+    public void updateData(){
+        binding.userName.setVisibility(View.INVISIBLE);
+        binding.editUserName.setVisibility(View.VISIBLE);
+
+        if (isNameChanged()){
+            Toast.makeText(requireContext(), "Name changed successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isNameChanged() {
+        String fName1 = binding.editUserName.getText().toString();
+        String fName2 = binding.editUserName.getText().toString();
+
+        if (fName1 != F_Name || fName2 != L_Name){
+            binding.saveTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    databaseReference.child("f_Name").setValue(fName1);
+                    databaseReference.child("l_Name").setValue(fName2);
+
+                    binding.saveTextView.setVisibility(View.INVISIBLE);
+                }
+            });
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 }
