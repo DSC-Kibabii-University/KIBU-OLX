@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,12 +38,13 @@ public class SettingsFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         initializeRecycler();
+        getUserDetails();
         return view;
     }
 
     private void initializeRecycler() {
         Timber.d("initilize method call");
-        Query query = databaseReference.child("posted_items_history");
+        Query query = databaseReference.child("all_items");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -79,5 +82,29 @@ public class SettingsFragment extends Fragment {
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    private void getUserDetails(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = user.getUid();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String fName = snapshot.child("f_Name").getValue().toString();
+                String lName = snapshot.child("l_Name").getValue().toString();
+                String email = snapshot.child("e_Mail").getValue().toString();
+
+                Timber.d("Text set");
+                binding.userName.setText(fName+ " "+ lName);
+                binding.userEmail.setText(email);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
