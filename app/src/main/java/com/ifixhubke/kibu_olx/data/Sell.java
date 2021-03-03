@@ -4,37 +4,75 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.appcompat.widget.AppCompatSpinner;
-
 import java.util.ArrayList;
 
-public class Sell1 implements Parcelable {
+public class Sell implements Parcelable {
 
     private String category;
     private String location;
-    private String productName;
-    private String price;
+    private String itemName;
+    private String itemPrice;
     private String condition;
+    private Boolean itemStarred;
     private String phoneNumber;
     private  String datePosted;
     private ArrayList<Uri> imagesList;
+    private String itemImage;
+    private String itemImage2;
+    private String itemImage3;
 
-    public Sell1(String category, String location, String productName, String price, String condition, String phoneNumber, String datePosted, ArrayList<Uri> imagesList) {
+    public Sell(String category, String location, String itemName,
+                String itemPrice, String condition, String phoneNumber,
+                String datePosted, String image1, String image2, String image3, Boolean isStarred) {
         this.category = category;
         this.location = location;
-        this.productName = productName;
-        this.price = price;
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
         this.condition = condition;
         this.phoneNumber = phoneNumber;
         this.datePosted = datePosted;
-        this.imagesList = imagesList;
+        this.itemImage = image1;
+        this.itemImage2 = image2;
+        this.itemImage3 = image3;
+        this.itemStarred = isStarred;
     }
 
+    public String getItemImage() {
+        return itemImage;
+    }
 
-    public Sell1(String category, String location, ArrayList<Uri> imagesList) {
+    public void setItemImage(String itemImage) {
+        this.itemImage = itemImage;
+    }
+
+    public String getItemImage2() {
+        return itemImage2;
+    }
+
+    public void setItemImage2(String itemImage2) {
+        this.itemImage2 = itemImage2;
+    }
+
+    public String getItemImage3() {
+        return itemImage3;
+    }
+
+    public void setItemImage3(String itemImage3) {
+        this.itemImage3 = itemImage3;
+    }
+
+    public Sell(String category, String location, ArrayList<Uri> imagesList) {
         this.category = category;
         this.location = location;
         this.imagesList = imagesList;
+    }
+
+    public Boolean getItemStarred(){
+        return itemStarred;
+    }
+
+    public void setItemStarred(Boolean itemStarred){
+        this.itemStarred = itemStarred;
     }
 
     public String getCategory() {
@@ -53,20 +91,20 @@ public class Sell1 implements Parcelable {
         this.location = location;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public String getPrice() {
-        return price;
+    public String getItemPrice() {
+        return itemPrice;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setItemPrice(String itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
     public String getCondition() {
@@ -110,8 +148,8 @@ public class Sell1 implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.category);
         dest.writeString(this.location);
-        dest.writeString(this.productName);
-        dest.writeString(this.price);
+        dest.writeString(this.itemName);
+        dest.writeString(this.itemPrice);
         dest.writeString(this.condition);
         dest.writeString(this.phoneNumber);
         dest.writeString(this.datePosted);
@@ -121,34 +159,34 @@ public class Sell1 implements Parcelable {
     public void readFromParcel(Parcel source) {
         this.category = source.readString();
         this.location = source.readString();
-        this.productName = source.readString();
-        this.price = source.readString();
+        this.itemName = source.readString();
+        this.itemPrice = source.readString();
         this.condition = source.readString();
         this.phoneNumber = source.readString();
         this.datePosted = source.readString();
         this.imagesList = source.createTypedArrayList(Uri.CREATOR);
     }
 
-    protected Sell1(Parcel in) {
+    protected Sell(Parcel in) {
         this.category = in.readString();
         this.location = in.readString();
-        this.productName = in.readString();
-        this.price = in.readString();
+        this.itemName = in.readString();
+        this.itemPrice = in.readString();
         this.condition = in.readString();
         this.phoneNumber = in.readString();
         this.datePosted = in.readString();
         this.imagesList = in.createTypedArrayList(Uri.CREATOR);
     }
 
-    public static final Parcelable.Creator<Sell1> CREATOR = new Parcelable.Creator<Sell1>() {
+    public static final Parcelable.Creator<Sell> CREATOR = new Parcelable.Creator<Sell>() {
         @Override
-        public Sell1 createFromParcel(Parcel source) {
-            return new Sell1(source);
+        public Sell createFromParcel(Parcel source) {
+            return new Sell(source);
         }
 
         @Override
-        public Sell1[] newArray(int size) {
-            return new Sell1[size];
+        public Sell[] newArray(int size) {
+            return new Sell[size];
         }
     };
 }

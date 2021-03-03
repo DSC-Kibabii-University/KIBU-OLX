@@ -3,42 +3,40 @@ package com.ifixhubke.kibu_olx.ui.fragments.sell;
 import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ifixhubke.kibu_olx.R;
-import com.ifixhubke.kibu_olx.data.Sell1;
-import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
+import com.ifixhubke.kibu_olx.data.Sell;
 import com.ifixhubke.kibu_olx.databinding.FragmentSellTwoBinding;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-
+import java.util.Calendar;
+import java.util.Objects;
+import java.util.UUID;
 import timber.log.Timber;
 
 public class SellFragmentTwo extends Fragment {
     FragmentSellTwoBinding binding;
-    private int uploadCount = 0;
     DatabaseReference databaseReference;
     StorageReference storageReference;
-    private ArrayList<Uri> imagesList;
-    Sell1 sell;
+    private ArrayList<Uri> imagesList = new ArrayList<>();
+    private final ArrayList<String> imagesUrls = new ArrayList<>();
+    String imageUrl1;
+    String imageUrl2;
+    String imageUrl3;
+    Sell sellArgs;
 
     @Nullable
     @Override
@@ -46,17 +44,13 @@ public class SellFragmentTwo extends Fragment {
         binding = FragmentSellTwoBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        sell = SellFragmentTwoArgs.fromBundle(getArguments()).getSellTwoArguments();
+        sellArgs = SellFragmentTwoArgs.fromBundle(getArguments()).getSellTwoArguments();
 
-        imagesList = new ArrayList<>();
-
-        imagesList = sell.getImagesList();
+        imagesList = sellArgs.getImagesList();
 
         storageReference = FirebaseStorage.getInstance().getReference("images");
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference("all_images");
 
-        //Toast.makeText(requireContext(), "Argument " + sell.getCategory(), Toast.LENGTH_SHORT).show();
-       // Toast.makeText(requireContext(), "Argument " + sell.getLocation(), Toast.LENGTH_SHORT).show();
         binding.postAdButton.setOnClickListener(v -> {
             if (TextUtils.isEmpty(binding.productNameEditText.getText().toString())) {
                 binding.productNameEditText.setError("Field can't be empty!");
@@ -73,11 +67,9 @@ public class SellFragmentTwo extends Fragment {
             } else if (TextUtils.isEmpty(binding.itemDescription.getText().toString())) {
                 binding.itemDescription.setError("Field can't be empty!");
             }
-
             uploadFirebase();
-            clearEditText();
-
         });
+
 
         return view;
 
@@ -86,74 +78,74 @@ public class SellFragmentTwo extends Fragment {
     public void uploadFirebase() {
         Timber.d("upload method called");
 
-        if (imagesList != null) {
-            ProgressDialog pd = new ProgressDialog(requireContext());
-            pd.setTitle("Uploading");
-            pd.show();
+            if (imagesList != null) {
+                ProgressDialog pd = new ProgressDialog(requireContext());
+                pd.setTitle("Uploading Item...");
+                pd.setCancelable(false);
+                pd.show();
 
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("items_image");
-        for (uploadCount = 0; uploadCount < imagesList.size(); uploadCount++) {
-            Timber.d("for loop for looping");
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("items_image");
+                for (int counter=0;counter<imagesList.size();counter++) {
 
-            Uri individualImage = imagesList.get(uploadCount);
+                    Uri individualImage = imagesList.get(counter);
+                    final StorageReference fileStorageReference = storageReference.child(UUID.randomUUID() +""+individualImage.getLastPathSegment());
 
-            final StorageReference imageRefence = storageReference.child("Image" + individualImage.getLastPathSegment());
+                    UploadTask uploadTask = fileStorageReference.putFile(individualImage);
 
-            imageRefence.putFile(individualImage).addOnSuccessListener(taskSnapshot -> imageRefence
-                    .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            String imageUrl = String.valueOf(uri);
-                            StoreUrl(imageUrl);
-                            pd.dismiss();
-                            Toast.makeText(requireContext(), "Uploaded Sucessfully", Toast.LENGTH_SHORT).show();
+                    uploadTask.continueWithTask(task -> {
+                        if (!task.isSuccessful()) {
+                            throw Objects.requireNonNull(task.getException());
+                        }
+                        return fileStorageReference.getDownloadUrl();
+
+                    }).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Uri downloadUri = task.getResult();
+                            assert downloadUri != null;
+                            imagesUrls.add(downloadUri.toString());
+                            Timber.d("%s", imagesUrls.size());
+                            if (imagesUrls.size() == imagesList.size()){
+                                Timber.d(" Now about to store data to FireB %s", (imagesUrls.size() == imagesList.size()));
+                                storeUrl();
+                                pd.dismiss();
+                                Navigation.findNavController(requireView()).navigate(R.id.action_sellFragmentTwo_to_homeFragment2);
+                            }
                         }
 
-
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Timber.d("Failed " + e.getMessage());
-                            pd.dismiss();
-                        }
-                    })).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Timber.d("Storage " + e.getMessage());
-                    pd.dismiss();
+                    }).addOnFailureListener(e -> Toast.makeText(requireContext(), "Failed to upload", Toast.LENGTH_SHORT).show());
                 }
-            });
-        }
-    }else {
-            Toast.makeText(requireContext(), "Failed Uploading", Toast.LENGTH_LONG).show();
-        }
+            }
+            else{
+                Toast.makeText(requireContext(), "It seems you did not select images", Toast.LENGTH_SHORT).show();
+            }
 
 }
 
-    public void StoreUrl(String imageUrl) {
+    public void storeUrl() {
+        traverseList();
         Timber.d("method to store url called");
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Items_imagesUrl");
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("Imglink", imageUrl);
-        hashMap.put("Category",sell.getCategory());
-        hashMap.put("Location", sell.getLocation());
-        hashMap.put("ItemName", binding.productNameEditText.getText().toString());
-        hashMap.put("ItemCondition", binding.conditionEditTtext.getText().toString());
-        hashMap.put("ItemPrice", binding.priceEditText.getText().toString());
-        hashMap.put("ItemDescription", binding.itemDescription.getText().toString());
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("all_items");
+        String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        Sell sell = new Sell(sellArgs.getCategory(),sellArgs.getLocation(),binding.productNameEditText.getText().toString(),
+                binding.priceEditText.getText().toString(),binding.conditionEditTtext.getText().toString(),binding.phoneNumberEditText.getText().toString(),date,
+                imageUrl2,imageUrl1,imageUrl3,false);
 
-        databaseReference.push().setValue(hashMap);
-
-
+        databaseReference.push().setValue(sell);
     }
 
-    void clearEditText(){
-        //setting the edittext to null after posting
-        binding.productNameEditText.setText("");
-        binding.conditionEditTtext.setText("");
-        binding.priceEditText.setText("");
-        binding.phoneNumberEditText.setText("");
-        binding.itemDescription.setText("");
+    private void traverseList(){
+        Timber.d("Method to retrieve each image url called");
+        for (int i=0;i<imagesUrls.size();i++){
+            if (i==0){
+                imageUrl1 = imagesUrls.get(0);
+            }
+            else if (i==1){
+                imageUrl2 = imagesUrls.get(1);
+            }
+            else if (i==2){
+                imageUrl3 = imagesUrls.get(2);
+            }
+        }
     }
 
 }

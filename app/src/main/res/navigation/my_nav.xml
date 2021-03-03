@@ -98,7 +98,12 @@
         tools:layout="@layout/fragment_sell_two" >
         <argument
             android:name="sellTwoArguments"
-            app:argType="com.ifixhubke.kibu_olx.data.Sell1" />
+            app:argType="com.ifixhubke.kibu_olx.data.Sell" />
+        <action
+            android:id="@+id/action_sellFragmentTwo_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@id/sellFragmentTwo"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"

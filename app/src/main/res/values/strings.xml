@@ -35,7 +35,7 @@
     <string name="don_t_have_an_account_register">Don\'t Have An Account? Register</string>
     <string name="product_name">Product Name</string>
     <string name="condition">Condition</string>
-    <string name="price">Price</string>
+    <string name="itemPrice">Price</string>
     <string name="phone_number">Phone Number</string>
     <string name="seller_name">Seller Name</string>
     <string name="last_seen">Last seen</string>
