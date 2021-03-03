@@ -62,7 +62,18 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
 
         holder.card.setOnClickListener(v -> {
 
-            Item item = new Item(model.getItemImage(),model.getItemName(),model.getItemPrice(),false);
+            Item item = new Item(model.getSellerName(),
+                    model.getSellerLastSeen(),
+                    model.getSellerPhoneNum(),
+                    model.getItemImage(),
+                    model.getItemImage2(),
+                    model.getItemImage3(),
+                    model.getItemName(),
+                    model.getItemPrice(),
+                    model.getDatePosted(),
+                    model.getLocation(),
+                    model.getItemDescription());
+
             NavDirections action =  HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);
             Timber.d("card clicked");

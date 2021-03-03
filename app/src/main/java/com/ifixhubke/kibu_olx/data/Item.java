@@ -6,11 +6,11 @@ import android.os.Parcelable;
 public class Item implements Parcelable {
 
     Boolean itemStarred;
-    private String sellName;
+    private String sellerName;
     private String sellerLastSeen;
     private String sellerPhoneNum;
     private String itemImage;
-    private String imageImage2;
+    private String itemImage2;
     private String itemImage3;
     private String itemName;
     private String itemPrice;
@@ -21,7 +21,6 @@ public class Item implements Parcelable {
     public Item() {
     }
 
-
     public Item(String itemImage, String itemName, String itemPrice, Boolean itemStarred) {
         this.itemImage = itemImage;
         this.itemName = itemName;
@@ -29,12 +28,12 @@ public class Item implements Parcelable {
         this.itemStarred = itemStarred;
     }
 
-    public Item(String sellName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String imageImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription) {
-        this.sellName = sellName;
+    public Item(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription) {
+        this.sellerName = sellerName;
         this.sellerLastSeen = sellerLastSeen;
         this.sellerPhoneNum = sellerPhoneNum;
         this.itemImage = itemImage;
-        this.imageImage2 = imageImage2;
+        this.itemImage2 = itemImage2;
         this.itemImage3 = itemImage3;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -43,12 +42,36 @@ public class Item implements Parcelable {
         this.itemDescription = itemDescription;
     }
 
-    public Boolean getItemStarred(){
+    public Boolean getItemStarred() {
         return itemStarred;
     }
 
-    public void setItemStarred(Boolean itemStarred){
+    public void setItemStarred(Boolean itemStarred) {
         this.itemStarred = itemStarred;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public String getSellerLastSeen() {
+        return sellerLastSeen;
+    }
+
+    public void setSellerLastSeen(String sellerLastSeen) {
+        this.sellerLastSeen = sellerLastSeen;
+    }
+
+    public String getSellerPhoneNum() {
+        return sellerPhoneNum;
+    }
+
+    public void setSellerPhoneNum(String sellerPhoneNum) {
+        this.sellerPhoneNum = sellerPhoneNum;
     }
 
     public String getItemImage() {
@@ -57,6 +80,22 @@ public class Item implements Parcelable {
 
     public void setItemImage(String itemImage) {
         this.itemImage = itemImage;
+    }
+
+    public String getItemImage2() {
+        return itemImage2;
+    }
+
+    public void setItemImage2(String itemImage2) {
+        this.itemImage2 = itemImage2;
+    }
+
+    public String getItemImage3() {
+        return itemImage3;
+    }
+
+    public void setItemImage3(String itemImage3) {
+        this.itemImage3 = itemImage3;
     }
 
     public String getItemName() {
@@ -75,6 +114,30 @@ public class Item implements Parcelable {
         this.itemPrice = itemPrice;
     }
 
+    public String getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(String datePosted) {
+        this.datePosted = datePosted;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -83,11 +146,11 @@ public class Item implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.itemStarred);
-        dest.writeString(this.sellName);
+        dest.writeString(this.sellerName);
         dest.writeString(this.sellerLastSeen);
         dest.writeString(this.sellerPhoneNum);
         dest.writeString(this.itemImage);
-        dest.writeString(this.imageImage2);
+        dest.writeString(this.itemImage2);
         dest.writeString(this.itemImage3);
         dest.writeString(this.itemName);
         dest.writeString(this.itemPrice);
@@ -98,11 +161,11 @@ public class Item implements Parcelable {
 
     public void readFromParcel(Parcel source) {
         this.itemStarred = (Boolean) source.readValue(Boolean.class.getClassLoader());
-        this.sellName = source.readString();
+        this.sellerName = source.readString();
         this.sellerLastSeen = source.readString();
         this.sellerPhoneNum = source.readString();
         this.itemImage = source.readString();
-        this.imageImage2 = source.readString();
+        this.itemImage2 = source.readString();
         this.itemImage3 = source.readString();
         this.itemName = source.readString();
         this.itemPrice = source.readString();
@@ -113,11 +176,11 @@ public class Item implements Parcelable {
 
     protected Item(Parcel in) {
         this.itemStarred = (Boolean) in.readValue(Boolean.class.getClassLoader());
-        this.sellName = in.readString();
+        this.sellerName = in.readString();
         this.sellerLastSeen = in.readString();
         this.sellerPhoneNum = in.readString();
         this.itemImage = in.readString();
-        this.imageImage2 = in.readString();
+        this.itemImage2 = in.readString();
         this.itemImage3 = in.readString();
         this.itemName = in.readString();
         this.itemPrice = in.readString();

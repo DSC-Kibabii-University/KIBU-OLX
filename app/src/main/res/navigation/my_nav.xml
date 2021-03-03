@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/homeFragment2">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -69,7 +69,7 @@
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <argument
-            android:name="itemDetails"
+            android:name="itemDetailsArgs"
             app:argType="com.ifixhubke.kibu_olx.data.Item" />
     </fragment>
     <fragment
