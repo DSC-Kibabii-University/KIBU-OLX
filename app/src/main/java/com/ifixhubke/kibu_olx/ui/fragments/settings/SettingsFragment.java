@@ -143,6 +143,7 @@ public class SettingsFragment extends Fragment {
             binding.saveTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //There is a problem since fname and lname are different variables
                     databaseReference.child("f_Name").setValue(fName1);
                     databaseReference.child("l_Name").setValue(fName2);
 
