@@ -15,7 +15,7 @@ public class Sell implements Parcelable {
     private String condition;
     private Boolean itemStarred;
     private String sellerPhoneNum;
-    private  String datePosted;
+    private String datePosted;
     private ArrayList<Uri> imagesList;
     private String itemImage;
     private String itemImage2;
@@ -59,11 +59,11 @@ public class Sell implements Parcelable {
         this.sellerLastSeen = sellerLastSeen;
     }
 
-    public String getItemDescription(){
+    public String getItemDescription() {
         return itemDescription;
     }
 
-    public void setItemDescription(String itemDescription){
+    public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
     }
 
@@ -97,11 +97,11 @@ public class Sell implements Parcelable {
         this.imagesList = imagesList;
     }
 
-    public Boolean getItemStarred(){
+    public Boolean getItemStarred() {
         return itemStarred;
     }
 
-    public void setItemStarred(Boolean itemStarred){
+    public void setItemStarred(Boolean itemStarred) {
         this.itemStarred = itemStarred;
     }
 

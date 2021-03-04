@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.navigation.NavDirections;
@@ -19,9 +20,10 @@ import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
 import com.squareup.picasso.Picasso;
+
 import timber.log.Timber;
 
-public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapter.ViewHolder> {
+public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapter.ViewHolder> {
 
     ItemClickListener itemClickListener;
 
@@ -46,16 +48,15 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Item model) {
-        if (model.getItemStarred()){
+        if (model.getItemStarred()) {
             holder.starredItem.setVisibility(View.VISIBLE);
             holder.add_item_to_favorites.setVisibility(View.INVISIBLE);
-        }
-        else if (!model.getItemStarred()){
+        } else if (!model.getItemStarred()) {
             holder.starredItem.setVisibility(View.INVISIBLE);
         }
 
         holder.item_name.setText(model.getItemName());
-        holder.item_price.setText(model.getItemPrice());
+        holder.item_price.setText("Ksh. "+model.getItemPrice());
         Picasso.get()
                 .load(model.getItemImage())
                 .placeholder(R.drawable.ic_image_placeholder)
@@ -76,15 +77,15 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
                     model.getLocation(),
                     model.getItemDescription());
 
-            NavDirections action =  HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
+            NavDirections action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);
             Timber.d("card clicked");
         });
 
         holder.add_item_to_favorites.setOnClickListener(v -> {
             model.setItemStarred(true);
-            Item item = new Item(model.getItemImage(),model.getItemName(),model.getItemPrice(),model.getItemStarred());
-            itemClickListener.addItemToFavorites(item,position);
+            Item item = new Item(model.getItemImage(), model.getItemName(), model.getItemPrice(), model.getItemStarred());
+            itemClickListener.addItemToFavorites(item, position);
             Timber.d("clicked");
         });
     }
@@ -92,10 +93,10 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row,parent,false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row, parent, false));
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView item_image;
         TextView item_name;

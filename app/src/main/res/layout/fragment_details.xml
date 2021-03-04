@@ -58,23 +58,23 @@
         android:id="@+id/sellerPhoneNum"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:text="0706003891"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/main"
+        android:textColor="@color/teal_700"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lastseen" />
+        app:layout_constraintEnd_toEndOf="@+id/itemDetailsDescription"
+        app:layout_constraintStart_toStartOf="@+id/itemDetailsDescription"
+        app:layout_constraintTop_toBottomOf="@+id/itemDetailsDescription" />
 
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/image_slider"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:iss_auto_cycle="true"
         app:iss_corner_radius="5"
@@ -84,7 +84,7 @@
         app:iss_title_background="@drawable/gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sellerPhoneNum" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_lastseen" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detailsItemName"
@@ -103,33 +103,33 @@
         android:id="@+id/detailsItemPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        tools:text="Ksh. 1400"
+        android:layout_marginTop="16dp"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/detailsItemName"
         app:layout_constraintStart_toStartOf="@+id/detailsItemName"
-        app:layout_constraintTop_toBottomOf="@+id/detailsItemName" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsItemName"
+        tools:text="Ksh. 1400" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detailsDatePosted"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        tools:text="24/02/2021"
+        android:layout_marginTop="16dp"
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/detailsItemPrice"
         app:layout_constraintStart_toStartOf="@+id/detailsItemPrice"
-        app:layout_constraintTop_toBottomOf="@+id/detailsItemPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsItemPrice"
+        tools:text="24/02/2021" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_location"
         app:layout_constraintStart_toStartOf="@+id/detailsDatePosted"
         app:layout_constraintTop_toBottomOf="@+id/detailsDatePosted" />

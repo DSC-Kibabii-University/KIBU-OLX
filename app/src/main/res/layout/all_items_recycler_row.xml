@@ -7,8 +7,8 @@
     android:id="@+id/item_card_layout"
     app:cardElevation="3dp"
     app:cardCornerRadius="10dp"
-    android:padding="5dp"
-    android:layout_margin="5dp"
+    android:padding="3dp"
+    android:layout_margin="3dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,10 +16,10 @@
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/cardView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,9 +37,8 @@
             android:id="@+id/itemNameTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             tools:text="6X6 High Density Mattress"
             android:textAlignment="textStart"
             android:textColor="@color/black"
@@ -56,34 +55,33 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="1"
-            tools:text="Ksh.10000"
-            android:textColor="@color/gray"
+            android:textColor="@color/main"
             android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/itemNameTxt"
             app:layout_constraintStart_toStartOf="@+id/itemNameTxt"
-            app:layout_constraintTop_toBottomOf="@+id/itemNameTxt" />
+            app:layout_constraintTop_toBottomOf="@+id/itemNameTxt"
+            android:text="Ksh.10000" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/favoriteItemImg"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/itemPriceTxt"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toEndOf="@+id/itemNameTxt"
+            app:layout_constraintTop_toBottomOf="@+id/itemNameTxt"
             app:srcCompat="@drawable/ic_star"
             tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/starredfavoriteItemImg"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

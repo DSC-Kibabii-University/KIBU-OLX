@@ -1,22 +1,28 @@
 package com.ifixhubke.kibu_olx.ui.fragments.details;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentDetailsBinding;
+
 import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+
 import timber.log.Timber;
 
 public class DetailsFragment extends Fragment {
     FragmentDetailsBinding binding;
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,21 +38,20 @@ public class DetailsFragment extends Fragment {
         binding.sellerPhoneNum.setText(data.getSellerPhoneNum());
 
         ArrayList<SlideModel> imageList = new ArrayList<>();
-        imageList.add(new SlideModel(data.getItemImage(),data.getItemName(), ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(data.getItemImage2(),data.getItemName(),ScaleTypes.CENTER_CROP));
-       imageList.add(new SlideModel(data.getItemImage3(),data.getItemName(), ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(data.getItemImage(), data.getItemName(), ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(data.getItemImage2(), data.getItemName(), ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(data.getItemImage3(), data.getItemName(), ScaleTypes.CENTER_CROP));
 
-        Timber.d("image 1 "+data.getItemImage()+" \n image 2 "+data.getItemImage2()+" \n image 3 "+data.getItemImage3());
+        Timber.d("image 1 " + data.getItemImage() + " \n image 2 " + data.getItemImage2() + " \n image 3 " + data.getItemImage3());
 
         binding.imageSlider.setImageList(imageList);
 
         binding.detailsItemName.setText(data.getItemName());
-        binding.detailsItemPrice.setText(data.getItemPrice());
-        binding.detailsDatePosted.setText("Uploaded on "+data.getDatePosted());
+        binding.detailsItemPrice.setText("Ksh. "+data.getItemPrice());
+        binding.detailsDatePosted.setText("Uploaded on " + data.getDatePosted());
         binding.itemDetailsLocation.setText(data.getLocation());
         binding.itemDetailsDescription.setText(data.getItemDescription());
 
         return view;
     }
-
 }

@@ -109,7 +109,7 @@
         android:id="@+id/materialCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:checked="false"
         android:text="@string/i_agree_with_the_rules"

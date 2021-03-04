@@ -1,18 +1,11 @@
 package com.ifixhubke.kibu_olx.ui.activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.ActivityMainBinding;

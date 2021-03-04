@@ -1,76 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/item_card_layout"
-    app:cardElevation="3dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:padding="3dp"
     app:cardCornerRadius="10dp"
-    android:padding="8dp"
-    android:layout_margin="8dp"
-    android:layout_height="wrap_content">
+    app:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="30dp"
+        android:padding="10dp"
         android:layout_height="match_parent">
 
-
-        <ImageView
-            android:id="@+id/itemImageImg"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="8dp"
-            android:scaleType="fitXY"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="#dddddd" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/itemImageImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/placeholder_color"
+                android:scaleType="fitXY" />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/itemNameTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="#dddddd"
+            android:layout_marginTop="8dp"
+            android:background="@color/placeholder_color"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/itemImageImg"
-            app:layout_constraintStart_toStartOf="@+id/itemImageImg"
-            app:layout_constraintTop_toBottomOf="@+id/itemImageImg" />
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/itemPriceTxt"
-            android:layout_width="0dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="#dddddd"
+            android:layout_marginTop="8dp"
+            android:background="@color/placeholder_color"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/gray"
+            android:textColor="@color/main"
             android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/itemNameTxt"
             app:layout_constraintStart_toStartOf="@+id/itemNameTxt"
             app:layout_constraintTop_toBottomOf="@+id/itemNameTxt" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/favoriteItemImg"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="#dddddd"
+            android:background="@color/placeholder_color"
+            app:layout_constraintBottom_toBottomOf="@+id/itemPriceTxt"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toEndOf="@+id/itemNameTxt"
+            app:layout_constraintTop_toTopOf="@+id/itemPriceTxt"
+            tools:ignore="ContentDescription" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/starredfavoriteItemImg"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt"
-            />
+            app:srcCompat="@drawable/ic_starred"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

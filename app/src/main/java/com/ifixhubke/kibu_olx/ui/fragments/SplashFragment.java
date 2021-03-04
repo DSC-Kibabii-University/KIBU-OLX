@@ -19,6 +19,8 @@ import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentSplashBinding;
 import com.ifixhubke.kibu_olx.others.CheckInternet;
 
+import org.jetbrains.annotations.NotNull;
+
 import timber.log.Timber;
 
 public class SplashFragment extends Fragment {
@@ -26,10 +28,11 @@ public class SplashFragment extends Fragment {
     FirebaseAuth mFirebaseAuth;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSplashBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         if (!(CheckInternet.isConnected(requireContext()))) {
@@ -38,26 +41,19 @@ public class SplashFragment extends Fragment {
         }
 
         return view;
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                FirebaseUser mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                if (mFirebaseUser != null && onBoardingFinished()) {
-                    Timber.d("current user exist");
-                    Toast.makeText(requireContext(), "WELCOME TO HOMESCREEN", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_homeFragment2);
-                } else if (onBoardingFinished()) {
-                    Timber.d("Log in please");
-                    Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
-                } else {
-                    Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_viewPagerFragment);
-                }
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            FirebaseUser mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (mFirebaseUser != null && onBoardingFinished()) {
+                Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_homeFragment2);
+            } else if (onBoardingFinished()) {
+                Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
+            } else {
+                Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_viewPagerFragment);
             }
         }, 3000);
     }

@@ -14,14 +14,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseError;
 import com.ifixhubke.kibu_olx.R;
-import com.ifixhubke.kibu_olx.data.SettingsModels;
+import com.ifixhubke.kibu_olx.data.Settings;
 import com.squareup.picasso.Picasso;
 
 import timber.log.Timber;
 
-public class SettingsAdapter extends FirebaseRecyclerAdapter<SettingsModels,SettingsAdapter.SettingsHolder> {
+public class SettingsAdapter extends FirebaseRecyclerAdapter<Settings, SettingsAdapter.SettingsHolder> {
 
-    public SettingsAdapter(@NonNull FirebaseRecyclerOptions<SettingsModels> options) {
+    public SettingsAdapter(@NonNull FirebaseRecyclerOptions<Settings> options) {
         super(options);
     }
 
@@ -38,7 +38,7 @@ public class SettingsAdapter extends FirebaseRecyclerAdapter<SettingsModels,Sett
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull SettingsHolder holder, int position, @NonNull SettingsModels model) {
+    protected void onBindViewHolder(@NonNull SettingsHolder holder, int position, @NonNull Settings model) {
         Timber.d(model.toString());
         holder.name.setText(model.getName());
         holder.price.setText(model.getPrice());
@@ -51,19 +51,20 @@ public class SettingsAdapter extends FirebaseRecyclerAdapter<SettingsModels,Sett
     @NonNull
     @Override
     public SettingsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SettingsHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.setting_row,parent,false));
+        return new SettingsHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.setting_row, parent, false));
     }
 
-     class SettingsHolder extends RecyclerView.ViewHolder {
-        TextView name,price;
+    class SettingsHolder extends RecyclerView.ViewHolder {
+        TextView name, price;
         ImageView image;
         CheckBox checkBox;
+
         public SettingsHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.p_item_name);
             price = itemView.findViewById(R.id.p_item_price);
             image = itemView.findViewById(R.id.posted_image);
-            checkBox= itemView.findViewById(R.id.sold_out_checkbox);
+            checkBox = itemView.findViewById(R.id.sold_out_checkbox);
         }
     }
 

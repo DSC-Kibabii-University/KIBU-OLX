@@ -34,52 +34,42 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
     private final ArrayList<Uri> imagesArrayList = new ArrayList<>();
     private String category, location;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentSellOneBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-
         //categorySpinner  and locationSpinner
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.category, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> arrayAdapter1 = ArrayAdapter.createFromResource(requireContext(), R.array.location, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.category, R.layout.spinner_row);
+        ArrayAdapter<CharSequence> arrayAdapter1 = ArrayAdapter.createFromResource(requireContext(), R.array.location, R.layout.spinner_row);
         binding.categorySpinner.setAdapter(arrayAdapter);
         binding.locationSpinner.setAdapter(arrayAdapter1);
         binding.categorySpinner.setOnItemSelectedListener(this);
         binding.locationSpinner.setOnItemSelectedListener(this);
 
         binding.imagePick1.setOnClickListener(v -> {
-
             openFileChooser(IMAGE_REQUEST1);
             binding.imagePick1.setVisibility(View.GONE);
-
             binding.imageRemove1.setVisibility(View.VISIBLE);
-
         });
 
         binding.imagePick2.setOnClickListener(v -> {
-
             openFileChooser(IMAGE_REQUEST2);
             binding.imagePick2.setVisibility(View.GONE);
-
             binding.imageRemove2.setVisibility(View.VISIBLE);
 
         });
 
         binding.imagePick3.setOnClickListener(v -> {
-
             openFileChooser(IMAGE_REQUEST3);
             binding.imagePick3.setVisibility(View.GONE);
-
             binding.imageRemove3.setVisibility(View.VISIBLE);
 
         });
 
         binding.imageRemove1.setOnClickListener(v -> {
             binding.imageView1.setImageURI(null);
-
             imagesArrayList.remove(0);
             openFileChooser(IMAGE_REQUEST1);
         });
@@ -98,7 +88,6 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
 
 
         binding.nextButton.setOnClickListener(v -> {
-
             //Passing data to sell2
             Sell sell = new Sell(category, location, imagesArrayList);
             NavDirections action = SellFragmentOneDirections.actionSellFragmentOneToSellFragmentTwo(sell);
@@ -121,14 +110,12 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == IMAGE_REQUEST1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
             imageURI1 = data.getData();
             imagesArrayList.add(imageURI1);
             binding.imageView1.setImageURI(imageURI1);
         }
 
         if (requestCode == IMAGE_REQUEST2 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
             imageURI2 = data.getData();
             imagesArrayList.add(imageURI2);
             binding.imageView2.setImageURI(imageURI2);
@@ -138,13 +125,11 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
             imageURI3 = data.getData();
             imagesArrayList.add(imageURI3);
             binding.imageView3.setImageURI(imageURI3);
-
         }
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         if (parent.getId() == R.id.categorySpinner) {
             category = binding.categorySpinner.getSelectedItem().toString();
         } else if (parent.getId() == R.id.locationSpinner) {

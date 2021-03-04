@@ -44,14 +44,22 @@
             android:id="@+id/item_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="16sp"
+            android:layout_marginTop="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/item_name"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/item_name"
             app:layout_constraintTop_toBottomOf="@+id/item_name"
             tools:text="Ksh. 10000" />
+
+        <ImageView
+            android:id="@+id/deleteFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/item_price"
+            app:srcCompat="@drawable/ic_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

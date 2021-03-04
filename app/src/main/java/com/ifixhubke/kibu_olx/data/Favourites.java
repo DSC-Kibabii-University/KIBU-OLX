@@ -1,13 +1,14 @@
 package com.ifixhubke.kibu_olx.data;
 
-public class FavouritesModel {
+public class Favourites {
     public String itemImage;
     public String itemName;
     public String itemPrice;
 
-    public FavouritesModel() { }
+    public Favourites() {
+    }
 
-    public FavouritesModel(String favImage, String favItemName, String favItemPrice) {
+    public Favourites(String favImage, String favItemName, String favItemPrice) {
         this.itemImage = favImage;
         this.itemName = favItemName;
         this.itemPrice = favItemPrice;

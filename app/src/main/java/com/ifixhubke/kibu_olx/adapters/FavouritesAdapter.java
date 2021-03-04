@@ -13,21 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseError;
 import com.ifixhubke.kibu_olx.R;
-import com.ifixhubke.kibu_olx.data.FavouritesModel;
+import com.ifixhubke.kibu_olx.data.Favourites;
 import com.squareup.picasso.Picasso;
 
-import timber.log.Timber;
+public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, FavouritesAdapter.ViewHolder> {
 
-public class FavouritesAdapter extends FirebaseRecyclerAdapter<FavouritesModel,FavouritesAdapter.ViewHolder>{
-
-    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<FavouritesModel> options) {
+    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull FavouritesModel model) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Favourites model) {
         holder.itemName.setText(model.getItemName());
         holder.itemPrice.setText(model.getItemPrice());
         Picasso.get()
@@ -49,10 +46,10 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<FavouritesModel,F
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.itemImage=itemView.findViewById(R.id.item_image);
-            this.itemName=itemView.findViewById(R.id.item_name);
-            this.itemPrice=itemView.findViewById(R.id.item_price);
-            this.cardView=itemView.findViewById(R.id.favourites_cardView);
+            this.itemImage = itemView.findViewById(R.id.item_image);
+            this.itemName = itemView.findViewById(R.id.item_name);
+            this.itemPrice = itemView.findViewById(R.id.item_price);
+            this.cardView = itemView.findViewById(R.id.favourites_cardView);
         }
     }
 }

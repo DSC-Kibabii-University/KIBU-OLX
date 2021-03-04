@@ -42,11 +42,20 @@
     <string name="description">Description</string>
     <string name="contact">Contact</string>
     <string name="nothing_found">Nothing Found</string>
+    <string name="pick_item_images">Pick Item Images</string>
+    <string name="select_location">Select Location</string>
+    <string name="select_category">Select Category</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_description">Item Description…</string>
     <string-array name="category">
         <item>Electronics</item>
         <item>Furniture</item>
         <item>Beddings</item>
         <item>Utensils</item>
+        <item>Locomotives</item>
+        <item>Books</item>
+        <item>Households</item>
+        <item>Food</item>
     </string-array>
 
     <string-array name="location">
@@ -54,5 +63,9 @@
         <item>Tuuti</item>
         <item>Dorminion</item>
         <item>Booster</item>
+        <item>21st Centuary</item>
+        <item>Butieli</item>
+        <item>Bukananach</item>
+        <item>Cardinal Otunga</item>
     </string-array>
 </resources>
