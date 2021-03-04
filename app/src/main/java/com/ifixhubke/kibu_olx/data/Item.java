@@ -3,8 +3,14 @@ package com.ifixhubke.kibu_olx.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "posted_item_history")
 public class Item implements Parcelable {
 
+    @PrimaryKey(autoGenerate = true)
+    int id;
     Boolean itemStarred;
     private String sellerName;
     private String sellerLastSeen;
