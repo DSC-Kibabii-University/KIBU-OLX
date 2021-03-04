@@ -53,11 +53,11 @@
                     android:id="@+id/userEmail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/black"
-                    android:textStyle="italic"
                     android:textSize="14sp"
+                    android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/userName"
@@ -65,17 +65,33 @@
                     tools:text="ifixhub@mail.com" />
 
                 <EditText
-                    android:id="@+id/editUserName"
-                    android:layout_width="0dp"
+                    android:id="@+id/editUserName1"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:textSize="14sp"
+                    android:hint="First name"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/userName"
-                    app:layout_constraintEnd_toEndOf="@+id/userName"
                     app:layout_constraintStart_toStartOf="@+id/userName"
-                    app:layout_constraintTop_toTopOf="@+id/userName" />
+                    app:layout_constraintTop_toTopOf="@+id/userName"
+                    app:layout_constraintVertical_bias="0.115" />
+
+                <EditText
+                    android:id="@+id/editUserName2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Last name"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/editUserName1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/editUserName1"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/editTextView"

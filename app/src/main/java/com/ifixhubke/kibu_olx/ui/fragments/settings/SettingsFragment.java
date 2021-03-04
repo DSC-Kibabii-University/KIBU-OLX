@@ -24,7 +24,7 @@ import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
 import com.ifixhubke.kibu_olx.adapters.SettingsAdapter;
 import com.ifixhubke.kibu_olx.data.Item;
-import com.ifixhubke.kibu_olx.data.SettingsModels;
+import com.ifixhubke.kibu_olx.data.Settings;
 import com.ifixhubke.kibu_olx.databinding.FragmentHomeBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentSettingsBinding;
@@ -35,24 +35,42 @@ public class SettingsFragment extends Fragment {
     FragmentSettingsBinding binding;
     SettingsAdapter adapter;
     private DatabaseReference databaseReference;
+    String userid;
     String F_Name;
     String L_Name;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentSettingsBinding.inflate(inflater,container,false);
+        binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        userid  = user.getUid();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         initializeRecycler();
         getUserDetails();
 
-        binding.editUserName.setOnClickListener(new View.OnClickListener() {
+        binding.editTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setViews();
+
+            }
+        });
+
+        binding.saveTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
                 updateData();
+                binding.editUserName1.setVisibility(View.INVISIBLE);
+                binding.editUserName2.setVisibility(View.INVISIBLE);
+                binding.saveTextView.setVisibility(View.INVISIBLE);
+                binding.editTextView.setVisibility(View.VISIBLE);
             }
         });
 
@@ -66,10 +84,10 @@ public class SettingsFragment extends Fragment {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     Timber.d("data exist");
                     binding.progressBar.setVisibility(View.INVISIBLE);
-                }else{
+                } else {
                     binding.progressBar.setVisibility(View.INVISIBLE);
                     Timber.d("data does not exist");
                 }
@@ -81,8 +99,8 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        FirebaseRecyclerOptions<SettingsModels> options = new FirebaseRecyclerOptions.Builder<SettingsModels>()
-                .setQuery(query, SettingsModels.class)
+        FirebaseRecyclerOptions<Settings> options = new FirebaseRecyclerOptions.Builder<Settings>()
+                .setQuery(query, Settings.class)
                 .build();
 
         adapter = new SettingsAdapter(options);
@@ -102,10 +120,7 @@ public class SettingsFragment extends Fragment {
         adapter.stopListening();
     }
 
-    private void getUserDetails(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userid = user.getUid();
-
+    private void getUserDetails() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
         reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -113,47 +128,36 @@ public class SettingsFragment extends Fragment {
                 F_Name = snapshot.child("f_Name").getValue().toString();
                 L_Name = snapshot.child("l_Name").getValue().toString();
                 String email = snapshot.child("e_Mail").getValue().toString();
-
-                Timber.d("Text set");
-                binding.userName.setText(F_Name+ " "+ L_Name);
+                binding.userName.setText(F_Name + " " + L_Name);
                 binding.userEmail.setText(email);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
+    public void updateData() {
+        String fName1 = binding.editUserName1.getText().toString();
+        String fName2 = binding.editUserName2.getText().toString();
+        if (!fName1.equals(F_Name) || !fName2.equals(L_Name)){
+            databaseReference.child(userid).child("f_Name").setValue(fName1);
+            binding.userName.setText(F_Name);
+            databaseReference.child(userid).child("l_Name").setValue(fName2);
+            binding.userName.setText("  "+L_Name);
+        }
 
-    public void updateData(){
+        else {
+            Toast.makeText(requireContext(), "Unable to update", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    public void setViews(){
         binding.userName.setVisibility(View.INVISIBLE);
-        binding.editUserName.setVisibility(View.VISIBLE);
-
-        if (isNameChanged()){
-            Toast.makeText(requireContext(), "Name changed successfully", Toast.LENGTH_SHORT).show();
-        }
+        binding.editUserName1.setVisibility(View.VISIBLE);
+        binding.editUserName2.setVisibility(View.VISIBLE);
+        binding.editTextView.setVisibility(View.INVISIBLE);
+        binding.saveTextView.setVisibility(View.VISIBLE);
     }
-
-    private boolean isNameChanged() {
-        String fName1 = binding.editUserName.getText().toString();
-        String fName2 = binding.editUserName.getText().toString();
-
-        if (fName1 != F_Name || fName2 != L_Name){
-            binding.saveTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //There is a problem since fname and lname are different variables
-                    databaseReference.child("f_Name").setValue(fName1);
-                    databaseReference.child("l_Name").setValue(fName2);
-
-                    binding.saveTextView.setVisibility(View.INVISIBLE);
-                }
-            });
-            return true;
-        }else {
-            return false;
-        }
-    }
-
 }
