@@ -3,8 +3,10 @@ package com.ifixhubke.kibu_olx.ui.fragments.sell;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,8 @@ import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Sell;
 import com.ifixhubke.kibu_olx.databinding.FragmentSellTwoBinding;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
@@ -81,13 +85,18 @@ public class SellFragmentTwo extends Fragment {
             } else if (TextUtils.isEmpty(binding.itemDescription.getText().toString())) {
                 binding.itemDescription.setError("Field can't be empty!");
             }
-            uploadFirebase();
+
+            try {
+                uploadFirebase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         return view;
     }
 
-    public void uploadFirebase() {
+    public void uploadFirebase() throws IOException {
         Timber.d("upload method called");
         if (imagesList != null) {
             ProgressDialog pd = new ProgressDialog(requireContext());
@@ -101,7 +110,14 @@ public class SellFragmentTwo extends Fragment {
                 Uri individualImage = imagesList.get(counter);
                 final StorageReference fileStorageReference = storageReference.child(UUID.randomUUID() + "" + individualImage.getLastPathSegment());
 
-                UploadTask uploadTask = fileStorageReference.putFile(individualImage);
+                Bitmap bmp = MediaStore.Images.Media.getBitmap(requireActivity().getApplicationContext().getContentResolver(), individualImage);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
+                byte[] fileInBytes = byteArrayOutputStream.toByteArray();
+
+                Timber.d(counter+" "+fileInBytes.length);
+
+                UploadTask uploadTask = fileStorageReference.putBytes(fileInBytes);
 
                 uploadTask.continueWithTask(task -> {
                     if (!task.isSuccessful()) {
@@ -194,5 +210,9 @@ public class SellFragmentTwo extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    private void compressImage(Uri imageURI){
+
     }
 }
