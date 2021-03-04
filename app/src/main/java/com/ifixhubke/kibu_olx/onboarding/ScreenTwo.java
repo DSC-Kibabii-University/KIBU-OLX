@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenTwoBinding;
+import com.ifixhubke.kibu_olx.others.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -29,7 +30,10 @@ public class ScreenTwo extends Fragment {
 
         binding.next2.setOnClickListener(v -> viewPager2.setCurrentItem(2));
 
-        binding.skip2.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_viewPagerFragment_to_registerFragment));
+        binding.skip2.setOnClickListener(v -> {
+            Utils.onBoardingDone(requireContext());
+            Navigation.findNavController(v).navigate(R.id.action_viewPagerFragment_to_registerFragment);
+        });
         return view;
     }
 }

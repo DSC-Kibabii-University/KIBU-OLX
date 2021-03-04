@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenThreeBinding;
+import com.ifixhubke.kibu_olx.others.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,17 +29,9 @@ public class ScreenThree extends Fragment {
 
         binding.start.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_viewPagerFragment_to_registerFragment);
-            onBoardingDone();
+            Utils.onBoardingDone(requireContext());
         });
 
         return view;
-    }
-
-    //To save the state of onboarding if it is done
-    private void onBoardingDone() {
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("Finished", true);
-        editor.apply();
     }
 }

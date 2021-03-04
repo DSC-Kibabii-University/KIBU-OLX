@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
+import com.ifixhubke.kibu_olx.others.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +29,10 @@ public class ScreenOne extends Fragment {
 
         binding.next1.setOnClickListener(v -> viewPager2.setCurrentItem(1));
 
-        binding.skip1.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_viewPagerFragment_to_registerFragment));
+        binding.skip1.setOnClickListener(v -> {
+            Utils.onBoardingDone(requireContext());
+            Navigation.findNavController(v).navigate(R.id.action_viewPagerFragment_to_registerFragment);
+        });
         return view;
     }
 }
