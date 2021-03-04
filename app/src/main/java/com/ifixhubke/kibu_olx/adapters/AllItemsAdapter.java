@@ -30,6 +30,8 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item,AllItemsAdapte
         this.itemClickListener = itemClickListener;
     }
 
+    //emiliussDOTY
+
     @Override
     public void onDataChanged() {
         super.onDataChanged();
