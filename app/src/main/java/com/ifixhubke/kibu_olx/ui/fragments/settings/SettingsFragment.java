@@ -1,16 +1,18 @@
 package com.ifixhubke.kibu_olx.ui.fragments.settings;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,13 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.ifixhubke.kibu_olx.R;
-import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
 import com.ifixhubke.kibu_olx.adapters.SettingsAdapter;
-import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.data.Settings;
-import com.ifixhubke.kibu_olx.databinding.FragmentHomeBinding;
-import com.ifixhubke.kibu_olx.databinding.FragmentScreenOneBinding;
 import com.ifixhubke.kibu_olx.databinding.FragmentSettingsBinding;
 
 import timber.log.Timber;
@@ -47,7 +44,7 @@ public class SettingsFragment extends Fragment {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        userid  = user.getUid();
+        userid = user.getUid();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -71,6 +68,7 @@ public class SettingsFragment extends Fragment {
                 binding.editUserName2.setVisibility(View.INVISIBLE);
                 binding.saveTextView.setVisibility(View.INVISIBLE);
                 binding.editTextView.setVisibility(View.VISIBLE);
+                binding.userName.setVisibility(View.VISIBLE);
             }
         });
 
@@ -130,30 +128,47 @@ public class SettingsFragment extends Fragment {
                 String email = snapshot.child("e_Mail").getValue().toString();
                 binding.userName.setText(F_Name + " " + L_Name);
                 binding.userEmail.setText(email);
+
+                SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userProfile", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("USERNAME", F_Name + " " + L_Name);
+                editor.apply();
+                editor.commit();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
+
     public void updateData() {
         String fName1 = binding.editUserName1.getText().toString();
         String fName2 = binding.editUserName2.getText().toString();
-        if (!fName1.equals(F_Name) || !fName2.equals(L_Name)){
-            databaseReference.child(userid).child("f_Name").setValue(fName1);
-            binding.userName.setText(F_Name);
-            databaseReference.child(userid).child("l_Name").setValue(fName2);
-            binding.userName.setText("  "+L_Name);
+        if (TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2)){
+            Toast.makeText(requireContext(), "User name required!!! Please Enter to edit", Toast.LENGTH_LONG).show();
         }
+         else if (TextUtils.isEmpty(fName1) || TextUtils.isEmpty(fName2)){
 
-        else {
-            Toast.makeText(requireContext(), "Unable to update", Toast.LENGTH_SHORT).show();
+             databaseReference.child(userid).child("f_Name").setValue(fName1);
+             binding.userName.setText(fName1+ " "+ L_Name);
+             databaseReference.child(userid).child("l_Name").setValue(fName2);
+             binding.userName.setText(F_Name+ " "+ fName2);
+             binding.userName.setVisibility(View.VISIBLE);
         }
+         else if ((!TextUtils.isEmpty(fName1)&&!fName1.equals(F_Name)) || (!TextUtils.isEmpty(fName2)&&!fName2.equals(L_Name))) {
+            databaseReference.child(userid).child("f_Name").setValue(fName1);
+             databaseReference.child(userid).child("l_Name").setValue(fName2);
+           // binding.userName.setText(F_Name);
+            binding.userName.setText(fName1 + " " + fName2);
+            binding.userName.setVisibility(View.VISIBLE);
+        }
+         else {
+             Toast.makeText(requireContext(), "Unable to edit name", Toast.LENGTH_SHORT).show();
+         }
     }
 
-
-
-    public void setViews(){
+    public void setViews() {
         binding.userName.setVisibility(View.INVISIBLE);
         binding.editUserName1.setVisibility(View.VISIBLE);
         binding.editUserName2.setVisibility(View.VISIBLE);
