@@ -42,7 +42,7 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
     }
 
     private void initializeRecycler() {
-        Query query = databaseReference.child("favoriteitems");
+        Query query = databaseReference.child("all_items");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -59,7 +59,7 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
                 .setQuery(query,Favourites.class)
                 .build();
 
-        adapter = new FavouritesAdapter(options);
+        adapter = new FavouritesAdapter(options,this);
         binding.favoriteRecyclerView.setAdapter(adapter);
 
     }

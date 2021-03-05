@@ -40,8 +40,8 @@ public class FavouriteDetailsFragment extends Fragment {
 
         ArrayList<SlideModel> imageList = new ArrayList<>();
        imageList.add(new SlideModel(favourites.getItemImage(), favourites.getItemName(), ScaleTypes.CENTER_CROP));
-        //imageList.add(new SlideModel(favourites.getItemImage2(), favourites.getItemName(), ScaleTypes.CENTER_CROP));
-       // imageList.add(new SlideModel(favourites.getItemImage3(), favourites.getItemName(), ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(favourites.getItemImage2(), favourites.getItemName(), ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(favourites.getItemImage3(), favourites.getItemName(), ScaleTypes.CENTER_CROP));
 
         Timber.d("image 1 " + favourites.getItemImage() + " \n image 2 " + favourites.getItemImage2() + " \n image 3 " + favourites.getItemImage3());
 

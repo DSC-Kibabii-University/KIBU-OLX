@@ -35,7 +35,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
      *
      * @param options
      */
-    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options) {
+    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options,ItemClickListener itemClickListener) {
         super(options);
         this.itemClickListener = itemClickListener;
     }
@@ -49,26 +49,23 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
                 .placeholder(R.drawable.ic_image_placeholder)
                 .into(holder.itemImage);
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Favourites favourites = new Favourites(
-                        model.getSellerName(),
-                        model.getSellerLastSeen(),
-                        model.getSellerPhoneNum(),
-                        model.getItemImage(),
-                        model.getItemImage2(),
-                        model.getItemImage3(),
-                        model.getItemName(),
-                        model.getItemPrice(),
-                        model.getDatePosted(),
-                        model.getLocation(),
-                        model.getItemDescription());
-                Timber.d(""+favourites.getItemImage2()+""+favourites.getItemImage3()+"\n description"+favourites.getItemDescription());
-                NavDirections directions = FavoritesFragmentDirections.actionFavoritesFragment2ToFavouriteDetailsFragment(favourites);
-                Navigation.findNavController(v).navigate(directions);
-                Timber.d("favorite card clicked");
-            }
+        holder.cardView.setOnClickListener(v -> {
+            Favourites favourites = new Favourites(
+                    model.getSellerName(),
+                    model.getSellerLastSeen(),
+                    model.getSellerPhoneNum(),
+                    model.getItemImage(),
+                    model.getItemImage2(),
+                    model.getItemImage3(),
+                    model.getItemName(),
+                    model.getItemPrice(),
+                    model.getDatePosted(),
+                    model.getLocation(),
+                    model.getItemDescription());
+            Timber.d(""+favourites.getItemImage2()+""+favourites.getItemImage3()+"\n description"+favourites.getItemDescription());
+            NavDirections directions = FavoritesFragmentDirections.actionFavoritesFragment2ToFavouriteDetailsFragment(favourites);
+            Navigation.findNavController(v).navigate(directions);
+            Timber.d("favorite card clicked");
         });
     }
 
