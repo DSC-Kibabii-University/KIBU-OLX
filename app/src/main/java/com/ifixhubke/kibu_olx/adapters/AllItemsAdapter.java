@@ -60,7 +60,7 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapt
         holder.item_price.setText("Ksh. "+model.getItemPrice());
         Picasso.get()
                 .load(model.getItemImage())
-                .placeholder(R.drawable.ic_image_placeholder)
+                .placeholder(R.drawable.loadin)
                 .into(holder.item_image);
 
 

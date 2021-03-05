@@ -46,7 +46,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
         holder.itemPrice.setText(model.getItemPrice());
         Picasso.get()
                 .load(model.getItemImage())
-                .placeholder(R.drawable.ic_image_placeholder)
+                .placeholder(R.drawable.loadin)
                 .into(holder.itemImage);
 
         holder.cardView.setOnClickListener(v -> {
