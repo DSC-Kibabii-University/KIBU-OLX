@@ -43,7 +43,7 @@ public class SettingsAdapter extends FirebaseRecyclerAdapter<Settings, SettingsA
         holder.name.setText(model.getName());
         holder.price.setText(model.getPrice());
         Picasso.get().load(model.getImage())
-                .placeholder(R.drawable.ic_image_placeholder)
+                .placeholder(R.drawable.loadin)
                 .into(holder.image);
 
     }

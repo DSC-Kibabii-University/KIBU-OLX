@@ -16,6 +16,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseError;
 import com.ifixhubke.kibu_olx.R;
+import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
@@ -59,7 +60,7 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapt
         holder.item_price.setText("Ksh. "+model.getItemPrice());
         Picasso.get()
                 .load(model.getItemImage())
-                .placeholder(R.drawable.ic_image_placeholder)
+                .placeholder(R.drawable.loadin)
                 .into(holder.item_image);
 
 

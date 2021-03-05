@@ -21,6 +21,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
+import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentHomeBinding;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
@@ -142,5 +143,10 @@ public class HomeFragment extends Fragment implements ItemClickListener {
     public void addItemToFavorites(Item item, int position) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("favoriteitems");
         databaseReference.child(UUID.randomUUID().toString()).setValue(item).addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), item.getItemName() + " to favorites successfully", Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    public void clickCard(Favourites favourites, int position) {
+        
     }
 }
