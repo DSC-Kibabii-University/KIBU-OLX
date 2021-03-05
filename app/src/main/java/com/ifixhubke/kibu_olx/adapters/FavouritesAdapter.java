@@ -52,9 +52,6 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String sellerName, String sellerLastSeen, String sellerPhoneNum,
-                // String itemImage, String itemImage2,
-                // String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription
                 Favourites favourites = new Favourites(
                         model.getSellerName(),
                         model.getSellerLastSeen(),
@@ -80,26 +77,6 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_row,parent,false));
     }
-
-    /*public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options) {
-        super(options);
-    }
-
-    @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Favourites model) {
-        holder.itemName.setText(model.getItemName());
-        holder.itemPrice.setText(model.getItemPrice());
-        Picasso.get()
-                .load(model.getItemImage())
-                .placeholder(R.drawable.ic_image_placeholder)
-                .into(holder.itemImage);
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_row, parent, false));
-    }*/
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView itemImage;

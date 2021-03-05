@@ -80,7 +80,7 @@
         app:iss_auto_cycle="true"
         app:iss_corner_radius="5"
         app:iss_delay="0"
-        app:iss_period="1000"
+        app:iss_period="3000"
         app:iss_placeholder="@drawable/ic_image_placeholder"
         app:iss_title_background="@drawable/gradient"
         app:layout_constraintEnd_toEndOf="parent"

@@ -13,7 +13,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentDetailsBinding;
-import com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragmentArgs;
+//import com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragmentArgs;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -35,7 +35,7 @@ public class FavouriteDetailsFragment extends Fragment {
         binding = FragmentFavouriteDetailsBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
 
-        Favourites favourites = FavoritesFragmentArgs.fromBundle(getArguments()).getFavoriteArgs();
+        Favourites favourites = FavouriteDetailsFragmentArgs.fromBundle(getArguments()).getFavoriteArgs();
         Timber.d(favourites.getItemName());
 
         ArrayList<SlideModel> imageList = new ArrayList<>();

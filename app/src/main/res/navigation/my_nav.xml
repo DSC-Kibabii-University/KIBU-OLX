@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/homeFragment2">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -77,9 +77,6 @@
         android:name="com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" >
-        <argument
-            android:name="favorite_args"
-            app:argType="com.ifixhubke.kibu_olx.data.Favourites" />
         <action
             android:id="@+id/action_favoritesFragment2_to_favouriteDetailsFragment"
             app:destination="@id/favouriteDetailsFragment" />
