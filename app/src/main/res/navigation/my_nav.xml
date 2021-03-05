@@ -76,7 +76,11 @@
         android:id="@+id/favoritesFragment2"
         android:name="com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment2_to_favouriteDetailsFragment"
+            app:destination="@id/favouriteDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment2"
         android:name="com.ifixhubke.kibu_olx.ui.fragments.settings.SettingsFragment"
@@ -115,5 +119,13 @@
             app:destination="@id/registerFragment"
             app:popUpTo="@id/viewPagerFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteDetailsFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.favorites.FavouriteDetailsFragment"
+        android:label="FavouriteDetailsFragment" >
+        <argument
+            android:name="favorite_args"
+            app:argType="com.ifixhubke.kibu_olx.data.Favourites" />
     </fragment>
 </navigation>
