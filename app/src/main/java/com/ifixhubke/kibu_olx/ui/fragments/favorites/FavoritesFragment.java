@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,13 +24,17 @@ import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentFavoritesBinding;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
-
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class FavoritesFragment extends Fragment implements ItemClickListener {
+
     FragmentFavoritesBinding binding;
     private FavouritesAdapter adapter;
     private DatabaseReference databaseReference;
+    ArrayList<Favourites> savedarrayList;
+    private String userID = null;
+
 
     @Nullable
     @Override
@@ -37,7 +42,32 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+/*
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("all_times").child(userID).child("favoriteitems");
+        savedarrayList = new ArrayList<>();*/
         initializeRecycler();
+
+        /*databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot i : snapshot.getChildren()){
+                        Favourites favourites = i.getValue(Favourites.class);
+                        savedarrayList.add(favourites);
+
+                        initializeRecycler();
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
         return view;
     }
 
@@ -89,4 +119,5 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
                 .setValue(favourites)
                 .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), favourites.getItemName() + " to favorites successfully", Toast.LENGTH_SHORT).show());
     }
+
 }
