@@ -13,7 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ifixhubke.kibu_olx.R;
@@ -80,6 +83,27 @@ public class RegisterFragment extends Fragment {
 
             firebaseAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(getActivity(), task -> {
                 if (task.isSuccessful()) {
+                    //sending verification email
+                    FirebaseUser firebaseUser= firebaseAuth.getCurrentUser();
+                    assert firebaseUser != null;
+                    firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(requireContext(),"Check email for verification link",Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(requireContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Timber.d("Not created");
+                        }
+                    });
+                    //
                     userID = firebaseAuth.getUid();
                     saveUserDetails(mail, first_Name, last_Name, phone_Number);
                     Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_loginFragment);
