@@ -36,12 +36,13 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:id="@+id/profile_name"
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/userName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     tools:text="Ifix Hub"
+                    android:textSize="14sp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -49,30 +50,78 @@
                     app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
                 <TextView
-                    android:id="@+id/profile_email"
+                    android:id="@+id/userEmail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/black"
+                    android:textSize="14sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/profile_name"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/userName"
+                    app:layout_constraintTop_toBottomOf="@+id/userName"
                     tools:text="ifixhub@mail.com" />
 
-                <TextView
-                    android:id="@+id/edit_post"
-                    android:layout_width="0dp"
+                <EditText
+                    android:id="@+id/editUserName1"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/edit"
-                    android:textAlignment="textEnd"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginStart="8dp"
+                    android:textSize="14sp"
+                    android:hint="First name"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/userName"
+                    app:layout_constraintStart_toStartOf="@+id/userName"
+                    app:layout_constraintTop_toTopOf="@+id/userName"
+                    app:layout_constraintVertical_bias="0.115" />
+
+                <EditText
+                    android:id="@+id/editUserName2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Last name"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/editUserName1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/editUserName1"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/editTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
                     android:textColor="@color/main"
+                    android:textSize="14sp"
+                    android:text="Edit"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_email" />
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveTextView"
+                    android:padding="10dp"
+                    android:text="Save"
+                    android:visibility="invisible"
+                    android:textSize="14sp"
+                    android:textColor="@color/main"
+                    app:layout_constraintBottom_toTopOf="@id/editTextView"
+                    app:layout_constraintTop_toBottomOf="@id/editTextView"
+                    app:layout_constraintStart_toStartOf="@id/editTextView"
+                    app:layout_constraintStart_toEndOf="@id/editTextView"/>
+
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
