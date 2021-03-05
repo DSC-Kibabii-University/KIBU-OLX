@@ -1,6 +1,10 @@
 package com.ifixhubke.kibu_olx.ui.fragments.authentication;
 
 import android.os.Bundle;
+
+
+import android.renderscript.ScriptGroup;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ifixhubke.kibu_olx.R;
@@ -49,20 +58,30 @@ public class LoginFragment extends Fragment {
             } else {
                 binding.loginProgressBar.setVisibility(View.VISIBLE);
             }
-
-            firebaseAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener(getActivity(), task -> {
-                if (task.isSuccessful()) {
-                    Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_homeFragment2);
-                    Toast.makeText(getContext(), "welcome", Toast.LENGTH_SHORT).show();
-                    Timber.d("signInWithEmailAndPassword: success");
-                    binding.loginProgressBar.setVisibility(View.INVISIBLE);
-                } else {
-                    Toast.makeText(getContext(), "Something Went Wrong.\n please check your details and try again", Toast.LENGTH_SHORT).show();
-                    Timber.d("signInWithEmailAndPassword: Failed");
+            firebaseAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        if (firebaseAuth.getCurrentUser().isEmailVerified()) {
+                            Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_homeFragment2);
+                            Toast.makeText(getContext(), "welcome", Toast.LENGTH_SHORT).show();
+                            Timber.d("signInWithEmailAndPassword: success");
+                            binding.loginProgressBar.setVisibility(View.INVISIBLE);
+                        } else {
+                            binding.loginProgressBar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getContext(), "Verify you email first", Toast.LENGTH_SHORT).show();
+                            binding.emailEditText.setText("");
+                            binding.passwordEditText.setText("");
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "Something Went Wrong.\n please check your details and try again", Toast.LENGTH_SHORT).show();
+                        Timber.d("signInWithEmailAndPassword: Failed");
+                    }
                 }
             });
-        });
+
+    });
 
         return view;
-    }
+}
 }
