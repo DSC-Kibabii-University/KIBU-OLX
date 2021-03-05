@@ -28,13 +28,14 @@ import timber.log.Timber;
 public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, FavouritesAdapter.ViewHolder> {
 
     ItemClickListener itemClickListener;
+
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options,ItemClickListener clickListener) {
+    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options) {
         super(options);
         this.itemClickListener = itemClickListener;
     }
@@ -51,6 +52,9 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //String sellerName, String sellerLastSeen, String sellerPhoneNum,
+                // String itemImage, String itemImage2,
+                // String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription
                 Favourites favourites = new Favourites(
                         model.getSellerName(),
                         model.getSellerLastSeen(),
@@ -63,7 +67,8 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
                         model.getDatePosted(),
                         model.getLocation(),
                         model.getItemDescription());
-                NavDirections directions = FavoritesFragmentDirections.actionFavoritesFragment2ToDetailsFragment(favourites);
+                Timber.d(""+favourites.getItemImage2()+""+favourites.getItemImage3()+"\n description"+favourites.getItemDescription());
+                NavDirections directions = FavoritesFragmentDirections.actionFavoritesFragment2ToFavouriteDetailsFragment(favourites);
                 Navigation.findNavController(v).navigate(directions);
                 Timber.d("favorite card clicked");
             }

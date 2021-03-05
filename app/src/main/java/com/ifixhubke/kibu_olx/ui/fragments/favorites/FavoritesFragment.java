@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,8 @@ import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentFavoritesBinding;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
+
+import java.util.UUID;
 
 public class FavoritesFragment extends Fragment implements ItemClickListener {
     FragmentFavoritesBinding binding;
@@ -52,18 +55,11 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
             }
         });
 
-        //FirebaseRecyclerOptions<Favourites> options = new FirebaseRecyclerOptions
-        //        .Builder<Favourites>()
-        //        .setQuery(query, Favourites.class).build();
-
-        //adapter = new FavouritesAdapter(options);
-        //binding.favoriteRecyclerView.setAdapter(adapter);
-
         FirebaseRecyclerOptions<Favourites> options = new FirebaseRecyclerOptions.Builder<Favourites>()
                 .setQuery(query,Favourites.class)
                 .build();
 
-        adapter = new FavouritesAdapter(options,this);
+        adapter = new FavouritesAdapter(options);
         binding.favoriteRecyclerView.setAdapter(adapter);
 
     }
@@ -78,5 +74,19 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public void addItemToFavorites(Item item, int position) {
+
+    }
+
+    @Override
+    public void clickCard(Favourites favourites, int position) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("favoriteitems");
+        databaseReference.child(UUID.randomUUID()
+                .toString())
+                .setValue(favourites)
+                .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), favourites.getItemName() + " to favorites successfully", Toast.LENGTH_SHORT).show());
     }
 }

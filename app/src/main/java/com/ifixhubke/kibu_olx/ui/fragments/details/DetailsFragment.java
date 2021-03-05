@@ -32,14 +32,13 @@ public class DetailsFragment extends Fragment {
         View view = binding.getRoot();
 
         assert getArguments() != null;
-        //try
-        Favourites favourites = FavoritesFragmentArgs.fromBundle(getArguments()).getFavoriteArgs();
+
         Item data = DetailsFragmentArgs.fromBundle(getArguments()).getItemDetailsArgs();
         Timber.d(data.getItemName());
 
-        binding.userName.setText(data.getSellerName());
-        binding.tvLastseenHours.setText(data.getSellerLastSeen());
-        binding.sellerPhoneNum.setText(data.getSellerPhoneNum());
+        binding.userName1.setText(data.getSellerName());
+        binding.tvLastseen1.setText(data.getSellerLastSeen());
+        binding.favPhoneNumber1.setText(data.getSellerPhoneNum());
 
         ArrayList<SlideModel> imageList = new ArrayList<>();
         imageList.add(new SlideModel(data.getItemImage(), data.getItemName(), ScaleTypes.CENTER_CROP));
@@ -48,13 +47,13 @@ public class DetailsFragment extends Fragment {
 
         Timber.d("image 1 " + data.getItemImage() + " \n image 2 " + data.getItemImage2() + " \n image 3 " + data.getItemImage3());
 
-        binding.imageSlider.setImageList(imageList);
+        binding.imageSliderFav1.setImageList(imageList);
 
-        binding.detailsItemName.setText(data.getItemName());
-        binding.detailsItemPrice.setText("Ksh. "+data.getItemPrice());
-        binding.detailsDatePosted.setText("Uploaded on " + data.getDatePosted());
-        binding.itemDetailsLocation.setText(data.getLocation());
-        binding.itemDetailsDescription.setText(data.getItemDescription());
+        binding.favoritesItemName1.setText(data.getItemName());
+        binding.favItemPrice1.setText("Ksh. "+data.getItemPrice());
+        binding.favDatePosted1.setText("Uploaded on " + data.getDatePosted());
+        binding.favLocation1.setText(data.getLocation());
+        binding.favDescription1.setText(data.getItemDescription());
 
         return view;
     }
