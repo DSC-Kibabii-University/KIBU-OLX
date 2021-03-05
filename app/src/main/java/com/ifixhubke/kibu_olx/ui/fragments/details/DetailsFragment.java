@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentDetailsBinding;
+import com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragmentArgs;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +32,8 @@ public class DetailsFragment extends Fragment {
         View view = binding.getRoot();
 
         assert getArguments() != null;
+        //try
+        Favourites favourites = FavoritesFragmentArgs.fromBundle(getArguments()).getFavoriteArgs();
         Item data = DetailsFragmentArgs.fromBundle(getArguments()).getItemDetailsArgs();
         Timber.d(data.getItemName());
 

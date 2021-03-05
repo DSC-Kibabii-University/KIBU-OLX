@@ -71,12 +71,22 @@
         <argument
             android:name="itemDetailsArgs"
             app:argType="com.ifixhubke.kibu_olx.data.Item" />
+        <argument
+            android:name="favorite_args"
+            app:argType="com.ifixhubke.kibu_olx.data.Favourites" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment2"
         android:name="com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <argument
+            android:name="favorite_args"
+            app:argType="com.ifixhubke.kibu_olx.data.Favourites" />
+        <action
+            android:id="@+id/action_favoritesFragment2_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment2"
         android:name="com.ifixhubke.kibu_olx.ui.fragments.settings.SettingsFragment"

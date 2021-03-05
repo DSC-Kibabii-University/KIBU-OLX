@@ -16,6 +16,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseError;
 import com.ifixhubke.kibu_olx.R;
+import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
@@ -77,6 +78,18 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapt
                     model.getLocation(),
                     model.getItemDescription());
 
+            /*Favourites favorite = new Favourites(
+                    model.getSellerLastSeen(),
+                    model.getSellerPhoneNum(),
+                    model.getItemImage(),
+                    model.getItemImage2(),
+                    model.getItemImage3(),
+                    model.getItemName(),
+                    model.getItemPrice(),
+                    model.getDatePosted(),
+                    model.getLocation(),
+                    model.getItemDescription()
+            );*/
             NavDirections action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);
             Timber.d("card clicked");

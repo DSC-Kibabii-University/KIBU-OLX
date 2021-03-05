@@ -16,11 +16,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
 import com.ifixhubke.kibu_olx.adapters.FavouritesAdapter;
 import com.ifixhubke.kibu_olx.data.Favourites;
+import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentFavoritesBinding;
+import com.ifixhubke.kibu_olx.others.ItemClickListener;
 
-public class FavoritesFragment extends Fragment {
+public class FavoritesFragment extends Fragment implements ItemClickListener {
     FragmentFavoritesBinding binding;
     private FavouritesAdapter adapter;
     private DatabaseReference databaseReference;
@@ -49,12 +52,20 @@ public class FavoritesFragment extends Fragment {
             }
         });
 
-        FirebaseRecyclerOptions<Favourites> options = new FirebaseRecyclerOptions
-                .Builder<Favourites>()
-                .setQuery(query, Favourites.class).build();
+        //FirebaseRecyclerOptions<Favourites> options = new FirebaseRecyclerOptions
+        //        .Builder<Favourites>()
+        //        .setQuery(query, Favourites.class).build();
 
-        adapter = new FavouritesAdapter(options);
+        //adapter = new FavouritesAdapter(options);
+        //binding.favoriteRecyclerView.setAdapter(adapter);
+
+        FirebaseRecyclerOptions<Favourites> options = new FirebaseRecyclerOptions.Builder<Favourites>()
+                .setQuery(query,Favourites.class)
+                .build();
+
+        adapter = new FavouritesAdapter(options,this);
         binding.favoriteRecyclerView.setAdapter(adapter);
+
     }
 
     @Override

@@ -9,17 +9,74 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Favourites;
+import com.ifixhubke.kibu_olx.data.Item;
+import com.ifixhubke.kibu_olx.others.ItemClickListener;
+import com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragment;
+import com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragmentDirections;
 import com.squareup.picasso.Picasso;
+
+import timber.log.Timber;
 
 public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, FavouritesAdapter.ViewHolder> {
 
-    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options) {
+    ItemClickListener itemClickListener;
+    /**
+     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
+     * {@link FirebaseRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options,ItemClickListener clickListener) {
+        super(options);
+        this.itemClickListener = itemClickListener;
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Favourites model) {
+        holder.itemName.setText(model.getItemName());
+        holder.itemPrice.setText(model.getItemPrice());
+        Picasso.get()
+                .load(model.getItemImage())
+                .placeholder(R.drawable.ic_image_placeholder)
+                .into(holder.itemImage);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Favourites favourites = new Favourites(
+                        model.getSellerName(),
+                        model.getSellerLastSeen(),
+                        model.getSellerPhoneNum(),
+                        model.getItemImage(),
+                        model.getItemImage2(),
+                        model.getItemImage3(),
+                        model.getItemName(),
+                        model.getItemPrice(),
+                        model.getDatePosted(),
+                        model.getLocation(),
+                        model.getItemDescription());
+                NavDirections directions = FavoritesFragmentDirections.actionFavoritesFragment2ToDetailsFragment(favourites);
+                Navigation.findNavController(v).navigate(directions);
+                Timber.d("favorite card clicked");
+            }
+        });
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_row,parent,false));
+    }
+
+    /*public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options) {
         super(options);
     }
 
@@ -37,7 +94,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_row, parent, false));
-    }
+    }*/
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView itemImage;
