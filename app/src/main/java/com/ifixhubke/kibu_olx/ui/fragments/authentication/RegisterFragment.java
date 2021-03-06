@@ -2,6 +2,7 @@ package com.ifixhubke.kibu_olx.ui.fragments.authentication;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,34 +46,34 @@ public class RegisterFragment extends Fragment {
 
         binding.registerButton.setOnClickListener(v -> {
 
-            String mail = binding.enterEmail.getText().toString().trim();
-            String pass = binding.enterPassword.getText().toString().trim();
-            String first_Name = binding.firstName.getText().toString().trim();
-            String last_Name = binding.lastName.getText().toString().trim();
-            String phone_Number = binding.phoneNumber.getText().toString().trim();
+            String mail = binding.enterEmail.getEditText().getText().toString().trim();
+            String pass = binding.enterPassword.getEditText().getText().toString().trim();
+            String first_Name = binding.firstName.getEditText().getText().toString().trim();
+            String last_Name = binding.lastName.getEditText().getText().toString().trim();
+            String phone_Number = binding.phoneNumber.getEditText().getText().toString().trim();
             Boolean agree_with_rules = binding.materialCheckBox.callOnClick();
 
-            if (TextUtils.isEmpty(binding.enterEmail.getText().toString())) {
+            if (TextUtils.isEmpty(binding.enterEmail.getEditText().getText().toString())) {
                 binding.enterEmail.setError("Field can't be empty!");
                 return;
-            } else if (TextUtils.isEmpty(binding.enterPassword.getText().toString())) {
+            } else if (TextUtils.isEmpty(binding.enterPassword.getEditText().getText().toString())) {
                 binding.enterPassword.setError("Field can't be empty!");
                 return;
-            } else if (TextUtils.isEmpty(binding.firstName.getText().toString())) {
+            } else if (TextUtils.isEmpty(binding.firstName.getEditText().getText().toString())) {
                 binding.firstName.setError("Field can't be empty!");
                 return;
-            } else if (TextUtils.isEmpty(binding.lastName.getText().toString())) {
+            } else if (TextUtils.isEmpty(binding.lastName.getEditText().getText().toString())) {
                 binding.lastName.setError("Field can't be empty!");
                 return;
-            } else if (TextUtils.isEmpty(binding.phoneNumber.getText().toString())) {
+            } else if (TextUtils.isEmpty(binding.phoneNumber.getEditText().getText().toString())) {
                 binding.phoneNumber.setError("Field can't be empty!");
                 return;
-            } else if (binding.phoneNumber.length() < 10) {
+            } else if (binding.phoneNumber.getEditText().getText().length() < 10) {
                 binding.phoneNumber.setError("Put correct Fields");
                 return;
-            } else if (binding.enterPassword.length() < 6) {
+            } else if (binding.enterPassword.getEditText().getText().length() < 6) {
                 binding.enterPassword.setError("Password should be 6 characters or more!");
-            } else if (!isvalidemail(binding.enterEmail.getText().toString())) {
+            } else if (!isvalidemail(binding.enterEmail.getEditText().getText().toString())) {
                 binding.enterEmail.setError("Invalid Email!");
             } else if (!binding.materialCheckBox.isChecked()) {
                 binding.materialCheckBox.setError("please check here!");

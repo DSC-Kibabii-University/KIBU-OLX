@@ -43,13 +43,13 @@ public class LoginFragment extends Fragment {
         binding.dontHaveAccount.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_registerFragment));
 
         binding.signinButton.setOnClickListener(v -> {
-            String mail = binding.emailEditText.getText().toString().trim();
-            String password = binding.passwordEditText.getText().toString().trim();
+            String mail = binding.emailEditText.getEditText().getText().toString().trim();
+            String password = binding.passwordEditText.getEditText().getText().toString().trim();
 
-            if (TextUtils.isEmpty(binding.emailEditText.getText().toString())) {
+            if (TextUtils.isEmpty(binding.emailEditText.getEditText().getText().toString())) {
                 binding.emailEditText.setError("Field can't be empty!!");
                 return;
-            } else if (TextUtils.isEmpty(binding.passwordEditText.getText().toString())) {
+            } else if (TextUtils.isEmpty(binding.passwordEditText.getEditText().getText().toString())) {
                 binding.passwordEditText.setError("Field can't be empty!!");
                 return;
             } else if (!(CheckInternet.isConnected(requireContext()))) {
@@ -70,8 +70,8 @@ public class LoginFragment extends Fragment {
                         } else {
                             binding.loginProgressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(getContext(), "Verify you email first", Toast.LENGTH_SHORT).show();
-                            binding.emailEditText.setText("");
-                            binding.passwordEditText.setText("");
+                            binding.emailEditText.getEditText().setText("");
+                            binding.passwordEditText.getEditText().setText("");
                         }
                     } else {
                         Toast.makeText(getContext(), "Something Went Wrong.\n please check your details and try again", Toast.LENGTH_SHORT).show();
