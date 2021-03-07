@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -38,8 +39,17 @@ public class HomeFragment extends Fragment implements ItemClickListener {
     private DatabaseReference databaseReference;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Timber.d("onCreate");
+    }
+
+    @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Timber.d("onCreateView");
+
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
@@ -118,11 +128,14 @@ public class HomeFragment extends Fragment implements ItemClickListener {
     @Override
     public void onStart() {
         super.onStart();
+        Timber.d("onStart");
         adapter.startListening();
     }
 
+
     @Override
     public void onStop() {
+        Timber.d("onStop");
         super.onStop();
         adapter.stopListening();
     }
@@ -130,13 +143,27 @@ public class HomeFragment extends Fragment implements ItemClickListener {
     @Override
     public void onPause() {
         super.onPause();
+        Timber.d("onPause");
         binding.shimmerFrameLayout.stopShimmer();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Timber.d("onResume");
         binding.shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Timber.d("onDestroyView");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Timber.d("onDestroy");
     }
 
     @Override

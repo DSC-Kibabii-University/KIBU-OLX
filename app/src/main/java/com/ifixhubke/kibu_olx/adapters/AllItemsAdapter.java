@@ -1,5 +1,6 @@
 package com.ifixhubke.kibu_olx.adapters;
 
+import android.service.autofill.ImageTransformation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,8 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapt
         holder.item_name.setText(model.getItemName());
         holder.item_price.setText("Ksh. "+model.getItemPrice());
         Picasso.get()
-                .load(model.getItemImage())
+                .load(model.getItemImage2())
+                .fit().centerInside()
                 .placeholder(R.drawable.loadin)
                 .into(holder.item_image);
 

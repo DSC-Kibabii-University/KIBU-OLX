@@ -7,8 +7,7 @@
     android:id="@+id/item_card_layout"
     app:cardElevation="3dp"
     app:cardCornerRadius="10dp"
-    android:padding="3dp"
-    android:layout_margin="3dp"
+    android:layout_margin="5dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,16 +19,19 @@
             android:id="@+id/cardView"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/itemImageImg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
 
@@ -39,14 +41,14 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            tools:text="6X6 High Density Mattress"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            tools:text="6X6 High Density Mattress" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/itemPriceTxt"
