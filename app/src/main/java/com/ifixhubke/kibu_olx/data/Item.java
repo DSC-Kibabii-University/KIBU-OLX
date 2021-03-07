@@ -23,6 +23,7 @@ public class Item implements Parcelable {
     private String datePosted;
     private String location;
     private String itemDescription;
+    private Boolean isSoldOut;
 
     public Item() {
     }
@@ -46,6 +47,22 @@ public class Item implements Parcelable {
         this.datePosted = datePosted;
         this.location = location;
         this.itemDescription = itemDescription;
+    }
+
+    public Item(String itemImage, String itemName, String itemPrice, String datePosted, Boolean isSoldOut){
+        this.itemImage = itemImage;
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
+        this.datePosted = datePosted;
+        this.isSoldOut = isSoldOut;
+    }
+
+    public Boolean getIsSoldOut() {
+        return isSoldOut;
+    }
+
+    public void setIsSoldOut(Boolean isSoldOut) {
+        this.isSoldOut = isSoldOut;
     }
 
     public Boolean getItemStarred() {

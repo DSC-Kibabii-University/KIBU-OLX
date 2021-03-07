@@ -66,6 +66,7 @@ public class SellFragmentTwo extends Fragment {
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(MainViewModel.class);
 
+        assert getArguments() != null;
         sellArgs = SellFragmentTwoArgs.fromBundle(getArguments()).getSellTwoArguments();
 
         imagesList = sellArgs.getImagesList();
@@ -177,7 +178,7 @@ public class SellFragmentTwo extends Fragment {
                 "Thursday 2020");
 
         //String itemImage, String itemName, String itemPrice, Boolean itemStarred
-        Item item = new Item(imageUrl2,binding.productNameEditText.getText().toString(),binding.priceEditText.getText().toString(),false);
+        Item item = new Item(imageUrl2,binding.productNameEditText.getText().toString(),binding.priceEditText.getText().toString(),date,false);
 
         saveToRoomDb(item);
 
