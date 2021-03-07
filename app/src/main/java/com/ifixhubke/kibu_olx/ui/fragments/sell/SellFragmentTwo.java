@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,8 +30,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ifixhubke.kibu_olx.R;
+import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.data.Sell;
 import com.ifixhubke.kibu_olx.databinding.FragmentSellTwoBinding;
+import com.ifixhubke.kibu_olx.viewmodels.MainViewModel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -53,12 +56,15 @@ public class SellFragmentTwo extends Fragment {
     Sell sellArgs;
     String f_name;
     String s_name;
+    private MainViewModel viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentSellTwoBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(MainViewModel.class);
 
         sellArgs = SellFragmentTwoArgs.fromBundle(getArguments()).getSellTwoArguments();
 
@@ -170,6 +176,11 @@ public class SellFragmentTwo extends Fragment {
                 sharedPreferences.getString("USERNAME", "default"),
                 "Thursday 2020");
 
+        //String itemImage, String itemName, String itemPrice, Boolean itemStarred
+        Item item = new Item(imageUrl2,binding.productNameEditText.getText().toString(),binding.priceEditText.getText().toString(),false);
+
+        saveToRoomDb(item);
+
         databaseReference.push().setValue(sell);
     }
 
@@ -212,7 +223,7 @@ public class SellFragmentTwo extends Fragment {
         });
     }
 
-    private void compressImage(Uri imageURI){
-
+    private void saveToRoomDb(Item item){
+        viewModel.insert(item);
     }
 }
