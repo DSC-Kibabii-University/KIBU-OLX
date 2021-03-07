@@ -53,14 +53,15 @@ public class HomeFragment extends Fragment implements ItemClickListener {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         setHasOptionsMenu(true);
 
+        binding.searchBar.inflateMenu(R.menu.main_menu);
+
         initializeRecycler();
 
-        binding.searchForItem.addTextChangedListener(new TextWatcher() {
+        /*binding.searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -73,7 +74,7 @@ public class HomeFragment extends Fragment implements ItemClickListener {
             public void afterTextChanged(Editable s) {
                 //filter(s.toString());
             }
-        });
+        });*/
 
         binding.floatingActionButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_homeFragment2_to_sellFragmentOne));
 

@@ -12,44 +12,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:padding="5dp">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="10dp"
+                app:titleTextColor="@color/white"
+                app:subtitle="Get items of your choice"
+                app:subtitleTextColor="@color/white"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/filter_menu"
                 app:title="KIBU-OLX" />
 
-            <EditText
-                android:id="@+id/searchForItem"
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/searchBar"
+                style="@style/MaterialSearchBarLight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/search_background"
-                android:drawableStart="@drawable/ic_search"
-                android:drawablePadding="5dp"
-                android:drawableTint="@color/gray"
-                android:hint="@string/search"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                tools:ignore="UnusedAttribute" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:mt_hint="Pro Gas"
+                app:mt_placeholder="Search"
+                app:mt_maxSuggestionsCount="10"
+                app:mt_roundedSearchBarEnabled="true"
+                app:mt_speechMode="false" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

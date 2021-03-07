@@ -100,6 +100,8 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
 
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
+
 
 
 }
