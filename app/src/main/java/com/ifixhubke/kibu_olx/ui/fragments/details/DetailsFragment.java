@@ -40,9 +40,7 @@ public class DetailsFragment extends Fragment {
     FragmentDetailsBinding binding;
 
     private Boolean clicked = false;
-    DatabaseReference databaseReference;
-    String userid, phone;
-    FirebaseUser user;
+    private String myNumber;
 
 
     @SuppressLint("SetTextI18n")
@@ -54,13 +52,12 @@ public class DetailsFragment extends Fragment {
 
         assert getArguments() != null;
 
+
         Item data = DetailsFragmentArgs.fromBundle(getArguments()).getItemDetailsArgs();
         Timber.d(data.getItemName());
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        assert user != null;
-        userid = user.getUid();
+        myNumber = data.getSellerPhoneNum();
+        Timber.d("Phone Number: "+myNumber);
 
         binding.userName1.setText(data.getSellerName());
         binding.tvLastseen1.setText(data.getSellerLastSeen());
@@ -91,25 +88,32 @@ public class DetailsFragment extends Fragment {
         binding.messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Message Clicked", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                String phoneNo = myNumber;//The phone number you want to text
+                String sms= "Hello can we do bussiness kwa hii item umepost bazuu";//The message you want to text to the phone
+
+                Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", myNumber, null));
+                smsIntent.putExtra("sms_body",sms);
+                startActivity(smsIntent);
             }
         });
 
         binding.phoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                getPhoneNumber();
-
-                //Snackbar.make(v, "Phone Clicked", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", myNumber, null));
+                startActivity(intent);
             }
         });
 
         binding.whatsappButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Whatsapp Clicked", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
+                String phone = myNumber.replaceFirst(String.valueOf(myNumber.charAt(0)),"+254");
+                String url = "https://api.whatsapp.com/send?phone="+phone;
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url+ "&text="  +"Hello can we do bussiness kwa hii item umepost bazuu"));
+                startActivity(intent);
+                Timber.d(phone);
             }
         });
 
@@ -167,25 +171,6 @@ public class DetailsFragment extends Fragment {
             binding.messageButton.setClickable(false);
             binding.whatsappButton.setClickable(false);
         }
-    }
-
-    private void getPhoneNumber() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                phone = snapshot.child("phone_No").getValue().toString();
-                Timber.d("Phone Number:  "+phone);
-                String myNumber = phone;
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", myNumber, null));
-                startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
     }
 
 }
