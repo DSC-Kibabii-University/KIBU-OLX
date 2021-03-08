@@ -190,47 +190,43 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/phone_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/phoneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_telephone"
+        android:tint="@color/white"
         android:visibility="invisible"
+        android:src="@drawable/ic_phone_number"
         app:layout_constraintBottom_toTopOf="@+id/show_contacts"
-        app:layout_constraintEnd_toEndOf="@+id/show_contacts"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintEnd_toEndOf="@+id/show_contacts" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/message_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/messageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_chat"
+        android:tint="@color/white"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/phone_button"
-        app:layout_constraintEnd_toEndOf="@+id/phone_button"
-        app:layout_constraintStart_toStartOf="@+id/phone_button"
-        tools:ignore="ContentDescription" />
+        android:src="@drawable/ic_mail_outline"
+        app:layout_constraintBottom_toTopOf="@+id/phoneButton"
+        app:layout_constraintEnd_toEndOf="@+id/phoneButton" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/whatsapp_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/whatsappButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:tint="@color/white"
+        android:visibility="invisible"
         android:src="@drawable/ic_whatsapp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/message_button"
-        app:layout_constraintEnd_toEndOf="@+id/message_button"
-        app:layout_constraintStart_toStartOf="@+id/message_button"
-        tools:ignore="ContentDescription" />
-
+        app:layout_constraintBottom_toTopOf="@+id/messageButton"
+        app:layout_constraintEnd_toEndOf="@+id/messageButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

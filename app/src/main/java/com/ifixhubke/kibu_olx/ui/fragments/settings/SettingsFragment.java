@@ -29,7 +29,7 @@ public class SettingsFragment extends Fragment {
     FragmentSettingsBinding binding;
     SettingsAdapter adapter;
     private DatabaseReference databaseReference;
-    String userid,firstName,lastName,userName,emailAddress;
+    String userid,firstName,lastName,phoneNum,email;
 
     FirebaseUser user;
     MainViewModel viewModel;
@@ -91,10 +91,10 @@ public class SettingsFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String firstName = snapshot.child("f_Name").getValue().toString();
-                String lastName = snapshot.child("l_Name").getValue().toString();
-                String email = snapshot.child("e_Mail").getValue().toString();
-                String phoneNum = snapshot.child("phone_No").getValue().toString();
+                 firstName = snapshot.child("f_Name").getValue().toString();
+                 lastName = snapshot.child("l_Name").getValue().toString();
+                 email = snapshot.child("e_Mail").getValue().toString();
+                 phoneNum = snapshot.child("phone_No").getValue().toString();
 
                 binding.userName.setText(firstName + " " + lastName);
                 binding.userEmail.setText(email);
@@ -112,25 +112,26 @@ public class SettingsFragment extends Fragment {
         String fName2 = binding.editUserName2.getText().toString();
         String phone = binding.editPhoneNum.getText().toString();
 
-        if (TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2)){
+        if (TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2) && TextUtils.isEmpty(phone)){
             Toast.makeText(requireContext(), "Cannot be blank", Toast.LENGTH_LONG).show();
         }
-         else if (TextUtils.isEmpty(fName1) || TextUtils.isEmpty(fName2)){
+         else if (TextUtils.isEmpty(fName1) || TextUtils.isEmpty(fName2) || TextUtils.isEmpty(phone)){
 
              databaseReference.child(userid).child("f_Name").setValue(fName1);
              binding.userName.setText(fName1+ " "+ lastName);
              databaseReference.child(userid).child("l_Name").setValue(fName2);
              binding.userName.setText(firstName + " "+ fName2);
+             databaseReference.child(userid).child("phone_No").setValue(phone);
+            binding.phoneNum.setText(phone);
              binding.userName.setVisibility(View.VISIBLE);
         }
-         else if ((!TextUtils.isEmpty(fName1)&&!fName1.equals(firstName)) || (!TextUtils.isEmpty(fName2)&&!fName2.equals(lastName))) {
+         else if ((!TextUtils.isEmpty(fName1)&&!fName1.equals(firstName)) || (!TextUtils.isEmpty(fName2)&&!fName2.equals(lastName)) || (!TextUtils.isEmpty(phoneNum)&&!phone.equals(phoneNum))) {
             databaseReference.child(userid).child("f_Name").setValue(fName1);
              databaseReference.child(userid).child("l_Name").setValue(fName2);
-             databaseReference.child(userid).child("phone_No").setValue(binding.editPhoneNum.getText().toString());
-           // binding.userName.setText(firstName);
+             databaseReference.child(userid).child("phone_No").setValue(phone);
             binding.userName.setText(fName1 + " " + fName2);
-            binding.userName.setVisibility(View.VISIBLE);
             binding.phoneNum.setText(phone);
+            binding.userName.setVisibility(View.VISIBLE);
         }
          else {
              Toast.makeText(requireContext(), "Unable to edit name", Toast.LENGTH_SHORT).show();
