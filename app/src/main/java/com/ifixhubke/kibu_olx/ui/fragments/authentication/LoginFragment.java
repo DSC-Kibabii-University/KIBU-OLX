@@ -57,6 +57,9 @@ public class LoginFragment extends Fragment {
                 Timber.d("No Internet");
             } else {
                 binding.loginProgressBar.setVisibility(View.VISIBLE);
+                binding.emailEditText.setEnabled(false);
+                binding.passwordEditText.setEnabled(false);
+                binding.signinButton.setEnabled(false);
             }
             firebaseAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                 @Override
@@ -76,6 +79,10 @@ public class LoginFragment extends Fragment {
                     } else {
                         Toast.makeText(getContext(), "Something Went Wrong.\n please check your details and try again", Toast.LENGTH_SHORT).show();
                         Timber.d("signInWithEmailAndPassword: Failed");
+                        binding.loginProgressBar.setVisibility(View.INVISIBLE);
+                        binding.emailEditText.setEnabled(true);
+                        binding.passwordEditText.setEnabled(true);
+                        binding.signinButton.setEnabled(true);
                     }
                 }
             });

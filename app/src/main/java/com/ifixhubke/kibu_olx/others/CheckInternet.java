@@ -28,12 +28,13 @@ public class CheckInternet {
             return false;
         }
     }
+
     public static void updateUserStatus(String status) {
         FirebaseAuth mAuth;
         DatabaseReference rootReF;
 
         String currentUserId;
-        String saveCurrentTime , saveCurrentDate;
+        String saveCurrentTime, saveCurrentDate;
 
         Calendar calendar = Calendar.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -45,10 +46,10 @@ public class CheckInternet {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
-        HashMap<String,Object> onlineStateMap = new HashMap<>();
-        onlineStateMap.put("time",saveCurrentTime);
-        onlineStateMap.put("date",saveCurrentDate);
-        onlineStateMap.put("state",status);
+        HashMap<String, Object> onlineStateMap = new HashMap<>();
+        onlineStateMap.put("time", saveCurrentTime);
+        onlineStateMap.put("date", saveCurrentDate);
+        onlineStateMap.put("state", status);
 
         currentUserId = mAuth.getCurrentUser().getUid();
         rootReF.child("users").child(currentUserId).child("userState").updateChildren(onlineStateMap);
