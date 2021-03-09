@@ -43,7 +43,9 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
