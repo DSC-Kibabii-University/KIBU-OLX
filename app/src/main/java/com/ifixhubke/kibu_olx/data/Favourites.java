@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Favourites implements Parcelable {
+    public Boolean itemDeleted;
     private String sellerName;
     private String sellerLastSeen;
     private String sellerPhoneNum;
@@ -19,7 +20,8 @@ public class Favourites implements Parcelable {
     public Favourites() {
     }
 
-    public Favourites(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription) {
+    public Favourites(Boolean itemDeleted,String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription) {
+        this.itemDeleted = itemDeleted;
         this.sellerName = sellerName;
         this.sellerLastSeen = sellerLastSeen;
         this.sellerPhoneNum = sellerPhoneNum;
@@ -31,6 +33,14 @@ public class Favourites implements Parcelable {
         this.datePosted = datePosted;
         this.location = location;
         this.itemDescription = itemDescription;
+    }
+
+    public Boolean getItemDeleted() {
+        return itemDeleted;
+    }
+
+    public void setItemDeleted(Boolean itemDeleted) {
+        this.itemDeleted = itemDeleted;
     }
 
     public String getSellerName() {
@@ -128,6 +138,7 @@ public class Favourites implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.datePosted);
         dest.writeString(this.sellerName);
         dest.writeString(this.sellerLastSeen);
         dest.writeString(this.sellerPhoneNum);
@@ -142,6 +153,7 @@ public class Favourites implements Parcelable {
     }
 
     public void readFromParcel(Parcel source) {
+        this.itemDeleted = source.readBoolean();
         this.sellerName = source.readString();
         this.sellerLastSeen = source.readString();
         this.sellerPhoneNum = source.readString();
@@ -156,6 +168,7 @@ public class Favourites implements Parcelable {
     }
 
     protected Favourites(Parcel in) {
+        this.itemDeleted = in.readBoolean();
         this.sellerName = in.readString();
         this.sellerLastSeen = in.readString();
         this.sellerPhoneNum = in.readString();

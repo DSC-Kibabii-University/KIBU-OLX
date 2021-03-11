@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +50,7 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
         savedarrayList = new ArrayList<>();*/
         initializeRecycler();
 
+
         /*databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,7 +75,7 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
     }
 
     private void initializeRecycler() {
-        Query query = databaseReference.child("all_items");
+        Query query = databaseReference.child("favoriteitems");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -91,6 +94,19 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
 
         adapter = new FavouritesAdapter(options,this);
         binding.favoriteRecyclerView.setAdapter(adapter);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                adapter.deleteItem(viewHolder.getAdapterPosition());
+            }
+        }).attachToRecyclerView(binding.favoriteRecyclerView);
 
     }
 
@@ -114,10 +130,11 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
     @Override
     public void clickCard(Favourites favourites, int position) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("favoriteitems");
-        databaseReference.child(UUID.randomUUID()
-                .toString())
-                .setValue(favourites)
-                .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), favourites.getItemName() + " to favorites successfully", Toast.LENGTH_SHORT).show());
+        //databaseReference.child(UUID.randomUUID()
+        //        .toString())
+        //        .setValue(favourites)
+        //        .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), favourites.getItemName() + " to favorites successfully", Toast.LENGTH_SHORT).show());
+        //databaseReference.child(String.valueOf(UUID.randomUUID())).setValue(null);
     }
 
 }

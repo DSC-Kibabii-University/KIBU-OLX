@@ -51,6 +51,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
 
         holder.cardView.setOnClickListener(v -> {
             Favourites favourites = new Favourites(
+                    model.getItemDeleted(),
                     model.getSellerName(),
                     model.getSellerLastSeen(),
                     model.getSellerPhoneNum(),
@@ -67,6 +68,14 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
             Navigation.findNavController(v).navigate(directions);
             Timber.d("favorite card clicked");
         });
+
+        holder.delete_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                model.setItemDeleted(true);
+                Timber.d("item Deleted");
+            }
+        });
     }
 
     @NonNull
@@ -75,8 +84,12 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_row,parent,false));
     }
 
+    public void deleteItem(int position){
+        getSnapshots().getSnapshot(position).getRef().removeValue();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView itemImage;
+        ImageView itemImage,delete_item;
         TextView itemName, itemPrice;
         CardView cardView;
 
@@ -86,6 +99,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
             this.itemName = itemView.findViewById(R.id.item_name);
             this.itemPrice = itemView.findViewById(R.id.item_price);
             this.cardView = itemView.findViewById(R.id.favourites_cardView);
+            this.delete_item = itemView.findViewById(R.id.deleteFavorite);
         }
     }
 }
