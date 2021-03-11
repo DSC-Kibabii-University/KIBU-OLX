@@ -12,11 +12,14 @@ import android.view.ViewGroup;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.databinding.FragmentFavouriteDetailsBinding;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import timber.log.Timber;
 
