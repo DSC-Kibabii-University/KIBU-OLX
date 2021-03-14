@@ -44,33 +44,9 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-/*
-        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference("all_times").child(userID).child("favoriteitems");
-        savedarrayList = new ArrayList<>();*/
+
         initializeRecycler();
 
-
-        /*databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    for (DataSnapshot i : snapshot.getChildren()){
-                        Favourites favourites = i.getValue(Favourites.class);
-                        savedarrayList.add(favourites);
-
-                        initializeRecycler();
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
         return view;
     }
 
