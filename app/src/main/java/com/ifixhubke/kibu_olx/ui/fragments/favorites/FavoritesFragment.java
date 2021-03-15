@@ -34,8 +34,6 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
     FragmentFavoritesBinding binding;
     private FavouritesAdapter adapter;
     private DatabaseReference databaseReference;
-    ArrayList<Favourites> savedarrayList;
-    private String userID = null;
 
 
     @Nullable
