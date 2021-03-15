@@ -8,6 +8,8 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +28,7 @@ import timber.log.Timber;
 public class SplashFragment extends Fragment {
     FragmentSplashBinding binding;
     FirebaseAuth mFirebaseAuth;
+    Animation top_anim,bottom_anim;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -33,12 +36,19 @@ public class SplashFragment extends Fragment {
         binding = FragmentSplashBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        top_anim = AnimationUtils.loadAnimation(requireContext(),R.anim.top_animation);
+        bottom_anim = AnimationUtils.loadAnimation(requireContext(),R.anim.bottom_animation);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         if (!(CheckInternet.isConnected(requireContext()))) {
             Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
             Timber.d("No Internet");
         }
+
+        binding.cartImage.setAnimation(top_anim);
+        binding.kibuOlxTv.setAnimation(bottom_anim);
+        binding.comradeTv.setAnimation(bottom_anim);
 
         return view;
     }
