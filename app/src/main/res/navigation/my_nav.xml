@@ -73,6 +73,9 @@
         <argument
             android:name="itemDetailsArgs"
             app:argType="com.ifixhubke.kibu_olx.data.Item" />
+        <action
+            android:id="@+id/action_detailsFragment_to_pictureBrowserFragment"
+            app:destination="@id/pictureBrowserFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment2"
@@ -102,14 +105,14 @@
         android:name="com.ifixhubke.kibu_olx.ui.fragments.sell.SellFragmentTwo"
         android:label="fragment_sell_two"
         tools:layout="@layout/fragment_sell_two" >
-        <argument
-            android:name="sellTwoArguments"
-            app:argType="com.ifixhubke.kibu_olx.data.Sell" />
         <action
             android:id="@+id/action_sellFragmentTwo_to_homeFragment2"
             app:destination="@id/homeFragment2"
             app:popUpTo="@id/sellFragmentTwo"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="sellTwoArguments"
+            app:argType="com.ifixhubke.kibu_olx.data.Sell" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -129,5 +132,14 @@
         <argument
             android:name="favorite_args"
             app:argType="com.ifixhubke.kibu_olx.data.Favourites" />
+    </fragment>
+    <fragment
+        android:id="@+id/pictureBrowserFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.details.PictureBrowserFragment"
+        android:label="fragment_picture_browser"
+        tools:layout="@layout/fragment_picture_browser" >
+        <argument
+            android:name="imageArgs"
+            app:argType="com.ifixhubke.kibu_olx.data.Item" />
     </fragment>
 </navigation>

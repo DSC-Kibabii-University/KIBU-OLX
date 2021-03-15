@@ -23,11 +23,15 @@ import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import timber.log.Timber;
 
 public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapter.ViewHolder> {
 
     ItemClickListener itemClickListener;
+    private List<Item> items;
 
     public AllItemsAdapter(@NonNull FirebaseRecyclerOptions<Item> options, ItemClickListener itemClickListener) {
         super(options);
@@ -98,6 +102,11 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapt
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row, parent, false));
     }
+
+    /*public void filteredList(ArrayList<Item> filterItemsList) {
+        items=filterItemsList;
+        notifyDataSetChanged();
+    }*/
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
