@@ -29,6 +29,7 @@ import com.ifixhubke.kibu_olx.others.ItemClickListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import timber.log.Timber;
@@ -37,6 +38,9 @@ public class HomeFragment extends Fragment implements ItemClickListener {
     FragmentHomeBinding binding;
     private AllItemsAdapter adapter;
     private DatabaseReference databaseReference;
+    ArrayList<Item> itemsList;
+    FirebaseRecyclerOptions<Item> options;
+    ItemClickListener itemClickListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +56,7 @@ public class HomeFragment extends Fragment implements ItemClickListener {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-
+        itemsList =new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         setHasOptionsMenu(true);
@@ -72,7 +76,7 @@ public class HomeFragment extends Fragment implements ItemClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
-                //filter(s.toString());
+                filter(s.toString());
             }
         });*/
 
@@ -80,6 +84,18 @@ public class HomeFragment extends Fragment implements ItemClickListener {
 
         return view;
     }
+    private void filter(String itemName) {
+        ArrayList<Item> filterItemsList =new ArrayList<>();
+        for (Item item : itemsList){
+            if (item.getItemName().toLowerCase().contains(itemName.toLowerCase())){
+                filterItemsList.add(item);
+            }
+        }
+       adapter= new AllItemsAdapter(options,itemClickListener);
+       // adapter.filteredList(filterItemsList);
+        binding.allItemsRecyclerview.setAdapter(adapter);
+    }
+
 
     /*public void filter(String itemName){
         ArrayList<Item> filterItemsList = new ArrayList<>();
@@ -116,9 +132,12 @@ public class HomeFragment extends Fragment implements ItemClickListener {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
+
+
+
         });
 
-        FirebaseRecyclerOptions<Item> options = new FirebaseRecyclerOptions.Builder<Item>()
+        options = new FirebaseRecyclerOptions.Builder<Item>()
                 .setQuery(query, Item.class)
                 .build();
 

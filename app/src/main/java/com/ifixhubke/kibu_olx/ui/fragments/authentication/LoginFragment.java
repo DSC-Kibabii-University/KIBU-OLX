@@ -39,6 +39,13 @@ public class LoginFragment extends Fragment {
         View view = binding.getRoot();
 
         firebaseAuth = FirebaseAuth.getInstance();
+        binding.forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PasswordResetFragment resetFragment = new PasswordResetFragment();
+                resetFragment.show(getFragmentManager(),"dialog_password_reset");
+            }
+        });
 
         binding.dontHaveAccount.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_registerFragment));
 

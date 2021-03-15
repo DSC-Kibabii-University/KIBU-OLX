@@ -91,19 +91,33 @@
         app:layout_constraintStart_toStartOf="@+id/passwordEditText"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/forgotPassword"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:text="Forgot password"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:cornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/signinButton"
+        app:layout_constraintStart_toStartOf="@+id/signinButton"
+        app:layout_constraintTop_toBottomOf="@+id/signinButton" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/dontHaveAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="@string/don_t_have_an_account_register"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/signinButton"
+        app:layout_constraintEnd_toEndOf="@+id/forgotPassword"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/signinButton" />
+        app:layout_constraintStart_toStartOf="@+id/forgotPassword" />
 
     <ProgressBar
         android:id="@+id/login_progressBar"
