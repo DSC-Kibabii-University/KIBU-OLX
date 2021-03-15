@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ifixhubke.kibu_olx.R;
@@ -35,25 +37,40 @@ public class SplashFragment extends Fragment {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        if (!(CheckInternet.isConnected(requireContext()))) {
-            Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
-            Timber.d("No Internet");
-        }
-
         return view;
+    }
+
+    @Nullable
+    @Override
+    public View getView() {
+        return binding.content;
     }
 
     @Override
     public void onStart() {
         super.onStart();
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            FirebaseUser mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            if (mFirebaseUser != null && onBoardingFinished()) {
-                Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_homeFragment2);
-            } else if (onBoardingFinished()) {
-                Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
-            } else {
-                Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_viewPagerFragment);
+
+            if (!(CheckInternet.isConnected(requireContext()))) {
+
+                Snackbar snackbar = Snackbar.make(getView(), "No Internet Connection", Snackbar.LENGTH_INDEFINITE);
+                snackbar.setAction("RETRY", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onStart();
+                    }
+                });
+                snackbar.show();
+                Timber.d("No Internet");
+            }   else {
+                FirebaseUser mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (mFirebaseUser != null && onBoardingFinished()) {
+                    Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_homeFragment2);
+                } else if (onBoardingFinished()) {
+                    Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
+                } else {
+                    Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_viewPagerFragment);
+                }
             }
         }, 3000);
     }
