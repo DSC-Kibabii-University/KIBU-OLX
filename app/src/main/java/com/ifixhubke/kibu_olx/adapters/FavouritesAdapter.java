@@ -69,13 +69,6 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
             Timber.d("favorite card clicked");
         });
 
-        holder.delete_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                model.setItemDeleted(true);
-                Timber.d("item Deleted");
-            }
-        });
     }
 
     @NonNull
@@ -89,7 +82,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView itemImage,delete_item;
+        ImageView itemImage;
         TextView itemName, itemPrice;
         CardView cardView;
 
@@ -99,7 +92,6 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
             this.itemName = itemView.findViewById(R.id.item_name);
             this.itemPrice = itemView.findViewById(R.id.item_price);
             this.cardView = itemView.findViewById(R.id.favourites_cardView);
-            this.delete_item = itemView.findViewById(R.id.deleteFavorite);
         }
     }
 }
