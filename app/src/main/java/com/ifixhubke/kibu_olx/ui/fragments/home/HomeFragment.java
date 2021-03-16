@@ -14,7 +14,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,11 +40,8 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
         Toolbar.OnMenuItemClickListener, androidx.appcompat.widget.PopupMenu.OnMenuItemClickListener {
 
     FragmentHomeBinding binding;
-    private AllItemsAdapter adapter;
     private DatabaseReference databaseReference;
     ArrayList<Item> itemsList = new ArrayList<>();
-    FirebaseRecyclerOptions<Item> options;
-    ItemClickListener itemClickListener;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -93,7 +89,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     }
 
     private void fetchItems() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("all_items");
+        databaseReference = FirebaseDatabase.getInstance().getReference("all_items");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -126,7 +122,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     }
 
     private void initializeRecycler(ArrayList<Item> itemsList) {
-        adapter = new AllItemsAdapter(itemsList, this);
+        AllItemsAdapter adapter = new AllItemsAdapter(itemsList, this);
         binding.allItemsRecyclerview.setAdapter(adapter);
     }
 
@@ -174,7 +170,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
         } else if (item.getItemId() == R.id.logoutMenu) {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(requireContext(), "Logout Successfully", Toast.LENGTH_SHORT).show();
-            Navigation.findNavController(getView()).navigate(R.id.action_homeFragment2_to_loginFragment);
+            Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment2_to_loginFragment);
             return true;
         } else
             return false;
@@ -186,16 +182,13 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
 
     @Override
     public void onSearchStateChanged(boolean enabled) {
-
     }
 
     @Override
     public void onSearchConfirmed(CharSequence text) {
-
     }
 
     @Override
     public void onButtonClicked(int buttonCode) {
-
     }
 }
