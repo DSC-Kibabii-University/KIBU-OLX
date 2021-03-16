@@ -48,6 +48,7 @@
     <string name="item_name">Item Name</string>
     <string name="item_description">Item Description…</string>
     <string-array name="category">
+        <item>category</item>
         <item>Electronics</item>
         <item>Furniture</item>
         <item>Beddings</item>
@@ -59,6 +60,7 @@
     </string-array>
 
     <string-array name="location">
+        <item>location</item>
         <item>Kibabii</item>
         <item>Tuuti</item>
         <item>Dorminion</item>
@@ -68,4 +70,6 @@
         <item>Bukananach</item>
         <item>Cardinal Otunga</item>
     </string-array>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

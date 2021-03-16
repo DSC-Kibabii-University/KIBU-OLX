@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -89,9 +90,21 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
 
         binding.nextButton.setOnClickListener(v -> {
             //Passing data to sell2
-            Sell sell = new Sell(category, location, imagesArrayList);
-            NavDirections action = SellFragmentOneDirections.actionSellFragmentOneToSellFragmentTwo(sell);
-            Navigation.findNavController(v).navigate(action);
+            if ( binding.categorySpinner.getSelectedItem().toString().trim().equals("category")) {
+                Toast.makeText(requireContext(), "Please select cateory", Toast.LENGTH_SHORT).show();
+            }else if ( binding.locationSpinner.getSelectedItem().toString().trim().equals("location")) {
+                Toast.makeText(requireContext(), "Please select location", Toast.LENGTH_SHORT).show();
+            }else if (imageURI1 == null){
+                Toast.makeText(requireContext(), "Please upload yuor first image", Toast.LENGTH_SHORT).show();
+            }else if (imageURI2== null){
+                Toast.makeText(requireContext(), "Please upload yuor second image", Toast.LENGTH_SHORT).show();
+            }else if (imageURI3 == null){
+                Toast.makeText(requireContext(), "Please upload yuor Third image", Toast.LENGTH_SHORT).show();
+            }else {
+                Sell sell = new Sell(category, location, imagesArrayList);
+                NavDirections action = SellFragmentOneDirections.actionSellFragmentOneToSellFragmentTwo(sell);
+                Navigation.findNavController(v).navigate(action);
+            }
         });
 
         return view;

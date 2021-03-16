@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main"
-    tools:context=".ui.fragments.SplashFragment" >
+    android:id="@+id/content"
+    tools:context=".ui.fragments.SplashFragment">
+
 
     <ImageView
         android:id="@+id/cart_image"
@@ -48,4 +50,4 @@
         app:layout_constraintEnd_toEndOf="@+id/kibu_olx_tv"
         app:layout_constraintStart_toStartOf="@+id/kibu_olx_tv"
         app:layout_constraintTop_toBottomOf="@+id/kibu_olx_tv" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
