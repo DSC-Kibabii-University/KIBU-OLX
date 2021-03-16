@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/filter"
+    <item android:id="@+id/filter_menu"
         android:icon="@drawable/ic_filter"
         app:showAsAction="always"
         android:iconTint="@color/black"

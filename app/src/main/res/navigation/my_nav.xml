@@ -64,6 +64,14 @@
         <argument
             android:name="details_to_fragDetails"
             app:argType="com.ifixhubke.kibu_olx.data.Item" />
+        <action
+            android:id="@+id/action_homeFragment2_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment2_to_filterFragment"
+            app:destination="@id/filterFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -141,5 +149,14 @@
         <argument
             android:name="imageArgs"
             app:argType="com.ifixhubke.kibu_olx.data.Item" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" >
+        <action
+            android:id="@+id/action_filterFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
 </navigation>
