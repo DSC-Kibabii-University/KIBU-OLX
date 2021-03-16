@@ -35,11 +35,7 @@ public class Item implements Parcelable {
         this.itemStarred = itemStarred;
     }
 
-    public Item(String itemImage, String itemImage2, String itemImage3){
-        this.itemImage=itemImage;
-        this.itemImage2=itemImage2;
-        this.itemImage3=itemImage3;
-    }
+
 
     public Item(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription) {
         this.sellerName = sellerName;
@@ -62,10 +58,12 @@ public class Item implements Parcelable {
         this.datePosted = datePosted;
         this.isSoldOut = isSoldOut;
     }
-    public Item(String itemImage, String itemImage2, String itemImage3){
-        this.itemImage=itemImage;
-        this.itemImage2=itemImage2;
-        this.itemImage3=itemImage3;
+
+    public Item(String itemImage, String itemImage2, String itemImage3) {
+
+        this.itemImage = itemImage;
+        this.itemImage2 = itemImage2;
+        this.itemImage3 = itemImage3;
     }
 
     public Boolean getIsSoldOut() {

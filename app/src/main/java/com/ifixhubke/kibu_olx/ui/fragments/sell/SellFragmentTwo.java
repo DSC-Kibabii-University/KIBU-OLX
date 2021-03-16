@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -45,7 +46,7 @@ import java.util.UUID;
 
 import timber.log.Timber;
 
-public class SellFragmentTwo extends Fragment {
+public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelectedListener {
     FragmentSellTwoBinding binding;
     DatabaseReference databaseReference;
     StorageReference storageReference;
@@ -58,6 +59,7 @@ public class SellFragmentTwo extends Fragment {
     String f_name;
     String s_name;
     private MainViewModel viewModel;
+    private String condition;
 
     @Nullable
     @Override
@@ -70,7 +72,9 @@ public class SellFragmentTwo extends Fragment {
         assert getArguments() != null;
         sellArgs = SellFragmentTwoArgs.fromBundle(getArguments()).getSellTwoArguments();
 
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(requireContext(),)
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(requireContext(),R.array.condition,R.layout.spinner_row);
+        binding.conditionSpinner.setAdapter(arrayAdapter);
+        binding.conditionSpinner.setOnItemSelectedListener(this);
 
         imagesList = sellArgs.getImagesList();
 
@@ -83,9 +87,8 @@ public class SellFragmentTwo extends Fragment {
             if (TextUtils.isEmpty(binding.productNameEditText.getText().toString())) {
                 binding.productNameEditText.setError("Field can't be empty!");
                 return;
-            } else if (TextUtils.isEmpty(binding.conditionEditTtext.getText().toString())) {
-                binding.conditionEditTtext.setError("Field can't be empty!");
-                return;
+            } else if (binding.conditionSpinner.getSelectedItem().toString().equals("Condition")){
+                Toast.makeText(requireContext(), "Select Condition", Toast.LENGTH_SHORT).show();
             } else if (TextUtils.isEmpty(binding.priceEditText.getText().toString())) {
                 binding.priceEditText.setError("Field can't be empty!");
                 return;
@@ -169,7 +172,7 @@ public class SellFragmentTwo extends Fragment {
                 sellArgs.getLocation(),
                 binding.productNameEditText.getText().toString(),
                 binding.priceEditText.getText().toString(),
-                binding.conditionEditTtext.getText().toString(),
+                binding.conditionSpinner.getSelectedItem().toString(),
                 binding.phoneNumberEditText.getText().toString(),
                 date,
                 imageUrl2,
@@ -229,5 +232,17 @@ public class SellFragmentTwo extends Fragment {
 
     private void saveToRoomDb(Item item){
         viewModel.insert(item);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId()==R.id.conditionSpinner){
+            condition = binding.conditionSpinner.getSelectedItem().toString();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

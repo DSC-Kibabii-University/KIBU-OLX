@@ -28,49 +28,55 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:inputType="textCapWords"
         android:background="@drawable/curved_edittext"
         android:hint="@string/item_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsTextView" />
-
-    <Spinner
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditText" />
+
+    <Spinner
+        android:id="@+id/conditionSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/spinner_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productNameEditText" />
+
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/priceEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
         android:hint="@string/itemPrice"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_dynamic" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsTextView" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/phoneNumberEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="phone"
+        android:layout_marginTop="16dp"
         android:background="@drawable/curved_edittext"
         android:hint="@string/phone_number"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="@+id/priceEditText"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/priceEditText"
         app:layout_constraintTop_toBottomOf="@+id/priceEditText" />
 
@@ -78,27 +84,27 @@
         android:id="@+id/itemDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:minLines="3"
-        android:maxLines="10"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/curved_edittext"
-        android:hint="@string/item_description"
         android:gravity="top"
+        android:hint="@string/item_description"
+        android:inputType="textMultiLine"
+        android:maxLines="10"
+        android:minLines="3"
         app:layout_constraintEnd_toEndOf="@+id/phoneNumberEditText"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/phoneNumberEditText"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditText" />
-
+        app:layout_constraintTop_toBottomOf="@+id/conditionSpinner" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/postAdButton"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="64dp"
         android:backgroundTint="@color/main"
         android:text="@string/post_advertisement"
-        app:cornerRadius="10dp"
         android:textAllCaps="false"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/itemDescription"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/itemDescription"

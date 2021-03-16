@@ -72,6 +72,7 @@
     </string-array>
 
     <string-array name="condition">
+        <item>Condition</item>
         <item>Used</item>
         <item>New</item>
         <item>Refurbrished</item>
