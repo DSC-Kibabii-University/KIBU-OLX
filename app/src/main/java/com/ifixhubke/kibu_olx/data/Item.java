@@ -24,6 +24,8 @@ public class Item implements Parcelable {
     private String location;
     private String itemDescription;
     private Boolean isSoldOut;
+    private String category;
+    private String condition;
 
     public Item() {
     }
@@ -41,7 +43,7 @@ public class Item implements Parcelable {
         this.itemImage3=itemImage3;
     }
 
-    public Item(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription) {
+    public Item(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription, String category, String condition) {
         this.sellerName = sellerName;
         this.sellerLastSeen = sellerLastSeen;
         this.sellerPhoneNum = sellerPhoneNum;
@@ -53,6 +55,8 @@ public class Item implements Parcelable {
         this.datePosted = datePosted;
         this.location = location;
         this.itemDescription = itemDescription;
+        this.category = category;
+        this.condition = condition;
     }
 
     public Item(String itemImage, String itemName, String itemPrice, String datePosted, Boolean isSoldOut){
@@ -229,4 +233,20 @@ public class Item implements Parcelable {
             return new Item[size];
         }
     };
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
 }

@@ -1,6 +1,5 @@
 package com.ifixhubke.kibu_olx.adapters;
 
-import android.service.autofill.ImageTransformation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,59 +11,45 @@ import androidx.cardview.widget.CardView;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseError;
 import com.ifixhubke.kibu_olx.R;
-import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import timber.log.Timber;
 
-public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapter.ViewHolder> {
+public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHolder>{
 
+    private final ArrayList<Item> items;
     ItemClickListener itemClickListener;
-    private List<Item> items;
 
-    public AllItemsAdapter(@NonNull FirebaseRecyclerOptions<Item> options, ItemClickListener itemClickListener) {
-        super(options);
+    public AllItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener){
+        items = itemList;
         this.itemClickListener = itemClickListener;
     }
 
-    //emiliussDOTY
-
+    @NonNull
     @Override
-    public void onDataChanged() {
-        super.onDataChanged();
-        Timber.d("data loaded");
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row,parent,false));
     }
 
-    @Override
-    public void onError(@NonNull DatabaseError error) {
-        super.onError(error);
-        Timber.d(error.getMessage());
-    }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Item model) {
-        if (model.getItemStarred()) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        if (items.get(position).getItemStarred()) {
             holder.starredItem.setVisibility(View.VISIBLE);
             holder.add_item_to_favorites.setVisibility(View.INVISIBLE);
-        } else if (!model.getItemStarred()) {
+        } else if (!items.get(position).getItemStarred()) {
             holder.starredItem.setVisibility(View.INVISIBLE);
         }
 
-        holder.item_name.setText(model.getItemName());
-        holder.item_price.setText("Ksh. "+model.getItemPrice());
+        holder.item_name.setText(items.get(position).getItemName());
+        holder.item_price.setText("Ksh. "+items.get(position).getItemPrice());
         Picasso.get()
-                .load(model.getItemImage2())
+                .load(items.get(position).getItemImage2())
                 .fit().centerInside()
                 .placeholder(R.drawable.loadin)
                 .into(holder.item_image);
@@ -72,17 +57,19 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapt
 
         holder.card.setOnClickListener(v -> {
 
-            Item item = new Item(model.getSellerName(),
-                    model.getSellerLastSeen(),
-                    model.getSellerPhoneNum(),
-                    model.getItemImage(),
-                    model.getItemImage2(),
-                    model.getItemImage3(),
-                    model.getItemName(),
-                    model.getItemPrice(),
-                    model.getDatePosted(),
-                    model.getLocation(),
-                    model.getItemDescription());
+            Item item = new Item(items.get(position).getSellerName(),
+                    items.get(position).getSellerLastSeen(),
+                    items.get(position).getSellerPhoneNum(),
+                    items.get(position).getItemImage(),
+                    items.get(position).getItemImage2(),
+                    items.get(position).getItemImage3(),
+                    items.get(position).getItemName(),
+                    items.get(position).getItemPrice(),
+                    items.get(position).getDatePosted(),
+                    items.get(position).getLocation(),
+                    items.get(position).getItemDescription(),
+                    items.get(position).getCategory(),
+                    items.get(position).getCondition());
 
             NavDirections action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);
@@ -90,23 +77,17 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapt
         });
 
         holder.add_item_to_favorites.setOnClickListener(v -> {
-            model.setItemStarred(true);
-            Item item = new Item(model.getItemImage(), model.getItemName(), model.getItemPrice(), model.getItemStarred());
+            items.get(position).setItemStarred(true);
+            Item item = new Item(items.get(position).getItemImage(), items.get(position).getItemName(), items.get(position).getItemPrice(), items.get(position).getItemStarred());
             itemClickListener.addItemToFavorites(item, position);
             Timber.d("clicked");
         });
     }
 
-    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row, parent, false));
+    public int getItemCount() {
+        return items.size();
     }
-
-    /*public void filteredList(ArrayList<Item> filterItemsList) {
-        items=filterItemsList;
-        notifyDataSetChanged();
-    }*/
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
