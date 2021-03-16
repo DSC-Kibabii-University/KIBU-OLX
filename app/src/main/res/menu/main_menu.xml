@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Option 1"/>
-    <item android:title="Option 2"/>
-    <item android:title="Option 3"/>
-    <item android:title="Option 4"/>
-    <item android:title="Option 5"/>
-    <item android:title="Option 6"/>
-    <item android:title="Option 7"/>
+    <item android:title="Share" android:id="@+id/shareMenu"/>
+    <item android:title="About Us" android:id="@+id/aboutUsMenu"/>
+    <item android:title="Invite a Friend" android:id="@+id/inviteFriendMenu"/>
+    <item android:title="Rate Us" android:id="@+id/rateUsMenu"/>
+    <item android:title="@string/help_feedback" android:id="@+id/helpMenu"/>
+    <item android:title="Logout" android:id="@+id/logoutMenu"/>
 
 </menu>
