@@ -53,6 +53,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
 
             holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (isChecked){
+                    int id = holder.name.getId();
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
                     Query query = reference.child("all_items").orderByChild("itemName").equalTo(holder.name.getText().toString());
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -60,8 +61,8 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){
                                 snapshot.getRef().removeValue();
+
                             }
-                            holder.checkBox.setChecked(true);
                             holder.checkBox.setClickable(false);
 
                         }
