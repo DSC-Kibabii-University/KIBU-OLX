@@ -77,6 +77,33 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
         return view;
     }
 
+    private void filterItems(String category, String condition, double min, double max){
+        databaseReference.orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot i : snapshot.getChildren()){
+                        Item item = i.getValue(Item.class);
+                        assert item != null;
+                        if (item.getCondition().equals(condition)){
+                            double price = Double.parseDouble(item.getItemPrice());
+                            if (price >= min && price <=max){
+                                Timber.d("Item found");
+                            }
+                        }
+                    }
+                }else{
+                    Timber.d("Snapshot does not exist");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void search(String itemName) {
         ArrayList<Item> filterItemsList = new ArrayList<>();
 
@@ -144,7 +171,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     public void addItemToFavorites(Item item, int position) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("favoriteitems");
         databaseReference.child(UUID.randomUUID().toString()).setValue(item).addOnSuccessListener(aVoid ->
-                Toast.makeText(requireContext(), item.getItemName() + " to favorites successfully", Toast.LENGTH_SHORT).show());
+                Toast.makeText(requireContext(), item.getItemName() + " added to favorites successfully", Toast.LENGTH_SHORT).show());
     }
 
     @Override
