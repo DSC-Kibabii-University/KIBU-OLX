@@ -37,29 +37,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsTextView" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/conditionEditTtext"
+    <Spinner
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:inputType="textCapWords"
-        android:hint="@string/condition"
-        android:background="@drawable/curved_edittext"
-        app:layout_constraintEnd_toEndOf="@+id/productNameEditText"
-        app:layout_constraintStart_toStartOf="@+id/productNameEditText"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productNameEditText" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/priceEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:inputType="number"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/curved_edittext"
         android:hint="@string/itemPrice"
-        app:layout_constraintEnd_toEndOf="@+id/conditionEditTtext"
-        app:layout_constraintStart_toStartOf="@+id/conditionEditTtext"
-        app:layout_constraintTop_toBottomOf="@+id/conditionEditTtext" />
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/_dynamic" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/phoneNumberEditText"
