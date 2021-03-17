@@ -73,11 +73,50 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             }
         });
 
-        fetchItems();
+        //fetchItems();
+        setTimeOut(5000);
+        Timber.d("setTimeOut method called");
 
         return view;
     }
 
+    private void setTimeOut(long time){
+
+            fetchItems();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (binding.shimmerFrameLayout.isShimmerVisible()){
+                        binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
+                        Toast.makeText(requireContext(), "Time out error please your try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            },time);
+        }
+
+
+   /* private void showProgressDialog(boolean show, long time) {
+        try {
+            if (progressDialog != null) {
+                if (show) {
+                    progressDialog.setMessage("Cargando...");
+                    progressDialog.show();
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            if(progressDialog!=null && progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                                Toast.makeText(ActPreguntas.this, "Couldn't connect, please try again later.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }, time);
+                } else {
+                    progressDialog.dismiss();
+                }
+            }
+        }catch(IllegalArgumentException e){
+        }catch(Exception e){
+        }
+    }*/
 
     public void search(String itemName) {
         ArrayList<Item> filterItemsList = new ArrayList<>();
