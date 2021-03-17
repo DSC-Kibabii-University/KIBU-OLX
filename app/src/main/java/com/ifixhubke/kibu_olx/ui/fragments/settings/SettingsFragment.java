@@ -148,7 +148,7 @@ public class SettingsFragment extends Fragment implements ItemClickListener {
     }
 
     @Override
-    public void addItemToFavorites(Item item, int position) {
+    public void itemClick(Item item, int position) {
         viewModel.updateSoldItem(true, position);
         Timber.d("Item remove from advertisements");
         Toast.makeText(requireContext(), "Item remove from advertisements", Toast.LENGTH_SHORT).show();

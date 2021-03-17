@@ -12,21 +12,21 @@ import androidx.cardview.widget.CardView;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
-import timber.log.Timber;
-
-public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHolder>{
+public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHolder> {
 
     private final ArrayList<Item> items;
     ItemClickListener itemClickListener;
 
-    public AllItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener){
+    public AllItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener) {
         items = itemList;
         this.itemClickListener = itemClickListener;
     }
@@ -34,9 +34,8 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row,parent,false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row, parent, false));
     }
-
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -49,7 +48,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         }
 
         holder.item_name.setText(items.get(position).getItemName());
-        holder.item_price.setText("Ksh. "+items.get(position).getItemPrice());
+        holder.item_price.setText("Ksh. " + items.get(position).getItemPrice());
         Picasso.get()
                 .load(items.get(position).getItemImage2())
                 .fit().centerInside()
@@ -71,21 +70,14 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
                 items.get(position).getCondition(),
                 items.get(position).getItemUniqueId());
 
-
         holder.card.setOnClickListener(v -> {
-
-
-
             NavDirections action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);
-            Timber.d("card clicked");
         });
 
         holder.add_item_to_favorites.setOnClickListener(v -> {
             items.get(position).setItemStarred(true);
-            //Item item = new Item(items.get(position).getItemImage(), items.get(position).getItemName(), items.get(position).getItemPrice(), items.get(position).getItemStarred());
-            itemClickListener.addItemToFavorites(item, position);
-            Timber.d("clicked");
+            itemClickListener.itemClick(item, position);
         });
     }
 

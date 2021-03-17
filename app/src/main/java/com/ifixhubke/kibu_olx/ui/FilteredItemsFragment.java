@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.adapters.FilteredItemsAdapter;
-import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentFilteredItemsBinding;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
@@ -97,7 +96,7 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
     }
 
     @Override
-    public void addItemToFavorites(Item item, int position) {
+    public void itemClick(Item item, int position) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("favoriteitems");
         databaseReference.child(UUID.randomUUID().toString()).setValue(item).addOnSuccessListener(aVoid ->
                 Toast.makeText(requireContext(), item.getItemName() + " added to favorites successfully", Toast.LENGTH_SHORT).show());

@@ -60,27 +60,26 @@ public class DetailsFragment extends Fragment {
         binding.imageSliderFav1.setImageList(imageList);
 
         binding.favoritesItemName1.setText(data.getItemName());
-        binding.favItemPrice1.setText("Ksh. "+data.getItemPrice());
+        binding.favItemPrice1.setText("Ksh. " + data.getItemPrice());
         binding.favDatePosted1.setText("Uploaded on " + data.getDatePosted());
         binding.favLocation1.setText(data.getLocation());
         binding.favDescription1.setText(data.getItemDescription());
 
         binding.imageSliderFav1.setItemClickListener(position -> {
 
-            ///String image = imageList.get(position).getImageUrl();
-            Item item = new Item(data.getItemImage(),data.getItemImage2(),data.getItemImage3());
-           NavDirections navDirections = DetailsFragmentDirections.actionDetailsFragmentToPictureBrowserFragment(item);
-           Navigation.findNavController(getView()).navigate(navDirections);
+            Item item = new Item(data.getItemImage(), data.getItemImage2(), data.getItemImage3());
+            NavDirections navDirections = DetailsFragmentDirections.actionDetailsFragmentToPictureBrowserFragment(item);
+            Navigation.findNavController(requireView()).navigate(navDirections);
         });
 
         binding.showContacts.setOnClickListener(v -> onContactsButtonClicked());
 
         binding.messageButton.setOnClickListener(v -> {
 
-            String sms= "KIBU-OLX FAB Testing";//The message you want to text to the phone
+            String sms = "KIBU-OLX FAB Testing";//The message you want to text to the phone
 
             Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", myNumber, null));
-            smsIntent.putExtra("sms_body",sms);
+            smsIntent.putExtra("sms_body", sms);
             startActivity(smsIntent);
         });
 
@@ -90,10 +89,10 @@ public class DetailsFragment extends Fragment {
         });
 
         binding.whatsappButton.setOnClickListener(v -> {
-            String phone = myNumber.replaceFirst(String.valueOf(myNumber.charAt(0)),"+254");
-            String url = "https://api.whatsapp.com/send?phone="+phone;
+            String phone = myNumber.replaceFirst(String.valueOf(myNumber.charAt(0)), "+254");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(url+ "&text="  +"KIBU-OLX FAB Testing"));
+            intent.setData(Uri.parse(url + "&text=" + "KIBU-OLX FAB Testing"));
             startActivity(intent);
             Timber.d(phone);
         });
@@ -111,12 +110,11 @@ public class DetailsFragment extends Fragment {
     }
 
     private void setVisibility(Boolean clicked) {
-        if (!clicked){
+        if (!clicked) {
             binding.messageButton.setVisibility(View.VISIBLE);
             binding.phoneButton.setVisibility(View.VISIBLE);
             binding.whatsappButton.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             binding.messageButton.setVisibility(View.INVISIBLE);
             binding.phoneButton.setVisibility(View.INVISIBLE);
             binding.whatsappButton.setVisibility(View.INVISIBLE);
@@ -124,15 +122,14 @@ public class DetailsFragment extends Fragment {
 
     }
 
-    private void setAnimation(Boolean clicked){
+    private void setAnimation(Boolean clicked) {
         Animation fromBottom = AnimationUtils.loadAnimation(getContext(), R.anim.from_bottom_anim);
         Animation toBottom = AnimationUtils.loadAnimation(getContext(), R.anim.to_bottom_anim);
-        if (!clicked){
+        if (!clicked) {
             binding.messageButton.startAnimation(fromBottom);
             binding.phoneButton.startAnimation(fromBottom);
             binding.whatsappButton.startAnimation(fromBottom);
-        }
-        else {
+        } else {
             binding.messageButton.startAnimation(toBottom);
             binding.phoneButton.startAnimation(toBottom);
             binding.whatsappButton.startAnimation(toBottom);
@@ -140,12 +137,11 @@ public class DetailsFragment extends Fragment {
     }
 
     private void isButtonClicked(Boolean clicked) {
-        if (!clicked){
+        if (!clicked) {
             binding.phoneButton.setClickable(true);
             binding.messageButton.setClickable(true);
             binding.whatsappButton.setClickable(true);
-        }
-        else {
+        } else {
             binding.phoneButton.setClickable(false);
             binding.messageButton.setClickable(false);
             binding.whatsappButton.setClickable(false);

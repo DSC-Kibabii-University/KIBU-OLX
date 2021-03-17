@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,16 +19,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
 import com.ifixhubke.kibu_olx.adapters.FavouritesAdapter;
-import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentFavoritesBinding;
-import com.ifixhubke.kibu_olx.others.ItemClickListener;
-import java.util.ArrayList;
-import java.util.UUID;
 
-public class FavoritesFragment extends Fragment implements ItemClickListener {
+import java.util.Objects;
+
+public class FavoritesFragment extends Fragment {
 
     FragmentFavoritesBinding binding;
     private FavouritesAdapter adapter;
@@ -51,7 +47,7 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
     private void initializeRecycler() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
-        Query query = databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favorite_items");
+        Query query = databaseReference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -65,13 +61,13 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
         });
 
         FirebaseRecyclerOptions<Item> options = new FirebaseRecyclerOptions.Builder<Item>()
-                .setQuery(query,Item.class)
+                .setQuery(query, Item.class)
                 .build();
 
-        adapter = new FavouritesAdapter(options,this);
+        adapter = new FavouritesAdapter(options);
         binding.favoriteRecyclerView.setAdapter(adapter);
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -97,10 +93,4 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
         super.onStop();
         adapter.stopListening();
     }
-
-    @Override
-    public void addItemToFavorites(Item item, int position) {
-
-    }
-
 }

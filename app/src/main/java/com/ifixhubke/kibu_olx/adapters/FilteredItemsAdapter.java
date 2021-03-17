@@ -84,7 +84,7 @@ public class FilteredItemsAdapter extends RecyclerView.Adapter<FilteredItemsAdap
         holder.add_item_to_favorites.setOnClickListener(v -> {
             items.get(position).setItemStarred(true);
             Item item = new Item(items.get(position).getItemImage(), items.get(position).getItemName(), items.get(position).getItemPrice(), items.get(position).getItemStarred());
-            itemClickListener.addItemToFavorites(item, position);
+            itemClickListener.itemClick(item, position);
             Timber.d("clicked");
         });
     }

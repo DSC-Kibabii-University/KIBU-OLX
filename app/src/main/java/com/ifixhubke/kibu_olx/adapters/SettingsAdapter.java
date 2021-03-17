@@ -87,7 +87,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
                         itemArrayList.get(position).getIsSoldOut(),
                         itemArrayList.get(position).getItemUniqueId());
 
-                itemClickListener.addItemToFavorites(item, itemArrayList.get(position).getId());
+                itemClickListener.itemClick(item, itemArrayList.get(position).getId());
 
             });
         }

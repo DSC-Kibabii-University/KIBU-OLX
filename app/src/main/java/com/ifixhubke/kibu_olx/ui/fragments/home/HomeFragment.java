@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
-import com.ifixhubke.kibu_olx.data.Favourites;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentHomeBinding;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
@@ -32,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.UUID;
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -78,7 +77,6 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
 
         return view;
     }
-
 
 
     public void search(String itemName) {
@@ -145,8 +143,9 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     }
 
     @Override
-    public void addItemToFavorites(Item item, int position) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favorite_items");
+    public void itemClick(Item item, int position) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users")
+                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
         databaseReference.push().setValue(item).addOnSuccessListener(aVoid ->
                 Toast.makeText(requireContext(), item.getItemName() + " added to favorites successfully", Toast.LENGTH_SHORT).show());
     }
