@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,8 +18,8 @@
             android:id="@+id/item_image"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:layout_marginTop="3dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription"
@@ -33,24 +33,80 @@
             android:layout_marginEnd="8dp"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/black"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toTopOf="@+id/item_image"
-            tools:text="Item Name Name Name Name Name Name" />
+            tools:text="Item Name" />
 
         <TextView
             android:id="@+id/item_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/item_name"
             app:layout_constraintTop_toBottomOf="@+id/item_name"
             tools:text="Ksh. 10000" />
+
+        <TextView
+            android:id="@+id/textViewSomeDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/item_price"
+            app:layout_constraintTop_toBottomOf="@+id/item_price"
+            tools:text="Posted by Joel Kanyi on Mar 17, 2021 8:14:49 PM" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewLocation"
+            app:layout_constraintEnd_toStartOf="@+id/textViewLocation"
+            app:layout_constraintTop_toTopOf="@+id/textViewLocation"
+            app:srcCompat="@drawable/ic_location"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textViewLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewSomeDescription"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSomeDescription"
+            tools:text="Booster" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@+id/textViewSomeDescription"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSomeDescription"
+            app:srcCompat="@drawable/ic_phone_number"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textViewPhoneNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:textColor="@color/main"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="@+id/imageView6"
+            tools:text="0706003891" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

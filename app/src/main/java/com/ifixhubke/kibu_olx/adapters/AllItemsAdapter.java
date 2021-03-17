@@ -56,23 +56,25 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
                 .placeholder(R.drawable.loadin)
                 .into(holder.item_image);
 
+        Item item = new Item(items.get(position).getSellerName(),
+                items.get(position).getSellerLastSeen(),
+                items.get(position).getSellerPhoneNum(),
+                items.get(position).getItemImage(),
+                items.get(position).getItemImage2(),
+                items.get(position).getItemImage3(),
+                items.get(position).getItemName(),
+                items.get(position).getItemPrice(),
+                items.get(position).getDatePosted(),
+                items.get(position).getLocation(),
+                items.get(position).getItemDescription(),
+                items.get(position).getCategory(),
+                items.get(position).getCondition(),
+                items.get(position).getItemUniqueId());
+
 
         holder.card.setOnClickListener(v -> {
 
-            Item item = new Item(items.get(position).getSellerName(),
-                    items.get(position).getSellerLastSeen(),
-                    items.get(position).getSellerPhoneNum(),
-                    items.get(position).getItemImage(),
-                    items.get(position).getItemImage2(),
-                    items.get(position).getItemImage3(),
-                    items.get(position).getItemName(),
-                    items.get(position).getItemPrice(),
-                    items.get(position).getDatePosted(),
-                    items.get(position).getLocation(),
-                    items.get(position).getItemDescription(),
-                    items.get(position).getCategory(),
-                    items.get(position).getCondition(),
-                    items.get(position).getItemUniqueId());
+
 
             NavDirections action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);
@@ -81,7 +83,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
 
         holder.add_item_to_favorites.setOnClickListener(v -> {
             items.get(position).setItemStarred(true);
-            Item item = new Item(items.get(position).getItemImage(), items.get(position).getItemName(), items.get(position).getItemPrice(), items.get(position).getItemStarred());
+            //Item item = new Item(items.get(position).getItemImage(), items.get(position).getItemName(), items.get(position).getItemPrice(), items.get(position).getItemStarred());
             itemClickListener.addItemToFavorites(item, position);
             Timber.d("clicked");
         });

@@ -64,8 +64,8 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
             }
         });
 
-        FirebaseRecyclerOptions<Favourites> options = new FirebaseRecyclerOptions.Builder<Favourites>()
-                .setQuery(query,Favourites.class)
+        FirebaseRecyclerOptions<Item> options = new FirebaseRecyclerOptions.Builder<Item>()
+                .setQuery(query,Item.class)
                 .build();
 
         adapter = new FavouritesAdapter(options,this);

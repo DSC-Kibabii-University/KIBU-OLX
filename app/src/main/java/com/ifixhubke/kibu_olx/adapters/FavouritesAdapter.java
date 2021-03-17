@@ -1,6 +1,7 @@
 package com.ifixhubke.kibu_olx.adapters;
 
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,31 +26,29 @@ import com.squareup.picasso.Picasso;
 
 import timber.log.Timber;
 
-public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, FavouritesAdapter.ViewHolder> {
+public class FavouritesAdapter extends FirebaseRecyclerAdapter<Item, FavouritesAdapter.ViewHolder> {
 
     ItemClickListener itemClickListener;
 
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Favourites> options,ItemClickListener itemClickListener) {
+    public FavouritesAdapter(@NonNull FirebaseRecyclerOptions<Item> options,ItemClickListener itemClickListener) {
         super(options);
         this.itemClickListener = itemClickListener;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Favourites model) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Item model) {
         holder.itemName.setText(model.getItemName());
-        holder.itemPrice.setText(model.getItemPrice());
+        holder.itemPrice.setText("Ksh."+model.getItemPrice());
+        holder.phoneNum.setText(model.getSellerPhoneNum());
+        holder.location.setText(model.getLocation());
+        holder.description.setText("Posted by "+model.getSellerName()+" on "+model.getDatePosted());
         Picasso.get()
                 .load(model.getItemImage())
                 .placeholder(R.drawable.loadin)
                 .into(holder.itemImage);
 
-        holder.cardView.setOnClickListener(v -> {
+       /* holder.cardView.setOnClickListener(v -> {
             Favourites favourites = new Favourites(
                     model.getItemDeleted(),
                     model.getSellerName(),
@@ -67,7 +66,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
             NavDirections directions = FavoritesFragmentDirections.actionFavoritesFragment2ToFavouriteDetailsFragment(favourites);
             Navigation.findNavController(v).navigate(directions);
             Timber.d("favorite card clicked");
-        });
+        });*/
 
     }
 
@@ -83,7 +82,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView itemImage;
-        TextView itemName, itemPrice;
+        TextView itemName, itemPrice, description, location, phoneNum;
         CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -92,6 +91,9 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Favourites, Favou
             this.itemName = itemView.findViewById(R.id.item_name);
             this.itemPrice = itemView.findViewById(R.id.item_price);
             this.cardView = itemView.findViewById(R.id.favourites_cardView);
+            this.description = itemView.findViewById(R.id.textViewSomeDescription);
+            this.location = itemView.findViewById(R.id.textViewLocation);
+            this.phoneNum = itemView.findViewById(R.id.textViewPhoneNum);
         }
     }
 }
