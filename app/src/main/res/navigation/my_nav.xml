@@ -61,9 +61,6 @@
         <action
             android:id="@+id/action_homeFragment2_to_sellFragmentOne"
             app:destination="@id/sellFragmentOne" />
-        <argument
-            android:name="details_to_fragDetails"
-            app:argType="com.ifixhubke.kibu_olx.data.Item" />
         <action
             android:id="@+id/action_homeFragment2_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -156,7 +153,26 @@
         android:label="fragment_filter"
         tools:layout="@layout/fragment_filter" >
         <action
-            android:id="@+id/action_filterFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            android:id="@+id/action_filterFragment_to_filteredItemsFragment"
+            app:destination="@id/filteredItemsFragment"
+            app:popUpTo="@id/filterFragment"
+            app:popUpToInclusive="true" />
     </dialog>
+    <fragment
+        android:id="@+id/filteredItemsFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.FilteredItemsFragment"
+        android:label="fragment_filtered_items"
+        tools:layout="@layout/fragment_filtered_items" >
+        <action
+            android:id="@+id/action_filteredItemsFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@id/filteredItemsFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="argsFromFilterDialog"
+            app:argType="com.ifixhubke.kibu_olx.data.Item" />
+        <action
+            android:id="@+id/action_filteredItemsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 </navigation>

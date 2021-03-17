@@ -26,8 +26,17 @@ public class Item implements Parcelable {
     private Boolean isSoldOut;
     private String category;
     private String condition;
+    private double minPrice;
+    private double maxPrice;
 
     public Item() {
+    }
+
+    public Item(String category, String condition, double minPrice, double maxPrice){
+        this.category = category;
+        this.condition = condition;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
     }
 
     public Item(String itemImage, String itemName, String itemPrice, Boolean itemStarred) {
@@ -171,69 +180,6 @@ public class Item implements Parcelable {
         this.itemDescription = itemDescription;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.itemStarred);
-        dest.writeString(this.sellerName);
-        dest.writeString(this.sellerLastSeen);
-        dest.writeString(this.sellerPhoneNum);
-        dest.writeString(this.itemImage);
-        dest.writeString(this.itemImage2);
-        dest.writeString(this.itemImage3);
-        dest.writeString(this.itemName);
-        dest.writeString(this.itemPrice);
-        dest.writeString(this.datePosted);
-        dest.writeString(this.location);
-        dest.writeString(this.itemDescription);
-    }
-
-    public void readFromParcel(Parcel source) {
-        this.itemStarred = (Boolean) source.readValue(Boolean.class.getClassLoader());
-        this.sellerName = source.readString();
-        this.sellerLastSeen = source.readString();
-        this.sellerPhoneNum = source.readString();
-        this.itemImage = source.readString();
-        this.itemImage2 = source.readString();
-        this.itemImage3 = source.readString();
-        this.itemName = source.readString();
-        this.itemPrice = source.readString();
-        this.datePosted = source.readString();
-        this.location = source.readString();
-        this.itemDescription = source.readString();
-    }
-
-    protected Item(Parcel in) {
-        this.itemStarred = (Boolean) in.readValue(Boolean.class.getClassLoader());
-        this.sellerName = in.readString();
-        this.sellerLastSeen = in.readString();
-        this.sellerPhoneNum = in.readString();
-        this.itemImage = in.readString();
-        this.itemImage2 = in.readString();
-        this.itemImage3 = in.readString();
-        this.itemName = in.readString();
-        this.itemPrice = in.readString();
-        this.datePosted = in.readString();
-        this.location = in.readString();
-        this.itemDescription = in.readString();
-    }
-
-    public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
-        @Override
-        public Item createFromParcel(Parcel source) {
-            return new Item(source);
-        }
-
-        @Override
-        public Item[] newArray(int size) {
-            return new Item[size];
-        }
-    };
-
     public String getCategory() {
         return category;
     }
@@ -248,5 +194,97 @@ public class Item implements Parcelable {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeValue(this.itemStarred);
+        dest.writeString(this.sellerName);
+        dest.writeString(this.sellerLastSeen);
+        dest.writeString(this.sellerPhoneNum);
+        dest.writeString(this.itemImage);
+        dest.writeString(this.itemImage2);
+        dest.writeString(this.itemImage3);
+        dest.writeString(this.itemName);
+        dest.writeString(this.itemPrice);
+        dest.writeString(this.datePosted);
+        dest.writeString(this.location);
+        dest.writeString(this.itemDescription);
+        dest.writeValue(this.isSoldOut);
+        dest.writeString(this.category);
+        dest.writeString(this.condition);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.id = source.readInt();
+        this.itemStarred = (Boolean) source.readValue(Boolean.class.getClassLoader());
+        this.sellerName = source.readString();
+        this.sellerLastSeen = source.readString();
+        this.sellerPhoneNum = source.readString();
+        this.itemImage = source.readString();
+        this.itemImage2 = source.readString();
+        this.itemImage3 = source.readString();
+        this.itemName = source.readString();
+        this.itemPrice = source.readString();
+        this.datePosted = source.readString();
+        this.location = source.readString();
+        this.itemDescription = source.readString();
+        this.isSoldOut = (Boolean) source.readValue(Boolean.class.getClassLoader());
+        this.category = source.readString();
+        this.condition = source.readString();
+    }
+
+    protected Item(Parcel in) {
+        this.id = in.readInt();
+        this.itemStarred = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.sellerName = in.readString();
+        this.sellerLastSeen = in.readString();
+        this.sellerPhoneNum = in.readString();
+        this.itemImage = in.readString();
+        this.itemImage2 = in.readString();
+        this.itemImage3 = in.readString();
+        this.itemName = in.readString();
+        this.itemPrice = in.readString();
+        this.datePosted = in.readString();
+        this.location = in.readString();
+        this.itemDescription = in.readString();
+        this.isSoldOut = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.category = in.readString();
+        this.condition = in.readString();
+    }
+
+    public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel source) {
+            return new Item(source);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
+
+    public double getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(double minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public double getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(double maxPrice) {
+        this.maxPrice = maxPrice;
     }
 }

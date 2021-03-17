@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewReset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -41,12 +41,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintEnd_toStartOf="@+id/textViewDone"
+                app:layout_constraintStart_toEndOf="@+id/textViewReset"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textViewDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -88,23 +88,27 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardChipG1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
         app:cardElevation="1dp"
-        android:layout_marginTop="8dp"
-        android:id="@+id/cardChipG1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card2">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
+                android:id="@+id/categoryChipGroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -114,56 +118,56 @@
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip11"
+                    android:id="@+id/chipElectronics"
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Electronics" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip10"
+                    android:id="@+id/chipBeddings"
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Beddings" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip9"
+                    android:id="@+id/chipFurniture"
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Furniture" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip8"
+                    android:id="@+id/chipUtensils"
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Utensils" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip7"
+                    android:id="@+id/chipLocom"
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Locomotives" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip6"
+                    android:id="@+id/chipBooks"
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Books" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip4"
+                    android:id="@+id/chipHouseHolds"
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="HouseHolds" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip5"
+                    android:id="@+id/chipFood"
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -199,51 +203,58 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-   <androidx.cardview.widget.CardView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:cardElevation="1dp"
-       android:id="@+id/cardChipG2"
-       android:layout_marginTop="2dp"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/card3">
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardChipG2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card3">
 
-           <com.google.android.material.chip.ChipGroup
-               android:id="@+id/chipGroup2"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginBottom="16dp"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:singleSelection="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-               <com.google.android.material.chip.Chip
-                   android:id="@+id/chip14"
-                   style="@style/CustomChipStyle"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="New" />
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/conditionChipGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:singleSelection="true">
 
-               <com.google.android.material.chip.Chip
-                   android:id="@+id/chip13"
-                   style="@style/CustomChipStyle"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Refurbished" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNew"
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New" />
 
-               <com.google.android.material.chip.Chip
-                   android:id="@+id/chip12"
-                   style="@style/CustomChipStyle"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Used" />
-           </com.google.android.material.chip.ChipGroup>
-       </androidx.constraintlayout.widget.ConstraintLayout>
-   </androidx.cardview.widget.CardView>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipRefurb"
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Refurbished" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipUsed"
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Used" />
+            </com.google.android.material.chip.ChipGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card4"
@@ -283,7 +294,7 @@
         app:labelBehavior="withinBounds"
         android:valueFrom="0"
         android:valueTo="10000"
-        android:stepSize="50.0"
+        android:stepSize="100.0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -43,12 +43,14 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     private DatabaseReference databaseReference;
     ArrayList<Item> itemsList = new ArrayList<>();
 
+
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
 
         binding.toolbar.setOnMenuItemClickListener(this);
         binding.searchBar.setOnSearchActionListener(this);
@@ -73,42 +75,11 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
         });
 
         fetchItems();
-        //filterItems("Electronics","Fkyvug",100.00,10000.00);
 
         return view;
     }
 
-    private void filterItems(String category, String condition, double min, double max){
-        ArrayList<Item> filtered = new ArrayList<>();
-        databaseReference.child("all_items").orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    itemsList.clear();
-                    for (DataSnapshot i : snapshot.getChildren()){
-                        Item item = i.getValue(Item.class);
-                        assert item != null;
-                        double price = Double.parseDouble(item.getItemPrice());
-                        if ((item.getCondition().equals(condition)) && ((price >= min) && (price <=max))){
-                                filtered.add(item);
-                                Timber.d("Items found");
-                        }else {
-                            Timber.d("Items Not Found");
-                        }
-                    }
-                    binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
-                    binding.allItemsRecyclerview.setVisibility(View.VISIBLE);
-                    initializeRecycler(filtered);
-                }else{
-                    Timber.d("Snapshot does not exist");
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
 
     public void search(String itemName) {
         ArrayList<Item> filterItemsList = new ArrayList<>();
