@@ -146,8 +146,8 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
 
     @Override
     public void addItemToFavorites(Item item, int position) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("favoriteitems");
-        databaseReference.child(UUID.randomUUID().toString()).setValue(item).addOnSuccessListener(aVoid ->
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favorite_items");
+        databaseReference.push().setValue(item).addOnSuccessListener(aVoid ->
                 Toast.makeText(requireContext(), item.getItemName() + " added to favorites successfully", Toast.LENGTH_SHORT).show());
     }
 

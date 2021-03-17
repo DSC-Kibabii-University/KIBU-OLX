@@ -49,7 +49,9 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
     }
 
     private void initializeRecycler() {
-        Query query = databaseReference.child("favoriteitems");
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        Query query = databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("favorite_items");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
