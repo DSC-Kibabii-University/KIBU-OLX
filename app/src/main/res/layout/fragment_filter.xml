@@ -14,10 +14,11 @@
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/textViewReset"
@@ -122,6 +123,7 @@
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:text="Electronics" />
 
                 <com.google.android.material.chip.Chip
@@ -237,6 +239,7 @@
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:text="New" />
 
                 <com.google.android.material.chip.Chip
@@ -260,10 +263,10 @@
         android:id="@+id/card4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         app:cardElevation="1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardChipG2"
-        android:layout_marginTop="2dp">
+        app:layout_constraintTop_toBottomOf="@+id/cardChipG2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -289,14 +292,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        app:values="@array/initial_slider_values"
         android:layout_marginEnd="16dp"
-        app:labelBehavior="withinBounds"
+        android:stepSize="100.0"
         android:valueFrom="0"
         android:valueTo="10000"
-        android:stepSize="100.0"
+        app:labelBehavior="withinBounds"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card4" />
+        app:layout_constraintTop_toBottomOf="@+id/card4"
+        app:values="@array/initial_slider_values" />
 </androidx.constraintlayout.widget.ConstraintLayout>
