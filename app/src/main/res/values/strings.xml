@@ -71,6 +71,13 @@
         <item>Bukananach</item>
         <item>Cardinal Otunga</item>
     </string-array>
+
+    <string-array name="condition">
+        <item>Condition</item>
+        <item>Used</item>
+        <item>New</item>
+        <item>Refurbrished</item>
+    </string-array>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
