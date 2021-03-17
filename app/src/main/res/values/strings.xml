@@ -18,7 +18,7 @@
     <string name="get_started">Get Started</string>
     <string name="sell">Sell</string>
     <string name="sold_out">Sold out</string>
-    <string name="items_posted_history">Items Posted History</string>
+    <string name="items_posted_history">Posted Items History</string>
     <string name="edit">Edit</string>
     <string name="details">Details</string>
     <string name="post_advertisement">Post Advertisement</string>
@@ -49,7 +49,7 @@
     <string name="help_feedback">Help &amp; Feedback</string>
     <string name="item_description">Item Description…</string>
     <string-array name="category">
-        <item>category</item>
+        <item>Category</item>
         <item>Electronics</item>
         <item>Furniture</item>
         <item>Beddings</item>
@@ -61,7 +61,7 @@
     </string-array>
 
     <string-array name="location">
-        <item>location</item>
+        <item>Location</item>
         <item>Kibabii</item>
         <item>Tuuti</item>
         <item>Dorminion</item>
