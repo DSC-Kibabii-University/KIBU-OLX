@@ -54,13 +54,6 @@ public class FilterFragment extends BottomSheetDialogFragment {
 
         });
 
-        binding.textViewReset.setOnClickListener(v -> {
-            Chip chip = binding.categoryChipGroup.findViewById(R.id.chipElectronics);
-            chip.setChecked(true);
-            Chip chip2 = binding.conditionChipGroup.findViewById(R.id.chipNew);
-            chip2.setChecked(true);
-        });
-
         binding.priceSlider.setLabelFormatter(value -> {
             NumberFormat format = NumberFormat.getCurrencyInstance();
             format.setMaximumFractionDigits(0);
