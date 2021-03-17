@@ -66,9 +66,11 @@ public class DetailsFragment extends Fragment {
         binding.imageSliderFav1.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemSelected(int position) {
+
+                ///String image = imageList.get(position).getImageUrl();
                 Item item = new Item(data.getItemImage(),data.getItemImage2(),data.getItemImage3());
-                NavDirections navDirections = DetailsFragmentDirections.actionDetailsFragmentToPictureBrowserFragment(item);
-                Navigation.findNavController(getView()).navigate(navDirections);
+               NavDirections navDirections = DetailsFragmentDirections.actionDetailsFragmentToPictureBrowserFragment(item);
+               Navigation.findNavController(getView()).navigate(navDirections);
             }
         });
 

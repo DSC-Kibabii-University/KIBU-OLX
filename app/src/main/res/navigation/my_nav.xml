@@ -146,6 +146,11 @@
         <argument
             android:name="imageArgs"
             app:argType="com.ifixhubke.kibu_olx.data.Item" />
+        <action
+            android:id="@+id/action_pictureBrowserFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/pictureBrowserFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <dialog
         android:id="@+id/filterFragment"

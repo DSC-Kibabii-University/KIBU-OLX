@@ -6,14 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.details.PictureBrowserFragment">
 
-
-    <ImageView
-        android:id="@+id/fullScreenPicture"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pictureBrowsingViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/pictureBrowsingtoolbar" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/pictureBrowsingtoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
