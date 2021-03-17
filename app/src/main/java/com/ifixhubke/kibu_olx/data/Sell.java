@@ -23,10 +23,11 @@ public class Sell implements Parcelable {
     private String itemDescription;
     private String sellerName;
     private String sellerLastSeen;
+    private String itemUniqueId;
 
     public Sell(String category, String location, String itemName,
                 String itemPrice, String condition, String sellerPhoneNum,
-                String datePosted, String image1, String image2, String image3, Boolean isStarred, String itemDescription, String sellerName, String sellerLastSeen) {
+                String datePosted, String image1, String image2, String image3, Boolean isStarred, String itemDescription, String sellerName, String sellerLastSeen, String itemUniqueId) {
         this.category = category;
         this.location = location;
         this.itemName = itemName;
@@ -41,6 +42,7 @@ public class Sell implements Parcelable {
         this.itemDescription = itemDescription;
         this.sellerName = sellerName;
         this.sellerLastSeen = sellerLastSeen;
+        this.itemUniqueId = itemUniqueId;
     }
 
     public String getSellerName() {
@@ -219,4 +221,12 @@ public class Sell implements Parcelable {
             return new Sell[size];
         }
     };
+
+    public String getItemUniqueId() {
+        return itemUniqueId;
+    }
+
+    public void setItemUniqueId(String itemUniqueId) {
+        this.itemUniqueId = itemUniqueId;
+    }
 }

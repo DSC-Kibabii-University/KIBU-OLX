@@ -16,33 +16,37 @@ public class MainRepository {
     private ItemsDao itemsDao;
     private LiveData<List<Item>> allItems;
 
-    public  MainRepository(Application application){
+    public MainRepository(Application application) {
         ItemsDatabase database = ItemsDatabase.getInstance(application);
         itemsDao = database.itemsDao();
         allItems = itemsDao.getAllItems();
     }
 
-    public void insert(Item item){
+    public void insert(Item item) {
         new InsertItemAsyncTask(itemsDao).execute(item);
     }
 
-    public void delete(Item item){
+    public void delete(Item item) {
         new DeleteItemAsyncTask(itemsDao).execute(item);
     }
 
-    public LiveData<List<Item>> getAllItems(){
+    public LiveData<List<Item>> getAllItems() {
         return allItems;
+    }
+
+    public void updateSoldItem(Boolean isSoldOut, int id) {
+        new UpdateItemSoldOut(itemsDao, isSoldOut, id).execute();
     }
 
 
     //AsyncTasks to execute the code in the background thread because database operations should not be executed in the UI thread
 
     //Insert a item
-    private static class InsertItemAsyncTask extends AsyncTask<Item,Void,Void> {
+    private static class InsertItemAsyncTask extends AsyncTask<Item, Void, Void> {
 
         private ItemsDao itemsDao;
 
-        private InsertItemAsyncTask(ItemsDao itemsDao){
+        private InsertItemAsyncTask(ItemsDao itemsDao) {
             this.itemsDao = itemsDao;
         }
 
@@ -54,12 +58,31 @@ public class MainRepository {
         }
     }
 
+    private static class UpdateItemSoldOut extends AsyncTask<Boolean, Void, Void> {
+
+        private ItemsDao itemsDao;
+        int id;
+        Boolean isSoldOut;
+
+        private UpdateItemSoldOut(ItemsDao itemsDao, Boolean isSoldOut, int id) {
+            this.itemsDao = itemsDao;
+            this.id = id;
+            this.isSoldOut = isSoldOut;
+        }
+
+        @Override
+        protected Void doInBackground(Boolean... booleans) {
+            itemsDao.updateItemSoldOut(isSoldOut, id);
+            return null;
+        }
+    }
+
     //Delete a item
-    private static class DeleteItemAsyncTask extends AsyncTask<Item,Void,Void> {
+    private static class DeleteItemAsyncTask extends AsyncTask<Item, Void, Void> {
 
         private ItemsDao itemsDao;
 
-        private DeleteItemAsyncTask(ItemsDao itemsDao){
+        private DeleteItemAsyncTask(ItemsDao itemsDao) {
             this.itemsDao = itemsDao;
         }
 

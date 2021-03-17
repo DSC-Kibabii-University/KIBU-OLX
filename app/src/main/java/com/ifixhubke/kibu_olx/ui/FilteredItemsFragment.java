@@ -102,8 +102,4 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
         databaseReference.child(UUID.randomUUID().toString()).setValue(item).addOnSuccessListener(aVoid ->
                 Toast.makeText(requireContext(), item.getItemName() + " added to favorites successfully", Toast.LENGTH_SHORT).show());
     }
-
-    @Override
-    public void clickCard(Favourites favourites, int position) {
-    }
 }

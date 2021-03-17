@@ -164,6 +164,7 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
         Timber.d("method to store url called");
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("all_items");
         String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        String itemUniqueId = UUID.randomUUID().toString();
 
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("userProfile", Context.MODE_PRIVATE);
 
@@ -181,10 +182,11 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
                 false,
                 binding.itemDescription.getText().toString(),
                 sharedPreferences.getString("USERNAME", "default"),
-                "Thursday 2020");
+                "Thursday 2020",
+                itemUniqueId);
 
         //String itemImage, String itemName, String itemPrice, Boolean itemStarred
-        Item item = new Item(imageUrl2,binding.productNameEditText.getText().toString(),binding.priceEditText.getText().toString(),date,false);
+        Item item = new Item(imageUrl2,binding.productNameEditText.getText().toString(),binding.priceEditText.getText().toString(),date,false, itemUniqueId);
 
         saveToRoomDb(item);
 

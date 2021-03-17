@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = Item.class, version = 2)
+@Database(entities = Item.class, version = 4)
 public abstract class ItemsDatabase extends RoomDatabase {
 
     /** We make it static so that the class can be singleton,

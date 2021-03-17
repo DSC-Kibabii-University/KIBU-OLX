@@ -73,7 +73,8 @@ public class FilteredItemsAdapter extends RecyclerView.Adapter<FilteredItemsAdap
                     items.get(position).getLocation(),
                     items.get(position).getItemDescription(),
                     items.get(position).getCategory(),
-                    items.get(position).getCondition());
+                    items.get(position).getCondition(),
+                    items.get(position).getItemUniqueId());
 
             NavDirections action = FilteredItemsFragmentDirections.actionFilteredItemsFragmentToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);

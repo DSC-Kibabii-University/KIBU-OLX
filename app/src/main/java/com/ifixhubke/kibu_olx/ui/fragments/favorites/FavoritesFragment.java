@@ -103,14 +103,4 @@ public class FavoritesFragment extends Fragment implements ItemClickListener {
 
     }
 
-    @Override
-    public void clickCard(Favourites favourites, int position) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("favoriteitems");
-        //databaseReference.child(UUID.randomUUID()
-        //        .toString())
-        //        .setValue(favourites)
-        //        .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), favourites.getItemName() + " to favorites successfully", Toast.LENGTH_SHORT).show());
-        //databaseReference.child(String.valueOf(UUID.randomUUID())).setValue(null);
-    }
-
 }

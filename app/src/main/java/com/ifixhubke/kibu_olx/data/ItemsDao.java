@@ -12,11 +12,14 @@ import java.util.List;
 @Dao
 public interface ItemsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insert(Item item);
+    void insert(Item item);
 
     @Delete
-    public void delete(Item item);
+    void delete(Item item);
 
     @Query("SELECT *FROM posted_item_history ORDER BY datePosted DESC")
-    public LiveData<List<Item>> getAllItems();
+    LiveData<List<Item>> getAllItems();
+
+    @Query("UPDATE posted_item_history SET isSoldOut = :soldOut WHERE id = :id")
+    void updateItemSoldOut(Boolean soldOut, int id);
 }

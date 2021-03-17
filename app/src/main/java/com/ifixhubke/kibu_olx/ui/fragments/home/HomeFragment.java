@@ -180,9 +180,6 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             return false;
     }
 
-    @Override
-    public void clickCard(Favourites favourites, int position) {
-    }
 
     @Override
     public void onSearchStateChanged(boolean enabled) {

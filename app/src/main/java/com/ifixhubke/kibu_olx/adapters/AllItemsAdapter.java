@@ -71,7 +71,8 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
                     items.get(position).getLocation(),
                     items.get(position).getItemDescription(),
                     items.get(position).getCategory(),
-                    items.get(position).getCondition());
+                    items.get(position).getCondition(),
+                    items.get(position).getItemUniqueId());
 
             NavDirections action = HomeFragmentDirections.actionHomeFragment2ToDetailsFragment(item);
             Navigation.findNavController(v).navigate(action);

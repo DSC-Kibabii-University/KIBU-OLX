@@ -28,11 +28,12 @@ public class Item implements Parcelable {
     private String condition;
     private double minPrice;
     private double maxPrice;
+    private String itemUniqueId;
 
     public Item() {
     }
 
-    public Item(String category, String condition, double minPrice, double maxPrice){
+    public Item(String category, String condition, double minPrice, double maxPrice) {
         this.category = category;
         this.condition = condition;
         this.minPrice = minPrice;
@@ -47,8 +48,7 @@ public class Item implements Parcelable {
     }
 
 
-
-    public Item(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription, String category, String condition) {
+    public Item(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription, String category, String condition, String itemUniqueId) {
         this.sellerName = sellerName;
         this.sellerLastSeen = sellerLastSeen;
         this.sellerPhoneNum = sellerPhoneNum;
@@ -62,14 +62,16 @@ public class Item implements Parcelable {
         this.itemDescription = itemDescription;
         this.category = category;
         this.condition = condition;
+        this.itemUniqueId = itemUniqueId;
     }
 
-    public Item(String itemImage, String itemName, String itemPrice, String datePosted, Boolean isSoldOut){
+    public Item(String itemImage, String itemName, String itemPrice, String datePosted, Boolean isSoldOut, String itemUniqueId) {
         this.itemImage = itemImage;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.datePosted = datePosted;
         this.isSoldOut = isSoldOut;
+        this.itemUniqueId = itemUniqueId;
     }
 
     public Item(String itemImage, String itemImage2, String itemImage3) {
@@ -77,6 +79,14 @@ public class Item implements Parcelable {
         this.itemImage = itemImage;
         this.itemImage2 = itemImage2;
         this.itemImage3 = itemImage3;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Boolean getIsSoldOut() {
@@ -289,5 +299,13 @@ public class Item implements Parcelable {
 
     public void setMaxPrice(double maxPrice) {
         this.maxPrice = maxPrice;
+    }
+
+    public String getItemUniqueId() {
+        return itemUniqueId;
+    }
+
+    public void setItemUniqueId(String itemUniqueId) {
+        this.itemUniqueId = itemUniqueId;
     }
 }
