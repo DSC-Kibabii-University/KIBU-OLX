@@ -103,11 +103,6 @@ public class AllItemsAdapter extends FirebaseRecyclerAdapter<Item, AllItemsAdapt
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row, parent, false));
     }
 
-    /*public void filteredList(ArrayList<Item> filterItemsList) {
-        items=filterItemsList;
-        notifyDataSetChanged();
-    }*/
-
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView item_image;
