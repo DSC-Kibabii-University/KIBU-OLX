@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/homeConstraint"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.home.HomeFragment">
 
@@ -26,16 +26,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_marginTop="10dp"
-                app:titleTextColor="@color/white"
-                app:subtitle="Get items of your choice"
-                app:subtitleTextColor="@color/white"
-                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/filter_menu"
-                app:title="KIBU-OLX" />
+                app:subtitle="Get items of your choice"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:subtitleTextColor="@color/white"
+                app:title="KIBU-OLX"
+                app:titleTextColor="@color/white" />
 
             <com.mancj.materialsearchbar.MaterialSearchBar
                 android:id="@+id/searchBar"
@@ -46,8 +46,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:mt_hint="Pro Gas"
-                app:mt_placeholder="Search"
                 app:mt_maxSuggestionsCount="10"
+                app:mt_placeholder="Search"
                 app:mt_roundedSearchBarEnabled="true"
                 app:mt_speechMode="false" />
 
@@ -63,10 +63,10 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/all_items_recycler_row"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
-        app:spanCount="2" />
+        app:spanCount="2"
+        tools:listitem="@layout/all_items_recycler_row" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -95,27 +95,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar">
 
-        <GridLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:columnCount="2"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/appbar">
+            android:layout_height="match_parent">
 
-            <include layout="@layout/items_placeholder" />
+            <include
+                android:id="@+id/mt_placeholder1"
+                layout="@layout/items_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/mt_placeholder2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <include layout="@layout/items_placeholder" />
+            <include
+                android:id="@+id/mt_placeholder2"
+                layout="@layout/items_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mt_placeholder1"
+                app:layout_constraintTop_toTopOf="@+id/mt_placeholder1" />
 
-            <include layout="@layout/items_placeholder" />
+            <include
+                android:id="@+id/mt_placeholder3"
+                layout="@layout/items_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/mt_placeholder4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mt_placeholder1" />
 
-            <include layout="@layout/items_placeholder" />
+            <include
+                android:id="@+id/mt_placeholder4"
+                layout="@layout/items_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mt_placeholder3"
+                app:layout_constraintTop_toTopOf="@+id/mt_placeholder3" />
 
-            <include layout="@layout/items_placeholder" />
+            <include
+                android:id="@+id/mt_placeholder5"
+                layout="@layout/items_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/mt_placeholder6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mt_placeholder3" />
 
-            <include layout="@layout/items_placeholder" />
+            <include
+                android:id="@+id/mt_placeholder6"
+                layout="@layout/items_placeholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mt_placeholder5"
+                app:layout_constraintTop_toTopOf="@+id/mt_placeholder5" />
 
-        </GridLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <ImageView
@@ -123,9 +170,9 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:src="@drawable/ic_empty_state"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         app:layout_constraintVertical_bias="0.26"
@@ -137,10 +184,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/nothing_found"
-        android:visibility="gone"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
