@@ -10,19 +10,31 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentDetailsBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -30,6 +42,12 @@ public class DetailsFragment extends Fragment {
     FragmentDetailsBinding binding;
     private Boolean clicked = false;
     private String myNumber;
+    //try
+    DataSnapshot dataSnapshot;
+    DatabaseReference databaseReference;
+    String userId;
+    FirebaseUser user;
+
     Item data;
 
     @SuppressLint("SetTextI18n")
@@ -38,6 +56,11 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDetailsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        userId = user.getUid();
 
         assert getArguments() != null;
 
@@ -64,6 +87,9 @@ public class DetailsFragment extends Fragment {
         binding.favDatePosted1.setText("Uploaded on " + data.getDatePosted());
         binding.favLocation1.setText(data.getLocation());
         binding.favDescription1.setText(data.getItemDescription());
+
+        getUserStatus();
+
 
         binding.imageSliderFav1.setItemClickListener(position -> {
 
@@ -146,6 +172,32 @@ public class DetailsFragment extends Fragment {
             binding.messageButton.setClickable(false);
             binding.whatsappButton.setClickable(false);
         }
+    }
+
+    public void getUserStatus(){
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String state = Objects.requireNonNull(snapshot.child("userState").child("state").getValue().toString());
+                String date = Objects.requireNonNull(snapshot.child("userState").child("date").getValue().toString());
+                String time = Objects.requireNonNull(snapshot.child("userState").child("time").getValue().toString());
+
+                if (state.equals("online")){
+                    binding.tvLastseen1.setText("online");
+                    binding.tvLastseenHours1.setVisibility(View.INVISIBLE);
+                }
+                else if (state.equals("offline")){
+                    binding.tvLastseen1.setText("Last seen: " + date);
+                    binding.tvLastseenHours1.setText(time);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }
