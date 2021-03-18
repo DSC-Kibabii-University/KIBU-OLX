@@ -47,7 +47,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
     @Override
     public void onBindViewHolder(@NonNull SettingsHolder holder, int position) {
         holder.name.setText(itemArrayList.get(position).getItemName());
-        Picasso.get().load(itemArrayList.get(position).getItemImage()).placeholder(R.drawable.ic_image_placeholder).into(holder.image);
+        Picasso.get().load(itemArrayList.get(position).getItemImage()).placeholder(R.drawable.lottie_loading).into(holder.image);
         holder.price.setText("Kshs. " + itemArrayList.get(position).getItemPrice());
         holder.date.setText(itemArrayList.get(position).getDatePosted());
 

@@ -37,7 +37,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Item, FavouritesA
         holder.description.setText("Posted by " + model.getSellerName() + " on " + model.getDatePosted());
         Picasso.get()
                 .load(model.getItemImage())
-                .placeholder(R.drawable.loadin)
+                .placeholder(R.drawable.lottie_loading)
                 .into(holder.itemImage);
 
         holder.cardView.setOnClickListener(v -> {

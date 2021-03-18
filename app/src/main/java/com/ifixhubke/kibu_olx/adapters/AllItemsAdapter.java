@@ -52,7 +52,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         Picasso.get()
                 .load(items.get(position).getItemImage2())
                 .fit().centerInside()
-                .placeholder(R.drawable.loadin)
+                .placeholder(R.drawable.lottie_loading)
                 .into(holder.item_image);
 
         Item item = new Item(items.get(position).getSellerName(),
