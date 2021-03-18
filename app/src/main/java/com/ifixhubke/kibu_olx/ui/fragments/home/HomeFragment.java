@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
 
     private void fetchItems() {
         databaseReference = FirebaseDatabase.getInstance().getReference("all_items");
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
