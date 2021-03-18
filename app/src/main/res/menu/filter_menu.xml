@@ -5,6 +5,6 @@
     <item android:id="@+id/filter_menu"
         android:icon="@drawable/ic_filter"
         app:showAsAction="always"
-        android:iconTint="@color/black"
+        android:iconTint="?attr/colorControlNormal"
         android:title="@string/filter"/>
 </menu>

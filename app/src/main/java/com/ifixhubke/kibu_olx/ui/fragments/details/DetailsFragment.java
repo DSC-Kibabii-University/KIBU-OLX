@@ -51,9 +51,9 @@ public class DetailsFragment extends Fragment {
         myNumber = data.getSellerPhoneNum();
 
         ArrayList<SlideModel> imageList = new ArrayList<>();
-        imageList.add(new SlideModel(data.getItemImage(), data.getItemName(), ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(data.getItemImage2(), data.getItemName(), ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(data.getItemImage3(), data.getItemName(), ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(data.getItemImage(), ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(data.getItemImage2(), ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(data.getItemImage3(), ScaleTypes.CENTER_CROP));
 
         Timber.d("image 1 " + data.getItemImage() + " \n image 2 " + data.getItemImage2() + " \n image 3 " + data.getItemImage3());
 

@@ -10,7 +10,6 @@
         android:id="@+id/topCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#ededed"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Reset All"
+                android:text="@string/reset_all"
                 android:textColor="@color/main"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -37,8 +36,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Filters"
-                android:textColor="@color/black"
+                android:text="@string/filters"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -51,13 +49,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Done"
+                android:text="@string/done"
                 android:textColor="@color/main"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView3" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -79,7 +78,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category"
+                android:text="@string/category"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -92,9 +91,7 @@
         android:id="@+id/cardChipG1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +120,7 @@
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Electronics" />
+                    android:text="@string/electronics" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipBeddings"
@@ -208,9 +205,7 @@
         android:id="@+id/cardChipG2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="16dp"
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -289,15 +284,36 @@
         android:id="@+id/priceSlider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:stepSize="100.0"
         android:valueFrom="0"
         android:valueTo="10000"
         app:labelBehavior="withinBounds"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/card4"
+        app:layout_constraintVertical_bias="0.0"
         app:values="@array/initial_slider_values" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Min"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Max"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

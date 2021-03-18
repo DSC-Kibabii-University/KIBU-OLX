@@ -36,12 +36,13 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/profile_image"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
+                android:tint="?attr/colorControlNormal"
                 android:src="@drawable/ic_profile_user"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/profile_image"
@@ -68,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:visibility="visible"
@@ -84,7 +84,6 @@
                 android:layout_marginTop="5dp"
                 tools:text="0706003891"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/userEmail"
                 app:layout_constraintTop_toBottomOf="@+id/userEmail" />
@@ -107,51 +106,51 @@
                 android:id="@+id/editUserName1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="First name"
+                android:hint="@string/first_name"
                 android:inputType="textCapWords"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/black"
                 android:textSize="14sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAutofill="no" />
 
 
             <EditText
                 android:id="@+id/editUserName2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Last name"
+                android:hint="@string/last_name"
                 android:inputType="textCapWords"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/black"
                 android:textSize="14sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/editUserName1"
-                app:layout_constraintTop_toBottomOf="@+id/editUserName1" />
+                app:layout_constraintTop_toBottomOf="@+id/editUserName1"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/editPhoneNum"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
+                android:hint="@string/phone_number"
                 android:inputType="phone"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/black"
                 android:textSize="14sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/editUserName2"
-                app:layout_constraintTop_toBottomOf="@+id/editUserName2" />
+                app:layout_constraintTop_toBottomOf="@+id/editUserName2"
+                android:importantForAutofill="no" />
 
 
             <TextView
                 android:id="@+id/saveTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="@string/save"
                 android:textColor="@color/main"
                 android:textSize="14sp"
                 android:visibility="gone"
@@ -172,7 +171,6 @@
         android:layout_marginEnd="16dp"
         android:text="@string/items_posted_history"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

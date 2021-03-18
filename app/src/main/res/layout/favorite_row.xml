@@ -65,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/item_price"
             tools:text="Posted by Joel Kanyi on Mar 17, 2021 8:14:49 PM" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,7 +74,8 @@
             app:layout_constraintEnd_toStartOf="@+id/textViewLocation"
             app:layout_constraintTop_toTopOf="@+id/textViewLocation"
             app:srcCompat="@drawable/ic_location"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            android:tint="?attr/colorControlNormal" />
 
         <TextView
             android:id="@+id/textViewLocation"
@@ -86,7 +87,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewSomeDescription"
             tools:text="Booster" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,6 +95,7 @@
             app:layout_constraintStart_toStartOf="@+id/textViewSomeDescription"
             app:layout_constraintTop_toBottomOf="@+id/textViewSomeDescription"
             app:srcCompat="@drawable/ic_phone_number"
+            android:tint="?attr/colorControlNormal"
             tools:ignore="ContentDescription" />
 
         <TextView

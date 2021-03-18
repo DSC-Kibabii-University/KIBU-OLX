@@ -80,4 +80,10 @@
     </string-array>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="save">Save</string>
+    <string name="reset_all">Reset All</string>
+    <string name="filters">Filters</string>
+    <string name="done">Done</string>
+    <string name="category">Category</string>
+    <string name="electronics">Electronics</string>
 </resources>
