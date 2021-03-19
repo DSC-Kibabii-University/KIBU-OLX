@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 bottomNavigationView.setVisibility(View.VISIBLE);
             }
             else {
-                bottomNavigationView.setVisibility(View.INVISIBLE);
+                bottomNavigationView.setVisibility(View.GONE);
             }
         });
     }
