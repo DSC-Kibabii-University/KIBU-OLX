@@ -73,50 +73,27 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             }
         });
 
-        //fetchItems();
-        setTimeOut(5000);
-        Timber.d("setTimeOut method called");
-
+        setTimeOut();
+        //Timber.d("setTimeOut method called");
         return view;
     }
 
-    private void setTimeOut(long time){
+    private void setTimeOut(){
 
-            fetchItems();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (binding.shimmerFrameLayout.isShimmerVisible()){
+                    fetchItems();
+                    binding.imageView2.setVisibility(View.VISIBLE);
+                    binding.textView.setVisibility(View.VISIBLE);
+
+                    /*if (binding.shimmerFrameLayout.isShimmerVisible()){
                         binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
                         Toast.makeText(requireContext(), "Time out error please your try again", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                 }
-            },time);
+            },5000);
         }
-
-
-   /* private void showProgressDialog(boolean show, long time) {
-        try {
-            if (progressDialog != null) {
-                if (show) {
-                    progressDialog.setMessage("Cargando...");
-                    progressDialog.show();
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            if(progressDialog!=null && progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                                Toast.makeText(ActPreguntas.this, "Couldn't connect, please try again later.", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }, time);
-                } else {
-                    progressDialog.dismiss();
-                }
-            }
-        }catch(IllegalArgumentException e){
-        }catch(Exception e){
-        }
-    }*/
 
     public void search(String itemName) {
         ArrayList<Item> filterItemsList = new ArrayList<>();
@@ -150,7 +127,8 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
                 itemsList.clear();
                 if (snapshot.exists()) {
                     binding.imageView2.setVisibility(View.INVISIBLE);
-                    binding.textView.setVisibility(View.INVISIBLE);
+                        binding.textView.setVisibility(View.INVISIBLE);
+
 
                     for (DataSnapshot i : snapshot.getChildren()) {
                         // Timber.d(i.toString());
@@ -166,6 +144,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
                     binding.imageView2.setVisibility(View.VISIBLE);
                     binding.textView.setVisibility(View.VISIBLE);
                     binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
+                    setTimeOut();
                     Timber.d("snapshot not found");
                 }
             }
