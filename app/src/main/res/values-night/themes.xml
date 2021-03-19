@@ -3,7 +3,7 @@
     <style name="Theme.KIBUOLX" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/main</item>
-        <item name="colorPrimaryVariant">@color/main</item>
+        <item name="colorPrimaryVariant">?attr/colorSurface</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/main</item>
@@ -17,5 +17,21 @@
     <style name="ThemeOverlay.KIBUOLX.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_900</item>
         <item name="fullscreenTextColor">@color/light_blue_A400</item>
+    </style>
+
+    <style name="MyCustomTheme" parent="MaterialSearchBarDark">
+        <item name="mt_searchBarColor">@color/searchBarDividerColor</item>
+        <item name="mt_dividerColor">@color/searchBarDividerColor</item>
+        <item name="mt_navIconTint">?attr/colorControlNormal</item>
+        <item name="mt_searchIconTint">?attr/colorControlNormal</item>
+        <item name="mt_clearIconTint">?attr/colorControlNormal</item>
+        <item name="mt_menuIconTint">?attr/colorControlNormal</item>
+        <item name="mt_backIconTint">?attr/colorControlNormal</item>
+        <item name="mt_textCursorTint">@color/searchBarCursorColor</item>
+        <item name="mt_textColor">?android:attr/textColorPrimary</item>
+        <item name="mt_hintColor">?android:attr/textColorPrimary</item>
+        <item name="mt_placeholderColor">?android:attr/textColorPrimary</item>
+        <item name="mt_highlightedTextColor">?android:attr/textColorPrimary</item>
+
     </style>
 </resources>

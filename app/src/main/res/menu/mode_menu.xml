@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:id="@+id/filter_menu"
-        android:icon="@drawable/ic_filter"
-        android:iconTint="?attr/colorControlNormal"
-        android:title="@string/filter"
+        android:id="@+id/action_mode_menu"
+        android:icon="@drawable/ic_light_bulb_light_mode"
+        android:title="@string/mode"
         app:showAsAction="always" />
 </menu>

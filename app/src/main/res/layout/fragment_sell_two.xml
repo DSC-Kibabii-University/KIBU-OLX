@@ -94,15 +94,14 @@
         app:layout_constraintStart_toStartOf="@+id/itemDescription"
         app:layout_constraintTop_toBottomOf="@+id/itemDescription" />
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:title="Item Details"
+        android:theme="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
         app:titleTextColor="@color/white"
+        app:title="Item Details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

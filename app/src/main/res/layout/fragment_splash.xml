@@ -2,23 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main"
-    android:id="@+id/content"
     tools:context=".ui.fragments.SplashFragment">
 
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cart_image"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_shopping_cart"
+        android:tint="?attr/colorControlNormal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26" />
 
     <TextView
         android:id="@+id/kibu_olx_tv"
@@ -29,8 +29,8 @@
         android:text="KIBU-OLX"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="45sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +45,8 @@
         android:paddingEnd="3dp"
         android:text="Your Comrade Life Simplified"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/kibu_olx_tv"
         app:layout_constraintStart_toStartOf="@+id/kibu_olx_tv"
         app:layout_constraintTop_toBottomOf="@+id/kibu_olx_tv" />

@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView5"
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/register"
-                android:textColor="@color/black"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
@@ -43,21 +43,22 @@
                 android:layout_marginEnd="16dp"
                 android:elevation="10dp"
                 android:hint="@string/enter_email"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
+                android:textColorHint="?android:attr/textColorPrimary"
+                app:boxStrokeColor="?attr/colorControlNormal"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
+                app:endIconTint="?attr/colorControlNormal"
+                app:hintTextColor="?android:attr/textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
                 app:startIconDrawable="@drawable/ic_mail_outline"
-                app:startIconTint="@color/black">
+                app:startIconTint="?attr/colorControlNormal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,25 +70,26 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/enter_password"
-                android:textColorHint="@color/black"
+                android:textColorHint="?android:attr/textColorPrimary"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
-                app:boxStrokeColor="@color/black"
+                app:boxStrokeColor="?attr/colorControlNormal"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="password_toggle"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
+                app:endIconTint="?attr/colorControlNormal"
+                app:hintTextColor="?android:attr/textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/enterEmail"
                 app:startIconDrawable="@drawable/ic_lock"
-                app:startIconTint="@color/black">
+                app:startIconTint="?attr/colorControlNormal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,22 +103,23 @@
                 android:layout_marginEnd="16dp"
                 android:elevation="10dp"
                 android:hint="@string/first_name"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
+                android:textColorHint="?android:attr/textColorPrimary"
+                app:boxStrokeColor="?attr/colorControlNormal"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
+                app:endIconTint="?attr/colorControlNormal"
+                app:hintTextColor="?android:attr/textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/enterPassword"
                 app:startIconDrawable="@drawable/ic_identity"
-                app:startIconTint="@color/black">
+                app:startIconTint="?attr/colorControlNormal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,22 +133,23 @@
                 android:layout_marginEnd="16dp"
                 android:elevation="10dp"
                 android:hint="@string/last_name"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
+                android:textColorHint="?android:attr/textColorPrimary"
+                app:boxStrokeColor="?android:attr/textColorPrimary"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
+                app:endIconTint="?attr/colorControlNormal"
+                app:hintTextColor="?android:attr/textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/firstName"
                 app:startIconDrawable="@drawable/ic_identity"
-                app:startIconTint="@color/black">
+                app:startIconTint="?attr/colorControlNormal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,22 +163,23 @@
                 android:layout_marginEnd="16dp"
                 android:elevation="10dp"
                 android:hint="@string/phone_number"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
+                android:textColorHint="?android:attr/textColorPrimary"
+                app:boxStrokeColor="?attr/colorControlNormal"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
+                app:endIconTint="?attr/colorControlNormal"
+                app:hintTextColor="?android:attr/textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lastName"
                 app:startIconDrawable="@drawable/ic_phone_number"
-                app:startIconTint="@color/black">
+                app:startIconTint="?attr/colorControlNormal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,6 +190,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:checked="false"
+                android:textColor="?android:attr/textColorPrimary"
                 android:text="@string/i_agree_with_the_rules"
                 android:transitionName="check_transition"
                 app:layout_constraintStart_toStartOf="parent"
@@ -197,7 +203,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/main"
                 android:text="@string/register"
                 android:textAllCaps="false"
                 app:cornerRadius="15dp"
@@ -212,7 +217,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/already_have_an_account_sign_in"
-                android:textColor="@color/black"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

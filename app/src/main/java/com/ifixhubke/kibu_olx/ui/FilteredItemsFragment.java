@@ -32,6 +32,7 @@ import timber.log.Timber;
 public class FilteredItemsFragment extends Fragment implements ItemClickListener {
     FragmentFilteredItemsBinding binding;
     Item data;
+    Item item;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -50,9 +51,8 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
         return view;
     }
 
-    private void filterItems(String category, String condition, double min, double max) {
-        binding.imageViewNothingFound.setVisibility(View.INVISIBLE);
-        binding.textViewNothingFound.setVisibility(View.INVISIBLE);
+
+ private void filterItems(String category, String condition, double min, double max) {
         Timber.d("Filter fun called");
         ArrayList<Item> filtered = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -64,18 +64,26 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
                         Item item = i.getValue(Item.class);
                         assert item != null;
                         double price = Double.parseDouble(item.getItemPrice());
-                        if ((item.getCondition().equals(condition)) && ((price >= min) && (price <= max))) {
-                            filtered.add(item);
-                            Timber.d("Items found");
+                        if ((item.getCondition().equals(condition))) {
+
+                            Timber.d("Condtion: Items found");
+                            if((price >= min) && (price <= max)){
+                                Timber.d("Range: Items found");
+                                filtered.add(item);
+                                binding.progressBar2.setVisibility(View.INVISIBLE);
+                                binding.filteredRecyclerView.setVisibility(View.VISIBLE);
+                                initializeRecycler(filtered);
+                            }/*else{
+                                binding.imageViewNothingFound.setVisibility(View.INVISIBLE);
+                                binding.textViewNothingFound.setVisibility(View.INVISIBLE);
+                            }*/
                         } else {
                             Timber.d("Items Not Found");
-                            binding.imageViewNothingFound.setVisibility(View.VISIBLE);
+                           binding.imageViewNothingFound.setVisibility(View.VISIBLE);
                             binding.textViewNothingFound.setVisibility(View.VISIBLE);
                         }
                     }
-                    binding.progressBar2.setVisibility(View.INVISIBLE);
-                    binding.filteredRecyclerView.setVisibility(View.VISIBLE);
-                    initializeRecycler(filtered);
+                    //initializeRecycler(filtered);
                 } else {
                     binding.imageViewNothingFound.setVisibility(View.VISIBLE);
                     binding.textViewNothingFound.setVisibility(View.VISIBLE);

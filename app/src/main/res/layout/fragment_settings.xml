@@ -7,26 +7,26 @@
     tools:context=".ui.fragments.settings.SettingsFragment">
 
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:titleTextColor="@color/white"
-        app:title="Settings"
+        android:theme="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/mode_menu"
+        app:title="Settings"
+        app:titleTextColor="@color/white" />
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/topCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardCornerRadius="10dp"
-        android:id="@+id/topCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3">
@@ -42,8 +42,8 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:tint="?attr/colorControlNormal"
                 android:src="@drawable/ic_profile_user"
+                android:tint="?attr/colorControlNormal"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -82,11 +82,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                tools:text="0706003891"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/userEmail"
-                app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/userEmail"
+                tools:text="0706003891" />
 
             <TextView
                 android:id="@+id/editTextView"
@@ -107,14 +107,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/first_name"
+                android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="14sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <EditText
@@ -122,28 +122,28 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/last_name"
+                android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="14sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/editUserName1"
-                app:layout_constraintTop_toBottomOf="@+id/editUserName1"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/editUserName1" />
 
             <EditText
                 android:id="@+id/editPhoneNum"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
+                android:importantForAutofill="no"
                 android:inputType="phone"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="14sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/editUserName2"
-                app:layout_constraintTop_toBottomOf="@+id/editUserName2"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/editUserName2" />
 
 
             <TextView

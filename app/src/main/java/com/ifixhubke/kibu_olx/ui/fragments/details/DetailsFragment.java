@@ -185,11 +185,11 @@ public class DetailsFragment extends Fragment {
 
                 if (state.equals("online")){
                     binding.tvLastseen1.setText("online");
-                    binding.tvLastseenHours1.setVisibility(View.INVISIBLE);
+                   // binding.tvLastseenHours1.setVisibility(View.INVISIBLE);
                 }
                 else if (state.equals("offline")){
                     binding.tvLastseen1.setText("Last seen: " + date);
-                    binding.tvLastseenHours1.setText(time);
+                   // binding.tvLastseenHours1.setText(time);
                 }
             }
 

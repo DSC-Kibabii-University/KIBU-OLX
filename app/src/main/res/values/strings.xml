@@ -86,4 +86,8 @@
     <string name="done">Done</string>
     <string name="category">Category</string>
     <string name="electronics">Electronics</string>
+    <string name="mode">Mode</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="reset">Reset</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
