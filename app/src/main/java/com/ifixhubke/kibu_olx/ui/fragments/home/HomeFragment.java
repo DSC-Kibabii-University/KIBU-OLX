@@ -1,5 +1,7 @@
 package com.ifixhubke.kibu_olx.ui.fragments.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -20,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.adapters.AllItemsAdapter;
 import com.ifixhubke.kibu_olx.data.Item;
@@ -42,11 +46,53 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     private DatabaseReference databaseReference;
     ArrayList<Item> itemsList = new ArrayList<>();
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Timber.d("onCreate");
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Timber.d("onViewCreated");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Timber.d("onStart");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Timber.d("onStop");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Timber.d("onDestroyView");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Timber.d("onDestroy");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Timber.d("onDetach");
+    }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        Timber.d("onCreateView");
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -96,20 +142,21 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                itemsList.clear();
                 if (snapshot.exists()) {
                     binding.imageView2.setVisibility(View.INVISIBLE);
                     binding.textView.setVisibility(View.INVISIBLE);
 
                     for (DataSnapshot i : snapshot.getChildren()) {
-                        Timber.d(i.toString());
+                       // Timber.d(i.toString());
                         Item item = i.getValue(Item.class);
                         itemsList.add(item);
                         //to reverse the list coz firebase sorts data in ascending order
                         Collections.reverse(itemsList);
                         binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
                         binding.allItemsRecyclerview.setVisibility(View.VISIBLE);
-                        initializeRecycler(itemsList);
                     }
+                    initializeRecycler(itemsList);
                 } else {
                     binding.imageView2.setVisibility(View.VISIBLE);
                     binding.textView.setVisibility(View.VISIBLE);
@@ -125,7 +172,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     }
 
     private void initializeRecycler(ArrayList<Item> itemsList) {
-        AllItemsAdapter adapter = new AllItemsAdapter(itemsList, this, getActivity().getApplicationContext());
+        AllItemsAdapter adapter = new AllItemsAdapter(itemsList, this, getActivity());
         binding.allItemsRecyclerview.setAdapter(adapter);
     }
 
@@ -145,10 +192,10 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
 
     @Override
     public void itemClick(Item item, int position) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users")
-                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
-        databaseReference.push().setValue(item).addOnSuccessListener(aVoid ->
-                Toast.makeText(requireContext(), item.getItemName() + " added to favorites successfully", Toast.LENGTH_SHORT).show());
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users")
+                    .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
+            databaseReference.push().setValue(item).addOnSuccessListener(aVoid ->
+                    Toast.makeText(requireContext(), item.getItemName() + " added to favorites successfully", Toast.LENGTH_SHORT).show());
     }
 
     @Override

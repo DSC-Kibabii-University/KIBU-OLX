@@ -2,6 +2,7 @@ package com.ifixhubke.kibu_olx.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,14 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
@@ -29,6 +38,9 @@ import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
+import timber.log.Timber;
 
 public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHolder> {
 
@@ -39,6 +51,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
     public AllItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener, Context context) {
         items = itemList;
         this.itemClickListener = itemClickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -50,12 +63,6 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (items.get(position).getItemStarred()) {
-            holder.starredItem.setVisibility(View.VISIBLE);
-            holder.add_item_to_favorites.setVisibility(View.INVISIBLE);
-        } else if (!items.get(position).getItemStarred()) {
-            holder.starredItem.setVisibility(View.INVISIBLE);
-        }
 
         holder.item_name.setText(items.get(position).getItemName());
         holder.item_price.setText("Ksh. " + items.get(position).getItemPrice());
@@ -106,8 +113,51 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         });
 
         holder.add_item_to_favorites.setOnClickListener(v -> {
-            items.get(position).setItemStarred(true);
-            itemClickListener.itemClick(item, position);
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+            Query query = databaseReference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
+
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()){
+                        for (DataSnapshot i : snapshot.getChildren()) {
+                            Timber.d(i.toString());
+                            Item item = i.getValue(Item.class);
+                            String itemName = item.getItemName();
+
+                            if(itemName.equals(items.get(position).getItemName())){
+                                Timber.d("already starred");
+                                break;
+                            }
+                            else if ((items.get(position).getItemName()) != itemName){
+                                Timber.d("not starred");
+                               Item item2 = new Item(
+                                        items.get(position).getItemImage(),
+                                        items.get(position).getItemName(),
+                                        items.get(position).getItemPrice(),
+                                        false);
+
+                                itemClickListener.itemClick(item2, position);
+                                break;
+                            }
+                        }
+                    }else{
+                        Timber.d("snapshot does not exist");
+                        Item item2 = new Item(
+                                items.get(position).getItemImage(),
+                                items.get(position).getItemName(),
+                                items.get(position).getItemPrice(),
+                                false);
+
+                        itemClickListener.itemClick(item2, position);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+
         });
     }
 
