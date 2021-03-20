@@ -1,18 +1,27 @@
 package com.ifixhubke.kibu_olx.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
@@ -25,8 +34,9 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
 
     private final ArrayList<Item> items;
     ItemClickListener itemClickListener;
+    Context context;
 
-    public AllItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener) {
+    public AllItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener, Context context) {
         items = itemList;
         this.itemClickListener = itemClickListener;
     }
@@ -49,11 +59,31 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
 
         holder.item_name.setText(items.get(position).getItemName());
         holder.item_price.setText("Ksh. " + items.get(position).getItemPrice());
-        Picasso.get()
+        /*Picasso.get()
                 .load(items.get(position).getItemImage2())
                 .fit().centerInside()
                 .placeholder(R.drawable.lottie_loading)
+                .into(holder.item_image);*/
+
+        Glide.with(holder.itemView)
+                .load(items.get(position).getItemImage())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        holder.progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        holder.progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+                })
+                .fitCenter()
                 .into(holder.item_image);
+
+
 
         Item item = new Item(items.get(position).getSellerName(),
                 items.get(position).getSellerLastSeen(),
@@ -94,6 +124,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         ImageView add_item_to_favorites;
         CardView card;
         ImageView starredItem;
+        ProgressBar progressBar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -103,6 +134,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
             add_item_to_favorites = itemView.findViewById(R.id.favoriteItemImg);
             card = itemView.findViewById(R.id.item_card_layout);
             starredItem = itemView.findViewById(R.id.starredfavoriteItemImg);
+            progressBar = itemView.findViewById(R.id.allItemsRowProgressBar);
         }
     }
 }

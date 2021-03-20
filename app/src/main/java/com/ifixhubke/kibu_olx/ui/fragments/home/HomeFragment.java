@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     }
 
     private void initializeRecycler(ArrayList<Item> itemsList) {
-        AllItemsAdapter adapter = new AllItemsAdapter(itemsList, this);
+        AllItemsAdapter adapter = new AllItemsAdapter(itemsList, this, getActivity().getApplicationContext());
         binding.allItemsRecyclerview.setAdapter(adapter);
     }
 

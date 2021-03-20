@@ -1,16 +1,24 @@
 package com.ifixhubke.kibu_olx.adapters;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,9 +55,27 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
     @Override
     public void onBindViewHolder(@NonNull SettingsHolder holder, int position) {
         holder.name.setText(itemArrayList.get(position).getItemName());
-        Picasso.get().load(itemArrayList.get(position).getItemImage()).placeholder(R.drawable.lottie_loading).into(holder.image);
+       /* Picasso.get().load(itemArrayList.get(position).getItemImage()).placeholder(R.drawable.lottie_loading).into(holder.image);*/
         holder.price.setText("Kshs. " + itemArrayList.get(position).getItemPrice());
         holder.date.setText(itemArrayList.get(position).getDatePosted());
+
+        Glide.with(holder.itemView)
+                .load(itemArrayList.get(position).getItemImage())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        holder.progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        holder.progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+                })
+                .fitCenter()
+                .into(holder.image);
 
         if (itemArrayList.get(position).getIsSoldOut()) {
             holder.checkBox.setChecked(true);
@@ -102,6 +128,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
         TextView name, price, date;
         ImageView image;
         CheckBox checkBox;
+        ProgressBar progressBar;
 
         public SettingsHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,6 +137,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
             image = itemView.findViewById(R.id.posted_image);
             date = itemView.findViewById(R.id.posted_on);
             checkBox = itemView.findViewById(R.id.sold_out_checkbox);
+            progressBar = itemView.findViewById(R.id.settingRowProgressBar);
         }
     }
 

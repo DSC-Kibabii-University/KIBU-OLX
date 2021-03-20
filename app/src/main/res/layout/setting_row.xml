@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="3dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
-    android:layout_margin="3dp">
+    app:cardElevation="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,11 +42,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            tools:text="Ksh. 10000"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toEndOf="@+id/p_item_name"
             app:layout_constraintStart_toStartOf="@+id/p_item_name"
-            app:layout_constraintTop_toBottomOf="@+id/p_item_name" />
+            app:layout_constraintTop_toBottomOf="@+id/p_item_name"
+            tools:text="Ksh. 10000" />
 
 
         <CheckBox
@@ -65,11 +64,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            tools:text="Posted on Mar 7, 2021 12:15:39 PM"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toEndOf="@+id/p_item_price"
             app:layout_constraintStart_toStartOf="@+id/p_item_price"
-            app:layout_constraintTop_toBottomOf="@+id/p_item_price" />
+            app:layout_constraintTop_toBottomOf="@+id/p_item_price"
+            tools:text="Posted on Mar 7, 2021 12:15:39 PM" />
+
+        <ProgressBar
+            android:id="@+id/settingRowProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/posted_image"
+            app:layout_constraintEnd_toEndOf="@+id/posted_image"
+            app:layout_constraintStart_toStartOf="@+id/posted_image"
+            app:layout_constraintTop_toTopOf="@+id/posted_image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

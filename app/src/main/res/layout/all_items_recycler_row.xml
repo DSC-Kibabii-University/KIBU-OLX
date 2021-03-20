@@ -1,38 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/item_card_layout"
-    app:cardElevation="3dp"
-    app:cardCornerRadius="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:layout_height="wrap_content">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="5dp"
             android:id="@+id/cardView"
             android:layout_width="130dp"
             android:layout_height="130dp"
+            android:layout_marginTop="5dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/itemImageImg"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/itemImageImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ProgressBar
+                    android:id="@+id/allItemsRowProgressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/itemImageImg"
+                    app:layout_constraintEnd_toEndOf="@+id/itemImageImg"
+                    app:layout_constraintStart_toStartOf="@+id/itemImageImg"
+                    app:layout_constraintTop_toTopOf="@+id/itemImageImg" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </androidx.cardview.widget.CardView>
 
         <com.google.android.material.textview.MaterialTextView
@@ -58,19 +79,19 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="1"
+            tools:text="Ksh.10000"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/itemNameTxt"
             app:layout_constraintStart_toStartOf="@+id/itemNameTxt"
-            app:layout_constraintTop_toBottomOf="@+id/itemNameTxt"
-            android:text="Ksh.10000" />
+            app:layout_constraintTop_toBottomOf="@+id/itemNameTxt" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/favoriteItemImg"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="0dp"
-            android:tint="?attr/colorControlNormal"
             android:layout_marginEnd="0dp"
+            android:tint="?attr/colorControlNormal"
             app:layout_constraintBottom_toBottomOf="@+id/itemPriceTxt"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toEndOf="@+id/itemNameTxt"
@@ -90,6 +111,7 @@
             app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt"
             app:srcCompat="@drawable/ic_starred"
             tools:ignore="ContentDescription" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

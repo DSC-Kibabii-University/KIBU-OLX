@@ -2,18 +2,26 @@ package com.ifixhubke.kibu_olx.adapters;
 
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.ifixhubke.kibu_olx.R;
@@ -35,10 +43,29 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Item, FavouritesA
         holder.phoneNum.setText(model.getSellerPhoneNum());
         holder.location.setText(model.getLocation());
         holder.description.setText("Posted by " + model.getSellerName() + " on " + model.getDatePosted());
-        Picasso.get()
+        /*Picasso.get()
                 .load(model.getItemImage())
                 .placeholder(R.drawable.lottie_loading)
+                .into(holder.itemImage);*/
+
+        Glide.with(holder.itemView)
+                .load(model.getItemImage())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        holder.progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        holder.progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+                })
+                .fitCenter()
                 .into(holder.itemImage);
+
 
         holder.cardView.setOnClickListener(v -> {
             Item item = new Item(model.getSellerName(),
@@ -75,6 +102,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Item, FavouritesA
         ImageView itemImage;
         TextView itemName, itemPrice, description, location, phoneNum;
         CardView cardView;
+        ProgressBar progressBar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,6 +113,7 @@ public class FavouritesAdapter extends FirebaseRecyclerAdapter<Item, FavouritesA
             this.description = itemView.findViewById(R.id.textViewSomeDescription);
             this.location = itemView.findViewById(R.id.textViewLocation);
             this.phoneNum = itemView.findViewById(R.id.textViewPhoneNum);
+            this.progressBar = itemView.findViewById(R.id.FavoritesRowProgressBar);
         }
     }
 }
