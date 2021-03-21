@@ -28,15 +28,13 @@ import java.util.UUID;
 
 import timber.log.Timber;
 
-
 public class FilteredItemsFragment extends Fragment implements ItemClickListener {
     FragmentFilteredItemsBinding binding;
     Item data;
-    Item item;
 
     @Override
-    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         binding = FragmentFilteredItemsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
@@ -47,7 +45,6 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
 
         binding.filteredToolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_filteredItemsFragment_to_homeFragment2));
 
-
         return view;
     }
 
@@ -56,7 +53,7 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
         Timber.d("Filter fun called");
         ArrayList<Item> filtered = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("all_items").orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("all_items").orderByChild("category").equalTo(category).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {

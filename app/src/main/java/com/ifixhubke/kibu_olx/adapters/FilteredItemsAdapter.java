@@ -1,34 +1,41 @@
 package com.ifixhubke.kibu_olx.adapters;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import com.ifixhubke.kibu_olx.ui.FilteredItemsFragmentDirections;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import timber.log.Timber;
 
-public class FilteredItemsAdapter extends RecyclerView.Adapter<FilteredItemsAdapter.ViewHolder>{
+public class FilteredItemsAdapter extends RecyclerView.Adapter<FilteredItemsAdapter.ViewHolder> {
 
     private final ArrayList<Item> items;
     ItemClickListener itemClickListener;
 
-    public FilteredItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener){
+    public FilteredItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener) {
         items = itemList;
         this.itemClickListener = itemClickListener;
     }
@@ -36,7 +43,7 @@ public class FilteredItemsAdapter extends RecyclerView.Adapter<FilteredItemsAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row,parent,false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_items_recycler_row, parent, false));
     }
 
 
@@ -51,13 +58,25 @@ public class FilteredItemsAdapter extends RecyclerView.Adapter<FilteredItemsAdap
         }
 
         holder.item_name.setText(items.get(position).getItemName());
-        holder.item_price.setText("Ksh. "+items.get(position).getItemPrice());
-        Picasso.get()
-                .load(items.get(position).getItemImage2())
-                .fit().centerInside()
-                .placeholder(R.drawable.loadin)
-                .into(holder.item_image);
+        holder.item_price.setText("Ksh. " + items.get(position).getItemPrice());
 
+        Glide.with(holder.itemView)
+                .load(items.get(position).getItemImage())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        holder.progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        holder.progressBar.setVisibility(View.INVISIBLE);
+                        return false;
+                    }
+                })
+                .fitCenter()
+                .into(holder.item_image);
 
         holder.card.setOnClickListener(v -> {
 
@@ -102,6 +121,7 @@ public class FilteredItemsAdapter extends RecyclerView.Adapter<FilteredItemsAdap
         ImageView add_item_to_favorites;
         CardView card;
         ImageView starredItem;
+        ProgressBar progressBar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -111,6 +131,7 @@ public class FilteredItemsAdapter extends RecyclerView.Adapter<FilteredItemsAdap
             add_item_to_favorites = itemView.findViewById(R.id.favoriteItemImg);
             card = itemView.findViewById(R.id.item_card_layout);
             starredItem = itemView.findViewById(R.id.starredfavoriteItemImg);
+            progressBar = itemView.findViewById(R.id.allItemsRowProgressBar);
         }
     }
 }
