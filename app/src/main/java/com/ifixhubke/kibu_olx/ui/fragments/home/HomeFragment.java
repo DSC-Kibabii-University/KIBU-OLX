@@ -240,3 +240,11 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     public void onButtonClicked(int buttonCode) {
     }
 }
+
+/*
+* {
+  "rules": {
+    ".read": "now < 1616706000000",  // 2021-3-26
+    ".write": "now < 1616706000000",  // 2021-3-26
+  }
+}*/

@@ -25,6 +25,8 @@ import com.ifixhubke.kibu_olx.databinding.FragmentFavoritesBinding;
 
 import java.util.Objects;
 
+import timber.log.Timber;
+
 public class FavoritesFragment extends Fragment {
 
     FragmentFavoritesBinding binding;
@@ -49,14 +51,24 @@ public class FavoritesFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         Query query = databaseReference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
 
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                binding.favprogressBar.setVisibility(View.INVISIBLE);
+                if (snapshot.exists()){
+                    binding.favprogressBar.setVisibility(View.INVISIBLE);
+                    binding.imageViewFavoritesNothingFound.setVisibility(View.INVISIBLE);
+                    binding.textViewFavoritesNothingFound.setVisibility(View.INVISIBLE);
+                }else{
+                    binding.favprogressBar.setVisibility(View.INVISIBLE);
+                    binding.imageViewFavoritesNothingFound.setVisibility(View.VISIBLE);
+                    binding.textViewFavoritesNothingFound.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                binding.favprogressBar.setVisibility(View.INVISIBLE);
+                Timber.d(error.getMessage());
             }
         });
 
