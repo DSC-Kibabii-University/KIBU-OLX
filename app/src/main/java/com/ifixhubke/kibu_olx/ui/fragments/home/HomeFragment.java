@@ -48,48 +48,6 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
     ArrayList<Item> itemsList = new ArrayList<>();
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Timber.d("onCreate");
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Timber.d("onViewCreated");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Timber.d("onStart");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Timber.d("onStop");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Timber.d("onDestroyView");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Timber.d("onDestroy");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Timber.d("onDetach");
-    }
-
-    @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();

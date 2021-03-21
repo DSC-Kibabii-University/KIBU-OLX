@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.ifixhubke.kibu_olx.R;
@@ -40,7 +39,9 @@ public class PictureBrowserFragment extends Fragment {
         Timber.d(item.getItemImage() + "" + item.getItemImage2() + "" + item.getItemImage3());
 
 
-        binding.pictureBrowsingtoolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_pictureBrowserFragment_to_detailsFragment));
+        binding.pictureBrowsingtoolbar.setNavigationOnClickListener(v ->{
+            requireActivity().onBackPressed();
+        });
 
         ViewPager2 viewPager2 = view.findViewById(R.id.pictureBrowsingViewPager);
 
