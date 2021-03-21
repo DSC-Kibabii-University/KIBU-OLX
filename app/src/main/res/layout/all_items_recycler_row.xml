@@ -13,102 +13,79 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="8dp"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/itemImageImg"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/itemImageImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/avatars"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <ProgressBar
-                    android:id="@+id/allItemsRowProgressBar"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/itemImageImg"
-                    app:layout_constraintEnd_toEndOf="@+id/itemImageImg"
-                    app:layout_constraintStart_toStartOf="@+id/itemImageImg"
-                    app:layout_constraintTop_toTopOf="@+id/itemImageImg" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.cardview.widget.CardView>
+        <ProgressBar
+            android:id="@+id/allItemsRowProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/itemImageImg"
+            app:layout_constraintEnd_toEndOf="@+id/itemImageImg"
+            app:layout_constraintStart_toStartOf="@+id/itemImageImg"
+            app:layout_constraintTop_toTopOf="@+id/itemImageImg" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/itemNameTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="@+id/itemImageImg"
+            app:layout_constraintStart_toStartOf="@+id/itemImageImg"
+            app:layout_constraintTop_toBottomOf="@+id/itemImageImg"
             tools:text="6X6 High Density Mattress" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/itemPriceTxt"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
+            android:textColor="@color/main"
             android:maxLines="1"
-            tools:text="Ksh.10000"
             android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="@+id/itemNameTxt"
             app:layout_constraintStart_toStartOf="@+id/itemNameTxt"
-            app:layout_constraintTop_toBottomOf="@+id/itemNameTxt" />
+            app:layout_constraintTop_toBottomOf="@+id/itemNameTxt"
+            tools:text="Ksh.10000" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/favoriteItemImg"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="8dp"
             android:tint="?attr/colorControlNormal"
-            app:layout_constraintBottom_toBottomOf="@+id/itemPriceTxt"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:layout_constraintStart_toEndOf="@+id/itemNameTxt"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/itemNameTxt"
             app:layout_constraintTop_toBottomOf="@+id/itemNameTxt"
             app:srcCompat="@drawable/ic_star"
             tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/starredfavoriteItemImg"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="8dp"
+            android:tint="@color/main"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemPriceTxt"
+            app:layout_constraintEnd_toEndOf="@+id/itemNameTxt"
+            app:layout_constraintTop_toBottomOf="@+id/itemNameTxt"
             app:srcCompat="@drawable/ic_starred"
             tools:ignore="ContentDescription" />
 
