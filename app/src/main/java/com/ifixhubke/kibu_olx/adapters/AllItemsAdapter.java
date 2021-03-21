@@ -47,6 +47,8 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
     private final ArrayList<Item> items;
     ItemClickListener itemClickListener;
     Context context;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
+
 
     public AllItemsAdapter(ArrayList<Item> itemList, ItemClickListener itemClickListener, Context context) {
         items = itemList;
@@ -63,6 +65,32 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+
+        databaseReference.orderByChild("itemName").equalTo(items.get(position).getItemName()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                  //  Timber.d("Already favorite");
+                    holder.add_item_to_favorites.setVisibility(View.INVISIBLE);
+                    holder.starredItem.setVisibility(View.VISIBLE);
+                }else{
+                   // Timber.d("Not a favorite");
+                   // itemClickListener.itemClick(item, position);
+                    holder.add_item_to_favorites.setVisibility(View.VISIBLE);
+                    holder.starredItem.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Timber.d(error.getMessage());
+            }
+        });
+
+
+
+
 
         holder.item_name.setText(items.get(position).getItemName());
         holder.item_price.setText("Ksh. " + items.get(position).getItemPrice());
@@ -113,7 +141,30 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         });
 
         holder.add_item_to_favorites.setOnClickListener(v -> {
-            itemClickListener.itemClick(item, position);
+
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
+            databaseReference.orderByChild("itemName").equalTo(items.get(position).getItemName()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()){
+                        Timber.d("Already favorite");
+                    }else{
+                        Timber.d("Not a favorite");
+                        itemClickListener.itemClick(item, position);
+                        holder.add_item_to_favorites.setVisibility(View.INVISIBLE);
+                        holder.starredItem.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Timber.d(error.getMessage());
+                }
+            });
+
+
+
+            //itemClickListener.itemClick(item, position);
         });
     }
 

@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -192,10 +193,20 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
 
     @Override
     public void itemClick(Item item, int position) {
+
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users")
                     .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
-            databaseReference.push().setValue(item).addOnSuccessListener(aVoid ->
-                    Toast.makeText(requireContext(), item.getItemName() + " added to favorites successfully", Toast.LENGTH_SHORT).show());
+            databaseReference.push().setValue(item).addOnSuccessListener(aVoid ->{
+
+                Snackbar snackbar = Snackbar.make(requireView(), item.getItemName() + " added to favorites successfully", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Dismiss", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                });
+                snackbar.show();
+            });
     }
 
     @Override
