@@ -113,51 +113,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         });
 
         holder.add_item_to_favorites.setOnClickListener(v -> {
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
-            Query query = databaseReference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
-
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()){
-                        for (DataSnapshot i : snapshot.getChildren()) {
-                            Timber.d(i.toString());
-                            Item item = i.getValue(Item.class);
-                            String itemName = item.getItemName();
-
-                            if(itemName.equals(items.get(position).getItemName())){
-                                Timber.d("already starred");
-                                break;
-                            }
-                            else if ((items.get(position).getItemName()) != itemName){
-                                Timber.d("not starred");
-                               Item item2 = new Item(
-                                        items.get(position).getItemImage(),
-                                        items.get(position).getItemName(),
-                                        items.get(position).getItemPrice(),
-                                        false);
-
-                                itemClickListener.itemClick(item2, position);
-                                break;
-                            }
-                        }
-                    }else{
-                        Timber.d("snapshot does not exist");
-                        Item item2 = new Item(
-                                items.get(position).getItemImage(),
-                                items.get(position).getItemName(),
-                                items.get(position).getItemPrice(),
-                                false);
-
-                        itemClickListener.itemClick(item2, position);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-
+            itemClickListener.itemClick(item, position);
         });
     }
 
