@@ -82,6 +82,9 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
             binding.userEmail.setVisibility(View.VISIBLE);
             binding.phoneNum.setVisibility(View.VISIBLE);
             binding.editPhoneNum.setVisibility(View.GONE);
+            binding.editUserName1.setText("");
+            binding.editUserName2.setText("");
+            binding.phoneNum.setText("");
         });
 
         return view;
@@ -120,8 +123,45 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
         String phone = binding.editPhoneNum.getText().toString();
 
         if (TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2) && TextUtils.isEmpty(phone)) {
-            Toast.makeText(requireContext(), "Cannot be blank", Toast.LENGTH_LONG).show();
-        } else if (TextUtils.isEmpty(fName1) || TextUtils.isEmpty(fName2) || TextUtils.isEmpty(phone)) {
+            Toast.makeText(requireContext(), "User details cannot be blank", Toast.LENGTH_LONG).show();
+
+        }
+
+        else if (!TextUtils.isEmpty(fName1) && !TextUtils.isEmpty(fName2) && !TextUtils.isEmpty(phone)){
+            databaseReference.child(userid).child("f_Name").setValue(fName1);
+            databaseReference.child(userid).child("l_Name").setValue(fName2);
+            databaseReference.child(userid).child("phone_No").setValue(phone);
+            binding.userName.setText(fName1+ " " +fName2);
+            binding.phoneNum.setText(phone);
+        }
+
+        else if (!TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2) && TextUtils.isEmpty(phone)){
+            databaseReference.child(userid).child("f_Name").setValue(fName1);
+            binding.userName.setText(fName1+ " " +lastName);
+            binding.phoneNum.setText(phoneNum);
+        }
+
+        else if (!TextUtils.isEmpty(fName2) && TextUtils.isEmpty(fName1) && TextUtils.isEmpty(phone)){
+            databaseReference.child(userid).child("l_Name").setValue(fName2);
+            binding.userName.setText(firstName+ " " +fName2);
+            binding.phoneNum.setText(phoneNum);
+        }
+
+        else if (!TextUtils.isEmpty(phone) && TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2)){
+            databaseReference.child(userid).child("phone_No").setValue(phone);
+            binding.userName.setText(firstName+ " " +lastName);
+            binding.phoneNum.setText(phone);
+        }
+
+
+
+
+
+
+
+
+
+        /*else if (!TextUtils.isEmpty(fName1) || !TextUtils.isEmpty(fName2) || !TextUtils.isEmpty(phone)) {
 
             databaseReference.child(userid).child("f_Name").setValue(fName1);
             binding.userName.setText(fName1 + " " + lastName);
@@ -132,7 +172,7 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
             binding.userName.setVisibility(View.VISIBLE);
         } else if ((!TextUtils.isEmpty(fName1) && !fName1.equals(firstName)) ||
                 (!TextUtils.isEmpty(fName2) && !fName2.equals(lastName)) ||
-                (!TextUtils.isEmpty(phoneNum) && !phone.equals(phoneNum))) {
+                (!TextUtils.isEmpty(phone) && !phone.equals(phoneNum))) {
 
             databaseReference.child(userid).child("f_Name").setValue(fName1);
             databaseReference.child(userid).child("l_Name").setValue(fName2);
@@ -142,7 +182,7 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
             binding.userName.setVisibility(View.VISIBLE);
         } else {
             Toast.makeText(requireContext(), "Unable to edit name", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 
     public void setViews() {
