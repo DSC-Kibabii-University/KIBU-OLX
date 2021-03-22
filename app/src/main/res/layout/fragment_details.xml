@@ -6,17 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.details.DetailsFragment">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar6"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+        app:title="Favorite Items"
+        app:titleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="Details"
-        app:titleTextColor="@color/white" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:subtitleTextColor="@color/white"
+                app:title="Details"
+                app:titleTextColor="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView1"
@@ -27,7 +44,7 @@
         android:src="@drawable/ic_profile_user"
         android:tint="?attr/colorControlNormal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
+        app:layout_constraintTop_toBottomOf="@+id/appbarDetails" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/user_name1"
@@ -81,8 +98,8 @@
                 app:iss_auto_cycle="true"
                 app:iss_corner_radius="5"
                 app:iss_delay="0"
-                app:iss_period="3000"
-                app:iss_placeholder="@drawable/ic_image_placeholder"
+                app:iss_period="2000"
+                app:iss_placeholder="@drawable/load"
                 app:iss_title_background="@drawable/gradient"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

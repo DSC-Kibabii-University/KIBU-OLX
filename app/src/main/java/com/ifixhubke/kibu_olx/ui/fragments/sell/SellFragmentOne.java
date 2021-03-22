@@ -52,20 +52,16 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
         binding.imagePick1.setOnClickListener(v -> {
             openFileChooser(IMAGE_REQUEST1);
             binding.imagePick1.setVisibility(View.GONE);
-            binding.imageRemove1.setVisibility(View.VISIBLE);
         });
 
         binding.imagePick2.setOnClickListener(v -> {
             openFileChooser(IMAGE_REQUEST2);
             binding.imagePick2.setVisibility(View.GONE);
-            binding.imageRemove2.setVisibility(View.VISIBLE);
-
         });
 
         binding.imagePick3.setOnClickListener(v -> {
             openFileChooser(IMAGE_REQUEST3);
             binding.imagePick3.setVisibility(View.GONE);
-            binding.imageRemove3.setVisibility(View.VISIBLE);
 
         });
 
@@ -125,20 +121,51 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
         if (requestCode == IMAGE_REQUEST1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageURI1 = data.getData();
             imagesArrayList.add(imageURI1);
+            binding.imageRemove1.setVisibility(View.VISIBLE);
             binding.imageView1.setImageURI(imageURI1);
+            binding.imagePick1.setVisibility(View.INVISIBLE);
         }
 
-        if (requestCode == IMAGE_REQUEST2 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        else if (requestCode == IMAGE_REQUEST2 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageURI2 = data.getData();
             imagesArrayList.add(imageURI2);
             binding.imageView2.setImageURI(imageURI2);
+            binding.imageRemove2.setVisibility(View.VISIBLE);
+            binding.imagePick2.setVisibility(View.INVISIBLE);
         }
 
-        if (requestCode == IMAGE_REQUEST3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        else if (requestCode == IMAGE_REQUEST3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageURI3 = data.getData();
             imagesArrayList.add(imageURI3);
             binding.imageView3.setImageURI(imageURI3);
+            binding.imageRemove3.setVisibility(View.VISIBLE);
+            binding.imagePick3.setVisibility(View.INVISIBLE);
+
         }
+        else if (requestCode == IMAGE_REQUEST1 && data == null){
+            binding.imagePick1.setVisibility(View.VISIBLE);
+            binding.imageRemove1.setVisibility(View.INVISIBLE);
+        }
+        else if (requestCode == IMAGE_REQUEST2 && data == null){
+            binding.imagePick2.setVisibility(View.VISIBLE);
+            binding.imageRemove2.setVisibility(View.INVISIBLE);
+        }
+        else if (requestCode == IMAGE_REQUEST3 && data == null){
+            binding.imagePick3.setVisibility(View.VISIBLE);
+            binding.imageRemove3.setVisibility(View.INVISIBLE);
+        }
+
+       /* else{
+            Toast.makeText(requireContext(), "No Image Selected", Toast.LENGTH_SHORT).show();
+            binding.imagePick1.setVisibility(View.VISIBLE);
+            binding.imageRemove1.setVisibility(View.INVISIBLE);
+
+            binding.imagePick2.setVisibility(View.VISIBLE);
+            binding.imageRemove2.setVisibility(View.INVISIBLE);
+
+            binding.imagePick3.setVisibility(View.VISIBLE);
+            binding.imageRemove3.setVisibility(View.INVISIBLE);
+        }*/
     }
 
     @Override

@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,7 +29,7 @@ import timber.log.Timber;
 public class SplashFragment extends Fragment {
     FragmentSplashBinding binding;
     FirebaseAuth mFirebaseAuth;
-    Animation top_anim,bottom_anim;
+    Animation top_anim, bottom_anim;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -38,8 +37,8 @@ public class SplashFragment extends Fragment {
         binding = FragmentSplashBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        top_anim = AnimationUtils.loadAnimation(requireContext(),R.anim.top_animation);
-        bottom_anim = AnimationUtils.loadAnimation(requireContext(),R.anim.bottom_animation);
+        top_anim = AnimationUtils.loadAnimation(requireContext(), R.anim.top_animation);
+        bottom_anim = AnimationUtils.loadAnimation(requireContext(), R.anim.bottom_animation);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -58,10 +57,9 @@ public class SplashFragment extends Fragment {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
 
             if (!(CheckInternet.isConnected(requireContext()))) {
-              
-              binding.cartImage.setAnimation(top_anim);
-        binding.kibuOlxTv.setAnimation(bottom_anim);
-        binding.comradeTv.setAnimation(bottom_anim);
+
+                binding.cartImage.setAnimation(top_anim);
+                binding.comradeTv.setAnimation(bottom_anim);
 
                 Snackbar snackbar = Snackbar.make(getView(), "No Internet Connection", Snackbar.LENGTH_INDEFINITE);
                 snackbar.setAction("RETRY", new View.OnClickListener() {
@@ -72,10 +70,15 @@ public class SplashFragment extends Fragment {
                 });
                 snackbar.show();
                 Timber.d("No Internet");
-            }   else {
+            } else {
                 FirebaseUser mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (mFirebaseUser != null && onBoardingFinished()) {
-                    Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_homeFragment2);
+                    if (mFirebaseAuth.getCurrentUser().isEmailVerified()) {
+                        Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_homeFragment2);
+                    }
+                    else {
+                        Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
+                    }
                 } else if (onBoardingFinished()) {
                     Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
                 } else {

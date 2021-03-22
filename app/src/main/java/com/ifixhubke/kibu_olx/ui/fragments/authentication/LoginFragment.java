@@ -74,7 +74,6 @@ public class LoginFragment extends Fragment {
                     if (task.isSuccessful()) {
                         if (firebaseAuth.getCurrentUser().isEmailVerified()) {
                             Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_homeFragment2);
-                            Toast.makeText(getContext(), "welcome", Toast.LENGTH_SHORT).show();
                             Timber.d("signInWithEmailAndPassword: success");
                             binding.loginProgressBar.setVisibility(View.INVISIBLE);
                         } else {

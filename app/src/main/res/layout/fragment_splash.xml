@@ -10,44 +10,41 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cart_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_shopping_cart"
-        android:tint="?attr/colorControlNormal"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
-
-    <TextView
-        android:id="@+id/kibu_olx_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:fontFamily="sans-serif-black"
-        android:text="KIBU-OLX"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cart_image" />
+        app:layout_constraintVertical_bias="0.411" />
 
     <TextView
         android:id="@+id/comrade_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/bangers"
+        android:layout_marginTop="8dp"
         android:paddingEnd="3dp"
         android:text="Your Comrade Life Simplified"
         android:textAlignment="center"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/kibu_olx_tv"
-        app:layout_constraintStart_toStartOf="@+id/kibu_olx_tv"
-        app:layout_constraintTop_toBottomOf="@+id/kibu_olx_tv" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KIBU-OLX"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cart_image"
+        app:layout_constraintEnd_toEndOf="@+id/cart_image"
+        app:layout_constraintStart_toStartOf="@+id/cart_image"
+        app:layout_constraintTop_toTopOf="@+id/cart_image"
+        app:layout_constraintVertical_bias="0.86" />
 </androidx.constraintlayout.widget.ConstraintLayout>

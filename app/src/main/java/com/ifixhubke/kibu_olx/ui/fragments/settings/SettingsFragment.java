@@ -73,15 +73,15 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
         binding.saveTextView.setOnClickListener(v -> {
 
             updateData();
-            binding.editUserName1.setVisibility(View.INVISIBLE);
-            binding.editUserName2.setVisibility(View.INVISIBLE);
-            binding.saveTextView.setVisibility(View.INVISIBLE);
+            binding.editUserName1.setVisibility(View.GONE);
+            binding.editUserName2.setVisibility(View.GONE);
+            binding.saveTextView.setVisibility(View.GONE);
             binding.editTextView.setVisibility(View.VISIBLE);
             binding.userName.setVisibility(View.VISIBLE);
             binding.profileImage.setVisibility(View.VISIBLE);
             binding.userEmail.setVisibility(View.VISIBLE);
             binding.phoneNum.setVisibility(View.VISIBLE);
-            binding.editPhoneNum.setVisibility(View.INVISIBLE);
+            binding.editPhoneNum.setVisibility(View.GONE);
         });
 
         return view;
@@ -133,6 +133,7 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
         } else if ((!TextUtils.isEmpty(fName1) && !fName1.equals(firstName)) ||
                 (!TextUtils.isEmpty(fName2) && !fName2.equals(lastName)) ||
                 (!TextUtils.isEmpty(phoneNum) && !phone.equals(phoneNum))) {
+
             databaseReference.child(userid).child("f_Name").setValue(fName1);
             databaseReference.child(userid).child("l_Name").setValue(fName2);
             databaseReference.child(userid).child("phone_No").setValue(phone);
