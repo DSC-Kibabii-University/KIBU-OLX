@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "posted_item_history")
@@ -30,9 +31,11 @@ public class Item implements Parcelable {
     private double maxPrice;
     private String itemUniqueId;
 
+    @Ignore
     public Item() {
     }
 
+    @Ignore
     public Item(String category, String condition, double minPrice, double maxPrice) {
         this.category = category;
         this.condition = condition;
@@ -40,14 +43,14 @@ public class Item implements Parcelable {
         this.maxPrice = maxPrice;
     }
 
+    @Ignore
     public Item(String itemImage, String itemName, String itemPrice, Boolean itemStarred) {
         this.itemImage = itemImage;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.itemStarred = itemStarred;
     }
-
-
+    @Ignore
     public Item(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription, String category, String condition, String itemUniqueId) {
         this.sellerName = sellerName;
         this.sellerLastSeen = sellerLastSeen;
@@ -74,6 +77,7 @@ public class Item implements Parcelable {
         this.itemUniqueId = itemUniqueId;
     }
 
+    @Ignore
     public Item(String itemImage, String itemImage2, String itemImage3) {
 
         this.itemImage = itemImage;

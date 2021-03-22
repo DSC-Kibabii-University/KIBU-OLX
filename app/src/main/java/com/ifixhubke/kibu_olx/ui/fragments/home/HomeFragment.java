@@ -164,7 +164,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             binding.buttonTryAgain.setVisibility(View.VISIBLE);
             binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
             Timber.d("No Internet");
-            Snackbar snackbar = Snackbar.make(requireView(), "It seems you are not connected to the Internet", Snackbar.LENGTH_SHORT);
+            Snackbar snackbar = Snackbar.make(getView(), "It seems you are not connected to the Internet", Snackbar.LENGTH_SHORT);
             snackbar.setAction("Dismiss", view -> snackbar.dismiss());
             snackbar.show();
         }

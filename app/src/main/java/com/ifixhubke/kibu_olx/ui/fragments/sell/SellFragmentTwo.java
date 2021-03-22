@@ -69,8 +69,11 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(MainViewModel.class);
 
-        assert getArguments() != null;
-        sellArgs = SellFragmentTwoArgs.fromBundle(getArguments()).getSellTwoArguments();
+        if (getArguments() != null){
+            sellArgs = SellFragmentTwoArgs.fromBundle(getArguments()).getSellTwoArguments();
+        }else {
+            Timber.d("SellFragmentTwoArgs are null");
+        }
 
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(requireContext(),R.array.condition,R.layout.spinner_row);
         binding.conditionSpinner.setAdapter(arrayAdapter);
@@ -97,12 +100,12 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
                 return;
             } else if (TextUtils.isEmpty(binding.itemDescription.getText().toString())) {
                 binding.itemDescription.setError("Field can't be empty!");
-            }
-
-            try {
-                uploadFirebase();
-            } catch (IOException e) {
-                e.printStackTrace();
+            }else{
+                try {
+                    uploadFirebase();
+                } catch (IOException e) {
+                    Timber.d(e);
+                }
             }
         });
 
@@ -111,12 +114,12 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
 
     public void uploadFirebase() throws IOException {
         Timber.d("upload method called");
-        if (imagesList != null) {
-            ProgressDialog pd = new ProgressDialog(requireContext());
-            pd.setTitle("Uploading Item...");
-            pd.setCancelable(false);
-            pd.show();
+        ProgressDialog pd = new ProgressDialog(requireContext());
+        pd.setTitle("Uploading Item...");
+        pd.setCancelable(false);
+        pd.show();
 
+        if (imagesList != null) {
             StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("items_image");
             for (int counter = 0; counter < imagesList.size(); counter++) {
 
@@ -185,11 +188,11 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
                 "Thursday 2020",
                 itemUniqueId);
 
-        //String itemImage, String itemName, String itemPrice, Boolean itemStarred
-        Item item = new Item(imageUrl2,binding.productNameEditText.getText().toString(),binding.priceEditText.getText().toString(),date,false, itemUniqueId);
+        Item item = new Item(imageUrl2,binding.productNameEditText.getText().toString(),
+                binding.priceEditText.getText().toString(),
+                date,false, itemUniqueId);
 
         saveToRoomDb(item);
-
         databaseReference.push().setValue(sell);
     }
 
@@ -245,6 +248,5 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }
