@@ -32,6 +32,15 @@ public class RegisterFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     String userID;
+    String validEmail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    String validPassword = "^" + //# start-of-string
+            "(?=.*[0-9])" +      //# a digit must occur at least once
+            "(?=.*[a-z])" +      //# a lower case letter must occur at least once
+            "(?=.*[A-Z])" +      //# an upper case letter must occur at least once
+            "(?=.*[@#$%^&+=])" + //# a special character must occur at least once
+            "(?=\\S+$)" +         //# no whitespace allowed in the entire string
+            ".{8,}"   +          //# anything, at least eight places though
+            "$";                 //# end-of-string;
 
     @Nullable
     @Override
@@ -45,7 +54,6 @@ public class RegisterFragment extends Fragment {
         binding.signupTextView.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_loginFragment));
 
         binding.registerButton.setOnClickListener(v -> {
-
             String mail = binding.enterEmail.getEditText().getText().toString().trim();
             String pass = binding.enterPassword.getEditText().getText().toString().trim();
             String first_Name = binding.firstName.getEditText().getText().toString().trim();
@@ -53,32 +61,54 @@ public class RegisterFragment extends Fragment {
             String phone_Number = binding.phoneNumber.getEditText().getText().toString().trim();
             Boolean agree_with_rules = binding.materialCheckBox.callOnClick();
 
-            if (TextUtils.isEmpty(binding.enterEmail.getEditText().getText().toString())) {
-                binding.enterEmail.setError("Field can't be empty!");
+
+            if (binding.enterEmail.getEditText().getText().toString().isEmpty()){
+                binding.enterEmail.setError("This field can't be empty!");
                 return;
-            } else if (TextUtils.isEmpty(binding.enterPassword.getEditText().getText().toString())) {
-                binding.enterPassword.setError("Field can't be empty!");
+            }
+            else if (!binding.enterEmail.getEditText().getText().toString().matches(validEmail)){
+                binding.enterEmail.setError("Invalid email!");
                 return;
-            } else if (TextUtils.isEmpty(binding.firstName.getEditText().getText().toString())) {
-                binding.firstName.setError("Field can't be empty!");
+            }
+
+            else if (binding.enterPassword.getEditText().getText().toString().isEmpty()){
+                binding.enterPassword.setError("This field can't be empty!");
                 return;
-            } else if (TextUtils.isEmpty(binding.lastName.getEditText().getText().toString())) {
-                binding.lastName.setError("Field can't be empty!");
+            }
+            else if (!(binding.enterPassword.getEditText().getText().toString()).matches(validPassword)){
+                binding.enterPassword.setError("Password is too weak.!"
+                        +"\n Must contain"+
+                        "\nat least 8 characters."+"\nAt least one digit"
+                        +"\nAt least one lowercase letter and one uppercase letter"
+                        +"\nA special character...@,#,$,%,^,&,+ or = and no spaces");
                 return;
-            } else if (TextUtils.isEmpty(binding.phoneNumber.getEditText().getText().toString())) {
-                binding.phoneNumber.setError("Field can't be empty!");
+            }
+
+           else if (binding.firstName.getEditText().getText().toString().isEmpty()){
+                binding.firstName.setError("This field can't be empty!");
                 return;
-            } else if (binding.phoneNumber.getEditText().getText().length() < 10) {
-                binding.phoneNumber.setError("Put correct Fields");
+            }
+            else if (binding.firstName.getEditText().getText().toString().length() >= 15){
+                binding.firstName.setError("Name is too long!");
                 return;
-            } else if (binding.enterPassword.getEditText().getText().length() < 6) {
-                binding.enterPassword.setError("Password should be 6 characters or more!");
-            } else if (!isvalidemail(binding.enterEmail.getEditText().getText().toString())) {
-                binding.enterEmail.setError("Invalid Email!");
-            } else if (!binding.materialCheckBox.isChecked()) {
-                binding.materialCheckBox.setError("please check here!");
+            }
+
+            else if (binding.lastName.getEditText().getText().toString().isEmpty()){
+                binding.lastName.setError("This field can't be empty!");
                 return;
-            } else {
+            }
+            else if (binding.lastName.getEditText().getText().toString().length() >= 15){
+                binding.lastName.setError("Name is too long!");
+                return;
+            }
+
+
+            else if (binding.phoneNumber.getEditText().getText().toString().isEmpty()){
+                binding.phoneNumber.setError("This field can't be empty!");
+                return;
+            }
+
+            else {
                 binding.registerProgressBar.setVisibility(View.VISIBLE);
             }
 
@@ -126,10 +156,6 @@ public class RegisterFragment extends Fragment {
         });
 
         return view;
-    }
-
-    private boolean isvalidemail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
     public void saveUserDetails(String mail, String firstName, String lastName, String phoneNumber) {
