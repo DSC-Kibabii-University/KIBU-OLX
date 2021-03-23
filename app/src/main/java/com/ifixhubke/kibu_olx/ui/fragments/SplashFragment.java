@@ -58,9 +58,6 @@ public class SplashFragment extends Fragment {
 
             if (!(CheckInternet.isConnected(requireContext()))) {
 
-                binding.cartImage.setAnimation(top_anim);
-                binding.comradeTv.setAnimation(bottom_anim);
-
                 Snackbar snackbar = Snackbar.make(getView(), "No Internet Connection", Snackbar.LENGTH_INDEFINITE);
                 snackbar.setAction("RETRY", new View.OnClickListener() {
                     @Override

@@ -1,6 +1,8 @@
-package com.ifixhubke.kibu_olx.ui.fragments.home;
+        package com.ifixhubke.kibu_olx.ui.fragments.home;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -74,7 +76,6 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
         });
 
         fetchItems();
-
         return view;
     }
 
@@ -111,13 +112,12 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
                 itemsList.clear();
                 if (snapshot.exists()) {
                     binding.imageView2.setVisibility(View.INVISIBLE);
-                    binding.textView.setVisibility(View.INVISIBLE);
+                        binding.textView.setVisibility(View.INVISIBLE);
+
 
                     for (DataSnapshot i : snapshot.getChildren()) {
-                        // Timber.d(i.toString());
                         Item item = i.getValue(Item.class);
                         itemsList.add(item);
-                        //to reverse the list coz firebase sorts data in ascending order
                         Collections.reverse(itemsList);
                         binding.shimmerFrameLayout.setVisibility(View.INVISIBLE);
                         binding.allItemsRecyclerview.setVisibility(View.VISIBLE);
@@ -208,19 +208,28 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment2_to_filterFragment);
             return true;
         } else if (item.getItemId() == R.id.shareMenu) {
-            Toast.makeText(requireContext(), "Share Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+            intent.putExtra(Intent.EXTRA_TEXT, "Download my app");
+            startActivity(Intent.createChooser(intent, "Share App Via..."));
             return true;
         } else if (item.getItemId() == R.id.aboutUsMenu) {
-            Toast.makeText(requireContext(), "About Us Clicked", Toast.LENGTH_SHORT).show();
+            String url = "https://github.com/iFix-Hub-KE";
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
             return true;
-        } else if (item.getItemId() == R.id.inviteFriendMenu) {
-            Toast.makeText(requireContext(), "Invite Friend Clicked", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (item.getItemId() == R.id.rateUsMenu) {
+        }else if (item.getItemId() == R.id.rateUsMenu) {
             Toast.makeText(requireContext(), "Rate Us Clicked", Toast.LENGTH_SHORT).show();
             return true;
         } else if (item.getItemId() == R.id.helpMenu) {
-            Toast.makeText(requireContext(), "Help and Feedback Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/email");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ifixhubke@gmail.com"});
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Help and Feedback");
+            startActivity(Intent.createChooser(intent, "Send Feedback"));
+
             return true;
         } else if (item.getItemId() == R.id.logoutMenu) {
             FirebaseAuth.getInstance().signOut();
