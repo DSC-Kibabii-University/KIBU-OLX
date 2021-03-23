@@ -58,6 +58,7 @@
         <item>Books</item>
         <item>Households</item>
         <item>Food</item>
+        <item>Others</item>
     </string-array>
 
     <string-array name="location">
@@ -68,15 +69,19 @@
         <item>Booster</item>
         <item>21st Centuary</item>
         <item>Butieli</item>
+        <item>MMUST</item>
+        <item>Makutano</item>
+        <item>Mayanja</item>
         <item>Bukananach</item>
         <item>Cardinal Otunga</item>
+        <item>Others</item>
     </string-array>
 
     <string-array name="condition">
         <item>Condition</item>
         <item>Used</item>
         <item>New</item>
-        <item>Refurbrished</item>
+        <item>Refurbished</item>
     </string-array>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

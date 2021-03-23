@@ -170,6 +170,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Food" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipOthers"
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Others" />
             </com.google.android.material.chip.ChipGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
