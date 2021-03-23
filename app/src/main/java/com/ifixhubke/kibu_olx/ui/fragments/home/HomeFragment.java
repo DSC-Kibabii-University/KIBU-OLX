@@ -224,7 +224,12 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             Toast.makeText(requireContext(), "Rate Us Clicked", Toast.LENGTH_SHORT).show();
             return true;
         } else if (item.getItemId() == R.id.helpMenu) {
-            Toast.makeText(requireContext(), "Help and Feedback Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/email");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ifixhubke@gmail.com"});
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Help and Feedback");
+            startActivity(Intent.createChooser(intent, "Send Feedback"));
+
             return true;
         } else if (item.getItemId() == R.id.logoutMenu) {
             FirebaseAuth.getInstance().signOut();
