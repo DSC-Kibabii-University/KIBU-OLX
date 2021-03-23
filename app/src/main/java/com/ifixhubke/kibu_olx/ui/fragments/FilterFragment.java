@@ -12,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentFilterBinding;
 
@@ -27,7 +26,7 @@ public class FilterFragment extends BottomSheetDialogFragment {
 
     FragmentFilterBinding binding;
     String category, condition;
-    double minPrice = 0, maxPrice = 10000;
+    double minPrice = 0, maxPrice = 100000;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -37,14 +36,29 @@ public class FilterFragment extends BottomSheetDialogFragment {
 
         Timber.d("Check on Slider default values: " + minPrice + " to: " + maxPrice);
 
-        binding.categoryChipGroup.setOnCheckedChangeListener((group, checkedId) ->
-                category = getSelectedChipText(group, checkedId));
+        binding.categoryChipGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (group.findViewById(checkedId) == null) {
+                Timber.d("Null id in chip group");
+                category = null;
+                return;
+            }
+            category = getSelectedChipText(group, checkedId);
+        });
 
-        binding.conditionChipGroup.setOnCheckedChangeListener((group, checkedId) -> condition = getSelectedChipText(group, checkedId));
+
+        binding.conditionChipGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (group.findViewById(checkedId) == null) {
+                Timber.d("Null id in chip group");
+                condition = null;
+                return;
+            }
+            condition = getSelectedChipText(group, checkedId);
+        });
 
         binding.textViewDone.setOnClickListener(v -> {
+            Timber.d(category + "" + condition);
 
-            if (category == null && condition == null) {
+            if (category == null || condition == null) {
                 Toast.makeText(requireContext(), "You must select an item category and its condition", Toast.LENGTH_SHORT).show();
                 return;
             }
