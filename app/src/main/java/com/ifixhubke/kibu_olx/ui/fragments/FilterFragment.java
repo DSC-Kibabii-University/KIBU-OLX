@@ -68,7 +68,7 @@ public class FilterFragment extends BottomSheetDialogFragment {
 
         });
 
-        binding.textViewReset.setOnClickListener(v->{
+        binding.textViewReset.setOnClickListener(v -> {
             binding.categoryChipGroup.clearCheck();
             binding.conditionChipGroup.clearCheck();
             binding.priceSlider.setValues(0.0F, 30000.0F);

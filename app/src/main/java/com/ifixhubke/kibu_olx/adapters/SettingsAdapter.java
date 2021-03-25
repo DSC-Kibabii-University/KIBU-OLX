@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Objects;
@@ -55,7 +54,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
     @Override
     public void onBindViewHolder(@NonNull SettingsHolder holder, int position) {
         holder.name.setText(itemArrayList.get(position).getItemName());
-       /* Picasso.get().load(itemArrayList.get(position).getItemImage()).placeholder(R.drawable.lottie_loading).into(holder.image);*/
+        /* Picasso.get().load(itemArrayList.get(position).getItemImage()).placeholder(R.drawable.lottie_loading).into(holder.image);*/
         holder.price.setText("Kshs. " + itemArrayList.get(position).getItemPrice());
         holder.date.setText(itemArrayList.get(position).getDatePosted());
 
@@ -95,7 +94,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
                                 i.getRef().removeValue();
                                 Timber.d("%s removed from advertisements", i.getValue().toString());
                             }
-                        }else{
+                        } else {
                             Timber.d("Does not exist");
                         }
                     }

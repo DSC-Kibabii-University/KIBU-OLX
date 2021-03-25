@@ -47,17 +47,17 @@ import java.util.UUID;
 import timber.log.Timber;
 
 public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelectedListener {
+    private final ArrayList<String> imagesUrls = new ArrayList<>();
     FragmentSellTwoBinding binding;
     DatabaseReference databaseReference;
     StorageReference storageReference;
-    private ArrayList<Uri> imagesList = new ArrayList<>();
-    private final ArrayList<String> imagesUrls = new ArrayList<>();
     String imageUrl1;
     String imageUrl2;
     String imageUrl3;
     Sell sellArgs;
     String f_name;
     String s_name;
+    private ArrayList<Uri> imagesList = new ArrayList<>();
     private MainViewModel viewModel;
     private String condition;
 
@@ -69,13 +69,13 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
 
         viewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(MainViewModel.class);
 
-        if (getArguments() != null){
+        if (getArguments() != null) {
             sellArgs = SellFragmentTwoArgs.fromBundle(getArguments()).getSellTwoArguments();
-        }else {
+        } else {
             Timber.d("SellFragmentTwoArgs are null");
         }
 
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(requireContext(),R.array.condition,R.layout.spinner_row);
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.condition, R.layout.spinner_row);
         binding.conditionSpinner.setAdapter(arrayAdapter);
         binding.conditionSpinner.setOnItemSelectedListener(this);
 
@@ -90,7 +90,7 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
             if (TextUtils.isEmpty(binding.productNameEditText.getText().toString())) {
                 binding.productNameEditText.setError("Field can't be empty!");
                 return;
-            } else if (binding.conditionSpinner.getSelectedItem().toString().equals("Condition")){
+            } else if (binding.conditionSpinner.getSelectedItem().toString().equals("Condition")) {
                 Toast.makeText(requireContext(), "Select Condition", Toast.LENGTH_SHORT).show();
             } else if (TextUtils.isEmpty(binding.priceEditText.getText().toString())) {
                 binding.priceEditText.setError("Field can't be empty!");
@@ -100,7 +100,7 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
                 return;
             } else if (TextUtils.isEmpty(binding.itemDescription.getText().toString())) {
                 binding.itemDescription.setError("Field can't be empty!");
-            }else{
+            } else {
                 try {
                     uploadFirebase();
                 } catch (IOException e) {
@@ -131,7 +131,7 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
                 bmp.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
                 byte[] fileInBytes = byteArrayOutputStream.toByteArray();
 
-                Timber.d(counter+" "+fileInBytes.length);
+                Timber.d(counter + " " + fileInBytes.length);
 
                 UploadTask uploadTask = fileStorageReference.putBytes(fileInBytes);
 
@@ -188,9 +188,9 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
                 "Thursday 2020",
                 itemUniqueId);
 
-        Item item = new Item(imageUrl2,binding.productNameEditText.getText().toString(),
+        Item item = new Item(imageUrl2, binding.productNameEditText.getText().toString(),
                 binding.priceEditText.getText().toString(),
-                date,false, itemUniqueId);
+                date, false, itemUniqueId);
 
         saveToRoomDb(item);
         databaseReference.push().setValue(sell);
@@ -235,13 +235,13 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
         });
     }
 
-    private void saveToRoomDb(Item item){
+    private void saveToRoomDb(Item item) {
         viewModel.insert(item);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getId()==R.id.conditionSpinner){
+        if (parent.getId() == R.id.conditionSpinner) {
             condition = binding.conditionSpinner.getSelectedItem().toString();
         }
     }

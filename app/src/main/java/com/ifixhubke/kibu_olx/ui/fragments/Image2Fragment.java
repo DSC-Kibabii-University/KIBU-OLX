@@ -4,18 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.palette.graphics.Palette;
 import androidx.viewpager2.widget.ViewPager2;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -23,30 +20,26 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.ifixhubke.kibu_olx.R;
-import com.ifixhubke.kibu_olx.databinding.FragmentImage1Binding;
 import com.ifixhubke.kibu_olx.databinding.FragmentImage2Binding;
-import com.squareup.picasso.Picasso;
-
-import timber.log.Timber;
 
 public class Image2Fragment extends Fragment {
     String imageUrl;
     FragmentImage2Binding binding;
     int col;
 
-    public Image2Fragment(String imageUrl){
+    public Image2Fragment(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentImage2Binding.inflate(inflater,container,false);
+        binding = FragmentImage2Binding.inflate(inflater, container, false);
         View view = binding.getRoot();
         Toolbar toolbar = getActivity().findViewById(R.id.pictureBrowsingtoolbar);
         ViewPager2 viewPager2 = getActivity().findViewById(R.id.pictureBrowsingViewPager);
 
-       // Picasso.get().load(imageUrl).placeholder(R.drawable.ic_image_placeholder).into(binding.imageViewImage2);
+        // Picasso.get().load(imageUrl).placeholder(R.drawable.ic_image_placeholder).into(binding.imageViewImage2);
 
         Glide.with(view)
                 .load(imageUrl)
@@ -67,12 +60,12 @@ public class Image2Fragment extends Fragment {
                             @Override
                             public void onGenerated(@Nullable Palette palette) {
                                 assert palette != null;
-                               col = palette.getDominantColor(0);
+                                col = palette.getDominantColor(0);
                                 binding.imageLayout2.setBackgroundColor(col);
 
 
-                                    //toolbar.setBackgroundColor(col);
-                                   // getActivity().getWindow().setStatusBarColor(col);
+                                //toolbar.setBackgroundColor(col);
+                                // getActivity().getWindow().setStatusBarColor(col);
 
                             }
                         });

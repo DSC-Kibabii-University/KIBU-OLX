@@ -1,10 +1,6 @@
 package com.ifixhubke.kibu_olx.ui.fragments.authentication;
 
 import android.os.Bundle;
-
-
-import android.renderscript.ScriptGroup;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentLoginBinding;
@@ -43,7 +37,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 PasswordResetFragment resetFragment = new PasswordResetFragment();
-                resetFragment.show(getFragmentManager(),"dialog_password_reset");
+                resetFragment.show(getFragmentManager(), "dialog_password_reset");
             }
         });
 
@@ -93,8 +87,8 @@ public class LoginFragment extends Fragment {
                 }
             });
 
-    });
+        });
 
         return view;
-}
+    }
 }

@@ -25,14 +25,14 @@ import java.util.ArrayList;
 import static android.app.Activity.RESULT_OK;
 
 public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelectedListener {
-    FragmentSellOneBinding binding;
-    public Uri imageURI1;
-    public Uri imageURI2;
-    public Uri imageURI3;
     private static final int IMAGE_REQUEST1 = 1;
     private static final int IMAGE_REQUEST2 = 2;
     private static final int IMAGE_REQUEST3 = 3;
     private final ArrayList<Uri> imagesArrayList = new ArrayList<>();
+    public Uri imageURI1;
+    public Uri imageURI2;
+    public Uri imageURI3;
+    FragmentSellOneBinding binding;
     private String category, location;
 
     @Nullable
@@ -86,17 +86,17 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
 
         binding.nextButton.setOnClickListener(v -> {
             //Passing data to sell2
-            if ( binding.categorySpinner.getSelectedItem().toString().trim().equals("category")) {
+            if (binding.categorySpinner.getSelectedItem().toString().trim().equals("category")) {
                 Toast.makeText(requireContext(), "Please select cateory", Toast.LENGTH_SHORT).show();
-            }else if ( binding.locationSpinner.getSelectedItem().toString().trim().equals("location")) {
+            } else if (binding.locationSpinner.getSelectedItem().toString().trim().equals("location")) {
                 Toast.makeText(requireContext(), "Please select location", Toast.LENGTH_SHORT).show();
-            }else if (imageURI1 == null){
+            } else if (imageURI1 == null) {
                 Toast.makeText(requireContext(), "Please upload yuor first image", Toast.LENGTH_SHORT).show();
-            }else if (imageURI2== null){
+            } else if (imageURI2 == null) {
                 Toast.makeText(requireContext(), "Please upload yuor second image", Toast.LENGTH_SHORT).show();
-            }else if (imageURI3 == null){
+            } else if (imageURI3 == null) {
                 Toast.makeText(requireContext(), "Please upload yuor Third image", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 Sell sell = new Sell(category, location, imagesArrayList);
                 NavDirections action = SellFragmentOneDirections.actionSellFragmentOneToSellFragmentTwo(sell);
                 Navigation.findNavController(v).navigate(action);
@@ -124,33 +124,26 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
             binding.imageRemove1.setVisibility(View.VISIBLE);
             binding.imageView1.setImageURI(imageURI1);
             binding.imagePick1.setVisibility(View.INVISIBLE);
-        }
-
-        else if (requestCode == IMAGE_REQUEST2 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        } else if (requestCode == IMAGE_REQUEST2 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageURI2 = data.getData();
             imagesArrayList.add(imageURI2);
             binding.imageView2.setImageURI(imageURI2);
             binding.imageRemove2.setVisibility(View.VISIBLE);
             binding.imagePick2.setVisibility(View.INVISIBLE);
-        }
-
-        else if (requestCode == IMAGE_REQUEST3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        } else if (requestCode == IMAGE_REQUEST3 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageURI3 = data.getData();
             imagesArrayList.add(imageURI3);
             binding.imageView3.setImageURI(imageURI3);
             binding.imageRemove3.setVisibility(View.VISIBLE);
             binding.imagePick3.setVisibility(View.INVISIBLE);
 
-        }
-        else if (requestCode == IMAGE_REQUEST1 && data == null){
+        } else if (requestCode == IMAGE_REQUEST1 && data == null) {
             binding.imagePick1.setVisibility(View.VISIBLE);
             binding.imageRemove1.setVisibility(View.INVISIBLE);
-        }
-        else if (requestCode == IMAGE_REQUEST2 && data == null){
+        } else if (requestCode == IMAGE_REQUEST2 && data == null) {
             binding.imagePick2.setVisibility(View.VISIBLE);
             binding.imageRemove2.setVisibility(View.INVISIBLE);
-        }
-        else if (requestCode == IMAGE_REQUEST3 && data == null){
+        } else if (requestCode == IMAGE_REQUEST3 && data == null) {
             binding.imagePick3.setVisibility(View.VISIBLE);
             binding.imageRemove3.setVisibility(View.INVISIBLE);
         }

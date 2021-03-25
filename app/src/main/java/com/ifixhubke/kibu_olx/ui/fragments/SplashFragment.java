@@ -72,8 +72,7 @@ public class SplashFragment extends Fragment {
                 if (mFirebaseUser != null && onBoardingFinished()) {
                     if (mFirebaseAuth.getCurrentUser().isEmailVerified()) {
                         Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_homeFragment2);
-                    }
-                    else {
+                    } else {
                         Navigation.findNavController(requireView()).navigate(R.id.action_splashFragment_to_loginFragment);
                     }
                 } else if (onBoardingFinished()) {

@@ -39,7 +39,7 @@ public class PictureBrowserFragment extends Fragment {
         Timber.d(item.getItemImage() + "" + item.getItemImage2() + "" + item.getItemImage3());
 
 
-        binding.pictureBrowsingtoolbar.setNavigationOnClickListener(v ->{
+        binding.pictureBrowsingtoolbar.setNavigationOnClickListener(v -> {
             requireActivity().onBackPressed();
         });
 

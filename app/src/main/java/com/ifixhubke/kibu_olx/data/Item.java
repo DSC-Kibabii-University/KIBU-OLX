@@ -10,6 +10,17 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "posted_item_history")
 public class Item implements Parcelable {
 
+    public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel source) {
+            return new Item(source);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
     @PrimaryKey(autoGenerate = true)
     int id;
     Boolean itemStarred;
@@ -50,6 +61,7 @@ public class Item implements Parcelable {
         this.itemPrice = itemPrice;
         this.itemStarred = itemStarred;
     }
+
     @Ignore
     public Item(String sellerName, String sellerLastSeen, String sellerPhoneNum, String itemImage, String itemImage2, String itemImage3, String itemName, String itemPrice, String datePosted, String location, String itemDescription, String category, String condition, String itemUniqueId) {
         this.sellerName = sellerName;
@@ -83,6 +95,25 @@ public class Item implements Parcelable {
         this.itemImage = itemImage;
         this.itemImage2 = itemImage2;
         this.itemImage3 = itemImage3;
+    }
+
+    protected Item(Parcel in) {
+        this.id = in.readInt();
+        this.itemStarred = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.sellerName = in.readString();
+        this.sellerLastSeen = in.readString();
+        this.sellerPhoneNum = in.readString();
+        this.itemImage = in.readString();
+        this.itemImage2 = in.readString();
+        this.itemImage3 = in.readString();
+        this.itemName = in.readString();
+        this.itemPrice = in.readString();
+        this.datePosted = in.readString();
+        this.location = in.readString();
+        this.itemDescription = in.readString();
+        this.isSoldOut = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.category = in.readString();
+        this.condition = in.readString();
     }
 
     public int getId() {
@@ -213,7 +244,6 @@ public class Item implements Parcelable {
         this.condition = condition;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -257,37 +287,6 @@ public class Item implements Parcelable {
         this.category = source.readString();
         this.condition = source.readString();
     }
-
-    protected Item(Parcel in) {
-        this.id = in.readInt();
-        this.itemStarred = (Boolean) in.readValue(Boolean.class.getClassLoader());
-        this.sellerName = in.readString();
-        this.sellerLastSeen = in.readString();
-        this.sellerPhoneNum = in.readString();
-        this.itemImage = in.readString();
-        this.itemImage2 = in.readString();
-        this.itemImage3 = in.readString();
-        this.itemName = in.readString();
-        this.itemPrice = in.readString();
-        this.datePosted = in.readString();
-        this.location = in.readString();
-        this.itemDescription = in.readString();
-        this.isSoldOut = (Boolean) in.readValue(Boolean.class.getClassLoader());
-        this.category = in.readString();
-        this.condition = in.readString();
-    }
-
-    public static final Parcelable.Creator<Item> CREATOR = new Parcelable.Creator<Item>() {
-        @Override
-        public Item createFromParcel(Parcel source) {
-            return new Item(source);
-        }
-
-        @Override
-        public Item[] newArray(int size) {
-            return new Item[size];
-        }
-    };
 
     public double getMinPrice() {
         return minPrice;

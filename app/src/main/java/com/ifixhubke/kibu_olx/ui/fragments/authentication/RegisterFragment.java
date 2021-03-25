@@ -1,9 +1,6 @@
 package com.ifixhubke.kibu_olx.ui.fragments.authentication;
 
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Pair;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +36,7 @@ public class RegisterFragment extends Fragment {
             "(?=.*[A-Z])" +      //# an upper case letter must occur at least once
             "(?=.*[@#$%^&+=])" + //# a special character must occur at least once
             "(?=\\S+$)" +         //# no whitespace allowed in the entire string
-            ".{8,}"   +          //# anything, at least eight places though
+            ".{8,}" +          //# anything, at least eight places though
             "$";                 //# end-of-string;
 
     @Nullable
@@ -62,69 +59,53 @@ public class RegisterFragment extends Fragment {
             Boolean agree_with_rules = binding.materialCheckBox.callOnClick();
 
 
-            if (binding.enterEmail.getEditText().getText().toString().isEmpty()){
+            if (binding.enterEmail.getEditText().getText().toString().isEmpty()) {
                 binding.enterEmail.setError("This field can't be empty!");
                 return;
-            }
-            else if (!binding.enterEmail.getEditText().getText().toString().matches(validEmail)){
+            } else if (!binding.enterEmail.getEditText().getText().toString().matches(validEmail)) {
                 binding.enterEmail.setError("Invalid email!");
                 return;
-            }
-
-            else if (binding.enterPassword.getEditText().getText().toString().isEmpty()){
+            } else if (binding.enterPassword.getEditText().getText().toString().isEmpty()) {
                 binding.enterPassword.setError("This field can't be empty!");
                 return;
-            }
-            else if (!(binding.enterPassword.getEditText().getText().toString()).matches(validPassword)){
+            } else if (!(binding.enterPassword.getEditText().getText().toString()).matches(validPassword)) {
                 binding.enterPassword.setError("Password is too weak.!"
-                        +"\n Must contain"+
-                        "\nat least 8 characters."+"\nAt least one digit"
-                        +"\nAt least one lowercase letter and one uppercase letter"
-                        +"\nA special character...@,#,$,%,^,&,+ or = and no spaces");
+                        + "\n Must contain" +
+                        "\nat least 8 characters." + "\nAt least one digit"
+                        + "\nAt least one lowercase letter and one uppercase letter"
+                        + "\nA special character...@,#,$,%,^,&,+ or = and no spaces");
                 return;
-            }
-
-           else if (binding.firstName.getEditText().getText().toString().isEmpty()){
+            } else if (binding.firstName.getEditText().getText().toString().isEmpty()) {
                 binding.firstName.setError("This field can't be empty!");
                 return;
-            }
-            else if (binding.firstName.getEditText().getText().toString().length() >= 15){
+            } else if (binding.firstName.getEditText().getText().toString().length() >= 15) {
                 binding.firstName.setError("Name is too long!");
                 return;
-            }
-
-            else if (binding.lastName.getEditText().getText().toString().isEmpty()){
+            } else if (binding.lastName.getEditText().getText().toString().isEmpty()) {
                 binding.lastName.setError("This field can't be empty!");
                 return;
-            }
-            else if (binding.lastName.getEditText().getText().toString().length() >= 15){
+            } else if (binding.lastName.getEditText().getText().toString().length() >= 15) {
                 binding.lastName.setError("Name is too long!");
                 return;
-            }
-
-
-            else if (binding.phoneNumber.getEditText().getText().toString().isEmpty()){
+            } else if (binding.phoneNumber.getEditText().getText().toString().isEmpty()) {
                 binding.phoneNumber.setError("This field can't be empty!");
                 return;
-            }
-
-            else {
+            } else {
                 binding.registerProgressBar.setVisibility(View.VISIBLE);
             }
 
             firebaseAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(getActivity(), task -> {
                 if (task.isSuccessful()) {
                     //sending verification email
-                    FirebaseUser firebaseUser= firebaseAuth.getCurrentUser();
+                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                     assert firebaseUser != null;
                     firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            if(task.isSuccessful()){
-                                Toast.makeText(requireContext(),"Check email for verification link",Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                Toast.makeText(requireContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            if (task.isSuccessful()) {
+                                Toast.makeText(requireContext(), "Check email for verification link", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(requireContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
 
                         }

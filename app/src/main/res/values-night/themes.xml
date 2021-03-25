@@ -14,11 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="ThemeOverlay.KIBUOLX.FullscreenContainer" parent="">
-        <item name="fullscreenBackgroundColor">@color/light_blue_900</item>
-        <item name="fullscreenTextColor">@color/light_blue_A400</item>
-    </style>
-
     <style name="MyCustomTheme" parent="MaterialSearchBarDark">
         <item name="mt_searchBarColor">@color/searchBarDividerColor</item>
         <item name="mt_dividerColor">@color/searchBarDividerColor</item>

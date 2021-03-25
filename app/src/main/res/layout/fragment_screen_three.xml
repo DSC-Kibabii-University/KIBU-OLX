@@ -53,7 +53,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/lorem_ipsum"
+        android:text="@string/buy_sell_online_everything_you_need_get_a_variety_of_products_all_in_one_place"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"

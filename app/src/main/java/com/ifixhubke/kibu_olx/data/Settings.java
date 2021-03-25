@@ -1,7 +1,7 @@
 package com.ifixhubke.kibu_olx.data;
 
 public class Settings {
-    private String name ;
+    private String name;
     private String price;
     private String image;
 

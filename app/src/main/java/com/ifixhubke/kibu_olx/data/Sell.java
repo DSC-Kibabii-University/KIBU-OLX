@@ -8,6 +8,17 @@ import java.util.ArrayList;
 
 public class Sell implements Parcelable {
 
+    public static final Parcelable.Creator<Sell> CREATOR = new Parcelable.Creator<Sell>() {
+        @Override
+        public Sell createFromParcel(Parcel source) {
+            return new Sell(source);
+        }
+
+        @Override
+        public Sell[] newArray(int size) {
+            return new Sell[size];
+        }
+    };
     private String category;
     private String location;
     private String itemName;
@@ -43,6 +54,23 @@ public class Sell implements Parcelable {
         this.sellerName = sellerName;
         this.sellerLastSeen = sellerLastSeen;
         this.itemUniqueId = itemUniqueId;
+    }
+
+    public Sell(String category, String location, ArrayList<Uri> imagesList) {
+        this.category = category;
+        this.location = location;
+        this.imagesList = imagesList;
+    }
+
+    protected Sell(Parcel in) {
+        this.category = in.readString();
+        this.location = in.readString();
+        this.itemName = in.readString();
+        this.itemPrice = in.readString();
+        this.condition = in.readString();
+        this.sellerPhoneNum = in.readString();
+        this.datePosted = in.readString();
+        this.imagesList = in.createTypedArrayList(Uri.CREATOR);
     }
 
     public String getSellerName() {
@@ -91,12 +119,6 @@ public class Sell implements Parcelable {
 
     public void setItemImage3(String itemImage3) {
         this.itemImage3 = itemImage3;
-    }
-
-    public Sell(String category, String location, ArrayList<Uri> imagesList) {
-        this.category = category;
-        this.location = location;
-        this.imagesList = imagesList;
     }
 
     public Boolean getItemStarred() {
@@ -198,29 +220,6 @@ public class Sell implements Parcelable {
         this.datePosted = source.readString();
         this.imagesList = source.createTypedArrayList(Uri.CREATOR);
     }
-
-    protected Sell(Parcel in) {
-        this.category = in.readString();
-        this.location = in.readString();
-        this.itemName = in.readString();
-        this.itemPrice = in.readString();
-        this.condition = in.readString();
-        this.sellerPhoneNum = in.readString();
-        this.datePosted = in.readString();
-        this.imagesList = in.createTypedArrayList(Uri.CREATOR);
-    }
-
-    public static final Parcelable.Creator<Sell> CREATOR = new Parcelable.Creator<Sell>() {
-        @Override
-        public Sell createFromParcel(Parcel source) {
-            return new Sell(source);
-        }
-
-        @Override
-        public Sell[] newArray(int size) {
-            return new Sell[size];
-        }
-    };
 
     public String getItemUniqueId() {
         return itemUniqueId;

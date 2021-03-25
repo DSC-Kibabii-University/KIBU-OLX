@@ -40,11 +40,10 @@ import timber.log.Timber;
 public class SettingsFragment extends Fragment implements ItemClickListener, Toolbar.OnMenuItemClickListener {
     FragmentSettingsBinding binding;
     SettingsAdapter adapter;
-    private DatabaseReference databaseReference;
     String userid, firstName, lastName, phoneNum, email;
-
     FirebaseUser user;
     MainViewModel viewModel;
+    private DatabaseReference databaseReference;
 
     @Nullable
     @Override
@@ -124,69 +123,55 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
 
         if (TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2) && TextUtils.isEmpty(phone)) {
             Toast.makeText(requireContext(), "User details cannot be blank", Toast.LENGTH_LONG).show();
-            Timber.d(firstName+" "+lastName+" "+phoneNum);
+            Timber.d(firstName + " " + lastName + " " + phoneNum);
 
-        }
-
-       else if (!TextUtils.isEmpty(fName1) && !TextUtils.isEmpty(fName2) && !TextUtils.isEmpty(phone)){
+        } else if (!TextUtils.isEmpty(fName1) && !TextUtils.isEmpty(fName2) && !TextUtils.isEmpty(phone)) {
             databaseReference.child(userid).child("f_Name").setValue(fName1);
             databaseReference.child(userid).child("l_Name").setValue(fName2);
             databaseReference.child(userid).child("phone_No").setValue(phone);
-            binding.userName.setText(fName1+ " " +fName2);
+            binding.userName.setText(fName1 + " " + fName2);
             binding.phoneNum.setText(phone);
             firstName = fName1;
             lastName = fName2;
             phoneNum = phone;
-            Timber.d(fName1+" "+fName2+" "+phone);
-        }
-
-       else if (!TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2) && TextUtils.isEmpty(phone)){
+            Timber.d(fName1 + " " + fName2 + " " + phone);
+        } else if (!TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2) && TextUtils.isEmpty(phone)) {
             databaseReference.child(userid).child("f_Name").setValue(fName1);
-            binding.userName.setText(fName1+ " " +lastName);
+            binding.userName.setText(fName1 + " " + lastName);
             binding.phoneNum.setText(phoneNum);
             firstName = fName1;
-        }
-
-        else if (!TextUtils.isEmpty(fName1) && !TextUtils.isEmpty(fName2) && TextUtils.isEmpty(phone)){
+        } else if (!TextUtils.isEmpty(fName1) && !TextUtils.isEmpty(fName2) && TextUtils.isEmpty(phone)) {
             databaseReference.child(userid).child("f_Name").setValue(fName1);
             databaseReference.child(userid).child("l_Name").setValue(fName2);
-            binding.userName.setText(fName1+ " " +fName2);
+            binding.userName.setText(fName1 + " " + fName2);
             binding.phoneNum.setText(phoneNum);
             firstName = fName1;
             lastName = fName2;
 
-        }
-
-        else if (!TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2) && !TextUtils.isEmpty(phone)){
+        } else if (!TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2) && !TextUtils.isEmpty(phone)) {
             databaseReference.child(userid).child("f_Name").setValue(fName1);
             databaseReference.child(userid).child("phone_No").setValue(phone);
-            binding.userName.setText(fName1+ " " +lastName);
+            binding.userName.setText(fName1 + " " + lastName);
             binding.phoneNum.setText(phone);
             firstName = fName1;
             phoneNum = phone;
 
-        }
-
-        else if (TextUtils.isEmpty(fName1) && !TextUtils.isEmpty(fName2) && !TextUtils.isEmpty(phone)){
+        } else if (TextUtils.isEmpty(fName1) && !TextUtils.isEmpty(fName2) && !TextUtils.isEmpty(phone)) {
             databaseReference.child(userid).child("l_Name").setValue(fName2);
             databaseReference.child(userid).child("phone_No").setValue(phone);
-            binding.userName.setText(firstName+ " " +fName2);
+            binding.userName.setText(firstName + " " + fName2);
             binding.phoneNum.setText(phone);
             lastName = fName2;
             phoneNum = phone;
 
-        }
-
-        else if (!TextUtils.isEmpty(fName2) && TextUtils.isEmpty(fName1) && TextUtils.isEmpty(phone)){
+        } else if (!TextUtils.isEmpty(fName2) && TextUtils.isEmpty(fName1) && TextUtils.isEmpty(phone)) {
             databaseReference.child(userid).child("l_Name").setValue(fName2);
-            binding.userName.setText(firstName+ " " +fName2);
+            binding.userName.setText(firstName + " " + fName2);
             binding.phoneNum.setText(phoneNum);
             lastName = fName2;
-        }
-
-        else if (!TextUtils.isEmpty(phone) && TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2)){
+        } else if (!TextUtils.isEmpty(phone) && TextUtils.isEmpty(fName1) && TextUtils.isEmpty(fName2)) {
             databaseReference.child(userid).child("phone_No").setValue(phone);
-            binding.userName.setText(firstName+ " " +lastName);
+            binding.userName.setText(firstName + " " + lastName);
             binding.phoneNum.setText(phone);
             phoneNum = phone;
         }

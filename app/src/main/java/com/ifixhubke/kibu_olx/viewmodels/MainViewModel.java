@@ -12,8 +12,8 @@ import com.ifixhubke.kibu_olx.repositories.MainRepository;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
-    private MainRepository mainRepository;
-    private LiveData<List<Item>> allItems;
+    private final MainRepository mainRepository;
+    private final LiveData<List<Item>> allItems;
 
     public MainViewModel(@NonNull Application application) {
         super(application);

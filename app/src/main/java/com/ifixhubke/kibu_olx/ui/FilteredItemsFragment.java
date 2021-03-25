@@ -49,7 +49,7 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
     }
 
 
- private void filterItems(String category, String condition, double min, double max) {
+    private void filterItems(String category, String condition, double min, double max) {
         Timber.d("Filter fun called");
         ArrayList<Item> filtered = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -64,7 +64,7 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
                         if ((item.getCondition().equals(condition))) {
 
                             Timber.d("Condtion: Items found");
-                            if((price >= min) && (price <= max)){
+                            if ((price >= min) && (price <= max)) {
                                 Timber.d("Range: Items found");
                                 filtered.add(item);
                                 binding.progressBar2.setVisibility(View.INVISIBLE);

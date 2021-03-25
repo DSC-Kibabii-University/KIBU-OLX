@@ -8,36 +8,27 @@
     <string name="easy_and_accessible">Easy and Accessible</string>
     <string name="all_items_in_one_place">All Items in One Place</string>
     <string name="filter">Filter</string>
-    <string name="search">Search…</string>
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="login">Login</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_started">Get Started</string>
     <string name="sell">Sell</string>
     <string name="sold_out">Sold out</string>
     <string name="items_posted_history">Posted Items History</string>
     <string name="edit">Edit</string>
-    <string name="details">Details</string>
     <string name="post_advertisement">Post Advertisement</string>
-    <string name="previous">Previous</string>
     <string name="register">Register</string>
     <string name="enter_email">Enter Email</string>
     <string name="enter_password">Enter Password</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="i_agree_with_the_rules">I agree with the rules</string>
-    <string name="sign_up_with_google">Sign up with google</string>
     <string name="already_have_an_account_sign_in">Already Have An Account? Sign In</string>
-    <string name="sign_in_with_google">Sign in with google</string>
     <string name="don_t_have_an_account_register">Don\'t Have An Account? Register</string>
-    <string name="product_name">Product Name</string>
-    <string name="condition">Condition</string>
     <string name="itemPrice">Price</string>
     <string name="phone_number">Phone Number</string>
-    <string name="seller_name">Seller Name</string>
     <string name="last_seen">Last seen</string>
     <string name="description">Description</string>
     <string name="contact">Contact</string>
@@ -86,8 +77,6 @@
         <item>New</item>
         <item>Refurbished</item>
     </string-array>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="save">Save</string>
     <string name="reset_all">Reset All</string>
     <string name="filters">Filters</string>
@@ -99,4 +88,7 @@
     <string name="reset">Reset</string>
     <string name="reset_password">Reset Password</string>
     <string name="you_have_nothing_saved_as_favorite">You have nothing saved as favorite</string>
+    <string name="buy_sell_online_everything_you_need_get_a_variety_of_products_all_in_one_place"><![CDATA[Buy & Sell different items you need online, Get a Variety of products all in one place]]></string>
+    <string name="easy_to_acquire_items_from_a_fellow_comrade_sell_faster_buy_smarter_at_kibu_olx">Easy to acquire items from a fellow comrade. Sell faster, buy smarter at KIBU-OLX</string>
+    <string name="buy_items_at_best_and_cheap_comrade_prices">Buy different affordable items at a cheap and best comrade prices. </string>
 </resources>

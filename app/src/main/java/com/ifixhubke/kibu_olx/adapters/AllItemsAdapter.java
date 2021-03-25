@@ -2,7 +2,6 @@ package com.ifixhubke.kibu_olx.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,14 +27,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
 import com.ifixhubke.kibu_olx.ui.fragments.home.HomeFragmentDirections;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -70,13 +66,13 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         databaseReference.orderByChild("itemName").equalTo(items.get(position).getItemName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                  //  Timber.d("Already favorite");
+                if (snapshot.exists()) {
+                    //  Timber.d("Already favorite");
                     holder.add_item_to_favorites.setVisibility(View.INVISIBLE);
                     holder.starredItem.setVisibility(View.VISIBLE);
-                }else{
-                   // Timber.d("Not a favorite");
-                   // itemClickListener.itemClick(item, position);
+                } else {
+                    // Timber.d("Not a favorite");
+                    // itemClickListener.itemClick(item, position);
                     holder.add_item_to_favorites.setVisibility(View.VISIBLE);
                     holder.starredItem.setVisibility(View.INVISIBLE);
                 }
@@ -87,9 +83,6 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
                 Timber.d(error.getMessage());
             }
         });
-
-
-
 
 
         holder.item_name.setText(items.get(position).getItemName());
@@ -119,7 +112,6 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
                 .into(holder.item_image);
 
 
-
         Item item = new Item(items.get(position).getSellerName(),
                 items.get(position).getSellerLastSeen(),
                 items.get(position).getSellerPhoneNum(),
@@ -146,9 +138,9 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
             databaseReference.orderByChild("itemName").equalTo(items.get(position).getItemName()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()){
+                    if (snapshot.exists()) {
                         Timber.d("Already favorite");
-                    }else{
+                    } else {
                         Timber.d("Not a favorite");
                         itemClickListener.itemClick(item, position);
                         holder.add_item_to_favorites.setVisibility(View.INVISIBLE);
@@ -161,7 +153,6 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
                     Timber.d(error.getMessage());
                 }
             });
-
 
 
             //itemClickListener.itemClick(item, position);

@@ -13,8 +13,8 @@ import java.util.List;
 
 public class MainRepository {
 
-    private ItemsDao itemsDao;
-    private LiveData<List<Item>> allItems;
+    private final ItemsDao itemsDao;
+    private final LiveData<List<Item>> allItems;
 
     public MainRepository(Application application) {
         ItemsDatabase database = ItemsDatabase.getInstance(application);
@@ -44,7 +44,7 @@ public class MainRepository {
     //Insert a item
     private static class InsertItemAsyncTask extends AsyncTask<Item, Void, Void> {
 
-        private ItemsDao itemsDao;
+        private final ItemsDao itemsDao;
 
         private InsertItemAsyncTask(ItemsDao itemsDao) {
             this.itemsDao = itemsDao;
@@ -60,9 +60,9 @@ public class MainRepository {
 
     private static class UpdateItemSoldOut extends AsyncTask<Boolean, Void, Void> {
 
-        private ItemsDao itemsDao;
         int id;
         Boolean isSoldOut;
+        private final ItemsDao itemsDao;
 
         private UpdateItemSoldOut(ItemsDao itemsDao, Boolean isSoldOut, int id) {
             this.itemsDao = itemsDao;
@@ -80,7 +80,7 @@ public class MainRepository {
     //Delete a item
     private static class DeleteItemAsyncTask extends AsyncTask<Item, Void, Void> {
 
-        private ItemsDao itemsDao;
+        private final ItemsDao itemsDao;
 
         private DeleteItemAsyncTask(ItemsDao itemsDao) {
             this.itemsDao = itemsDao;

@@ -1,4 +1,4 @@
-        package com.ifixhubke.kibu_olx.ui.fragments.home;
+package com.ifixhubke.kibu_olx.ui.fragments.home;
 
 
 import android.content.Intent;
@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
                 itemsList.clear();
                 if (snapshot.exists()) {
                     binding.imageView2.setVisibility(View.INVISIBLE);
-                        binding.textView.setVisibility(View.INVISIBLE);
+                    binding.textView.setVisibility(View.INVISIBLE);
 
 
                     for (DataSnapshot i : snapshot.getChildren()) {
@@ -215,13 +215,16 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             startActivity(Intent.createChooser(intent, "Share App Via..."));
             return true;
         } else if (item.getItemId() == R.id.aboutUsMenu) {
-            String url = "https://github.com/iFix-Hub-KE";
+            String url = "https://robert-muriithi.github.io/ifixweb/index.html";
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             startActivity(intent);
             return true;
-        }else if (item.getItemId() == R.id.rateUsMenu) {
-            Toast.makeText(requireContext(), "Rate Us Clicked", Toast.LENGTH_SHORT).show();
+        } else if (item.getItemId() == R.id.rateUsMenu) {
+            String url = "https://github.com/iFix-Hub-KE";
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.helpMenu) {
             Intent intent = new Intent(Intent.ACTION_SEND);

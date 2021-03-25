@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -19,35 +18,26 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentDetailsBinding;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Objects;
 
 import timber.log.Timber;
 
 public class DetailsFragment extends Fragment {
     FragmentDetailsBinding binding;
-    private Boolean clicked = false;
-    private String myNumber;
     DatabaseReference databaseReference;
     String userId;
     FirebaseUser user;
-
     Item data;
+    private Boolean clicked = false;
+    private String myNumber;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -98,7 +88,7 @@ public class DetailsFragment extends Fragment {
 
         binding.messageButton.setOnClickListener(v -> {
 
-            String sms = "Hey I have seen you are selling "+data.getItemName()+". Can we do business";//The message you want to text to the phone
+            String sms = "Hey I have seen you are selling " + data.getItemName() + ". Can we do business";//The message you want to text to the phone
 
             Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", myNumber, null));
             smsIntent.putExtra("sms_body", sms);
@@ -114,7 +104,7 @@ public class DetailsFragment extends Fragment {
             String phone = myNumber.replaceFirst(String.valueOf(myNumber.charAt(0)), "+254");
             String url = "https://api.whatsapp.com/send?phone=" + phone;
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(url + "&text=" + "Hey I have seen you are selling "+data.getItemName()+". Can we do business"));
+            intent.setData(Uri.parse(url + "&text=" + "Hey I have seen you are selling " + data.getItemName() + ". Can we do business"));
             startActivity(intent);
             Timber.d(phone);
         });

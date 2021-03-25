@@ -54,11 +54,11 @@ public class FavoritesFragment extends Fragment {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     binding.favprogressBar.setVisibility(View.INVISIBLE);
                     binding.imageViewFavoritesNothingFound.setVisibility(View.INVISIBLE);
                     binding.textViewFavoritesNothingFound.setVisibility(View.INVISIBLE);
-                }else{
+                } else {
                     binding.favprogressBar.setVisibility(View.INVISIBLE);
                     binding.imageViewFavoritesNothingFound.setVisibility(View.VISIBLE);
                     binding.textViewFavoritesNothingFound.setVisibility(View.VISIBLE);

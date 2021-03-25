@@ -27,7 +27,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.ui.fragments.favorites.FavoritesFragmentDirections;
-import com.squareup.picasso.Picasso;
 
 public class FavouritesAdapter extends FirebaseRecyclerAdapter<Item, FavouritesAdapter.ViewHolder> {
 

@@ -1,33 +1,26 @@
 package com.ifixhubke.kibu_olx.ui.fragments;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.palette.graphics.Palette;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.palette.graphics.Palette;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentImage1Binding;
-import com.squareup.picasso.Picasso;
 
 import timber.log.Timber;
 
@@ -37,7 +30,7 @@ public class Image1Fragment extends Fragment {
     FragmentImage1Binding binding;
     int col;
 
-    public Image1Fragment(String imageUrl){
+    public Image1Fragment(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
@@ -45,12 +38,12 @@ public class Image1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Timber.d("onCreateView");
-        binding = FragmentImage1Binding.inflate(inflater,container,false);
+        binding = FragmentImage1Binding.inflate(inflater, container, false);
         View view = binding.getRoot();
         Toolbar toolbar = getActivity().findViewById(R.id.pictureBrowsingtoolbar);
         ViewPager2 viewPager2 = getActivity().findViewById(R.id.pictureBrowsingViewPager);
 
-       // Picasso.get().load(imageUrl).placeholder(R.drawable.ic_image_placeholder).into(binding.imageViewImage1);
+        // Picasso.get().load(imageUrl).placeholder(R.drawable.ic_image_placeholder).into(binding.imageViewImage1);
         Glide.with(view)
                 .load(imageUrl)
                 .listener(new RequestListener<Drawable>() {
@@ -65,18 +58,18 @@ public class Image1Fragment extends Fragment {
                         binding.progressBar3.setVisibility(View.INVISIBLE);
                         BitmapDrawable bitmapDrawable = (BitmapDrawable) resource;
                         Bitmap bitmap = bitmapDrawable.getBitmap();
-                       Palette.Builder builder = Palette.from(bitmap);
-                       builder.generate(new Palette.PaletteAsyncListener() {
-                           @Override
-                           public void onGenerated(@Nullable Palette palette) {
-                               col = palette.getDominantColor(0);
-                               binding.image1Layout.setBackgroundColor(col);
+                        Palette.Builder builder = Palette.from(bitmap);
+                        builder.generate(new Palette.PaletteAsyncListener() {
+                            @Override
+                            public void onGenerated(@Nullable Palette palette) {
+                                col = palette.getDominantColor(0);
+                                binding.image1Layout.setBackgroundColor(col);
 
-                                   //toolbar.setBackgroundColor(col);
-                                   //getActivity().getWindow().setStatusBarColor(col);
+                                //toolbar.setBackgroundColor(col);
+                                //getActivity().getWindow().setStatusBarColor(col);
 
-                           }
-                       });
+                            }
+                        });
 
                         return false;
                     }

@@ -15,11 +15,6 @@
 
     </style>
 
-    <style name="ThemeOverlay.KIBUOLX.FullscreenContainer" parent="">
-        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
-        <item name="fullscreenTextColor">@color/light_blue_A200</item>
-    </style>
-
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chip_text_color</item>

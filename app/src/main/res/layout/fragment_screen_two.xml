@@ -67,7 +67,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/lorem_ipsum"
+        android:text="@string/easy_to_acquire_items_from_a_fellow_comrade_sell_faster_buy_smarter_at_kibu_olx"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
