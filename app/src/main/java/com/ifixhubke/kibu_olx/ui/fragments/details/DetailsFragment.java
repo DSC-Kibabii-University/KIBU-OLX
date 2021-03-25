@@ -98,7 +98,7 @@ public class DetailsFragment extends Fragment {
 
         binding.messageButton.setOnClickListener(v -> {
 
-            String sms = "KIBU-OLX FAB Testing";//The message you want to text to the phone
+            String sms = "Hey I have seen you are selling "+data.getItemName()+". Can we do business";//The message you want to text to the phone
 
             Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", myNumber, null));
             smsIntent.putExtra("sms_body", sms);
@@ -114,7 +114,7 @@ public class DetailsFragment extends Fragment {
             String phone = myNumber.replaceFirst(String.valueOf(myNumber.charAt(0)), "+254");
             String url = "https://api.whatsapp.com/send?phone=" + phone;
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(url + "&text=" + "KIBU-OLX FAB Testing"));
+            intent.setData(Uri.parse(url + "&text=" + "Hey I have seen you are selling "+data.getItemName()+". Can we do business"));
             startActivity(intent);
             Timber.d(phone);
         });

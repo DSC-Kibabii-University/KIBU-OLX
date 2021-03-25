@@ -148,7 +148,7 @@
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Locomotives" />
+                    android:text="Bicycle" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipBooks"
@@ -162,7 +162,7 @@
                     style="@style/CustomChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HouseHolds" />
+                    android:text="Households" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipFood"
@@ -170,6 +170,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Food" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipShoes"
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shoes" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipClothing"
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clothing" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGas"
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gas Cylinder" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipOthers"
                     style="@style/CustomChipStyle"

@@ -53,7 +53,7 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
         Timber.d("Filter fun called");
         ArrayList<Item> filtered = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("all_items").orderByChild("category").equalTo(category).addValueEventListener(new ValueEventListener() {
+        databaseReference.child("all_items").orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -76,8 +76,8 @@ public class FilteredItemsFragment extends Fragment implements ItemClickListener
                             }*/
                         } else {
                             Timber.d("Items Not Found");
-                           binding.imageViewNothingFound.setVisibility(View.VISIBLE);
-                            binding.textViewNothingFound.setVisibility(View.VISIBLE);
+                           /*binding.imageViewNothingFound.setVisibility(View.VISIBLE);
+                            binding.textViewNothingFound.setVisibility(View.VISIBLE);*/
                         }
                     }
                     //initializeRecycler(filtered);

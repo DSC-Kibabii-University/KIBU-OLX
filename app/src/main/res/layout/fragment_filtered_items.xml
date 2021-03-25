@@ -7,19 +7,50 @@
     tools:context=".ui.FilteredItemsFragment">
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Favorite Items"
+        app:titleTextColor="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/filteredToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:title="Filtered Items"
+                app:titleTextColor="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filteredRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:visibility="visible"
-        tools:listitem="@layout/all_items_recycler_row"
-        app:spanCount="2"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filteredToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/appbarFilter"
+        app:spanCount="2"
+        tools:listitem="@layout/all_items_recycler_row" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -32,18 +63,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/filteredToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
-        app:titleTextColor="@color/white"
-        app:title="Filtered Items"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- <androidx.appcompat.widget.Toolbar
+         android:id="@+id/filteredToolbar"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:minHeight="?attr/actionBarSize"
+         android:theme="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+         app:titleTextColor="@color/white"
+         app:title="Filtered Items"
+         app:navigationIcon="@drawable/ic_arrow_back"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />-->
 
     <ImageView
         android:id="@+id/imageViewNothingFound"
@@ -54,7 +85,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filteredToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/appbarFilter"
         app:layout_constraintVertical_bias="0.19999999"
         tools:ignore="ContentDescription" />
 
