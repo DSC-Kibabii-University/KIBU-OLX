@@ -14,7 +14,6 @@ public class KibuOlxApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         Timber.plant(new Timber.DebugTree());
 
         SharedPreferences sharedPreferences = getSharedPreferences("ui_mode", Context.MODE_PRIVATE);

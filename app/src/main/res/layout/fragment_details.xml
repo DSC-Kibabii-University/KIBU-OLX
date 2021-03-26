@@ -139,9 +139,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Item Name" />
-            <!--app:layout_constraintEnd_toEndOf="@+id/image_slider_fav1"
-                app:layout_constraintStart_toStartOf="@+id/image_slider_fav1"
-                app:layout_constraintTop_toBottomOf="@+id/image_slider_fav1"-->
+
 
 
             <com.google.android.material.textview.MaterialTextView
@@ -263,9 +261,10 @@
         android:id="@+id/phoneButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
+        android:elevation="10dp"
         android:src="@drawable/ic_telephone"
         android:visibility="gone"
         app:iconTint="?attr/colorControlNormal"
@@ -276,12 +275,13 @@
         android:id="@+id/messageButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_chat"
         android:visibility="gone"
         app:iconTint="?attr/colorControlNormal"
+        android:elevation="10dp"
         app:layout_constraintBottom_toTopOf="@+id/phoneButton"
         app:layout_constraintEnd_toEndOf="@+id/phoneButton" />
 
@@ -289,9 +289,10 @@
         android:id="@+id/whatsappButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
+        android:elevation="10dp"
         android:src="@drawable/ic_whatsapp"
         android:visibility="gone"
         app:iconTint="?attr/colorControlNormal"

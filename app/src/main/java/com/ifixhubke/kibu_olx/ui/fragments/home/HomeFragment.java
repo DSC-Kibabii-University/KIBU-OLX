@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,25 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         Timber.d("onCreateView");
+
+        binding.allItemsRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                    binding.floatingActionButton.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy> 0|| dy<0 && binding.floatingActionButton.isShown()){
+                    binding.floatingActionButton.hide();
+                }
+            }
+        });
 
         binding.toolbar.setOnMenuItemClickListener(this);
         binding.searchBar.setOnSearchActionListener(this);

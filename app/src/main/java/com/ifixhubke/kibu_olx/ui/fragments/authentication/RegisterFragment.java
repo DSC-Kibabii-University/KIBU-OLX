@@ -103,7 +103,8 @@ public class RegisterFragment extends Fragment {
                         @Override
                         public void onSuccess(Void aVoid) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(requireContext(), "Check email for verification link", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireContext(), "Check email for verification link", Toast.LENGTH_LONG).show();
+
                             } else {
                                 Toast.makeText(requireContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
