@@ -51,13 +51,13 @@ Libraries used in the whole application are:
 ## Demo
 
 <p float="left">
-<img src="screenshots/Screenshot_20210328-194252.png" width=250/>
-<img src="screenshots/Screenshot_20200809-151215.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151429.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151445.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151457.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151504.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151510.jpg" width=250/>
+<img src="screenshots/Screenshot_20210328-194252.png" width=150/>
+<img src="screenshots/Screenshot_20210328-194352.png" width=150/>
+  <img src="screenshots/Screenshot_20210328-194436.png" width=150/>
+  <img src="screenshots/Screenshot_20210328-194737.png" width=150/>
+  <img src="screenshots/Screenshot_20210328-194809.png" width=150/>
+  <img src="screenshots/Screenshot_20210328-194625.png" width=150/>
+  <img src="screenshots/Screenshot_20210328-194708.png" width=150/>
   </p>
   
   ## Dark Mode
