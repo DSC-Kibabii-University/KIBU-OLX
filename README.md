@@ -65,7 +65,7 @@ Libraries used in the whole application are:
 
 ### Item Details
 <p>
-  <img src="screenshots/Screenshot_20210328-194436.png" width=200/>
+  <img src="screenshots/Screenshot_20210328-194527.png" width=200/>
    <img src="screenshots/Screenshot_20210328-205740.png" width=200/>
    <img src="screenshots/Screenshot_20210328-205752.png" width=200/>
 </p>
