@@ -61,9 +61,19 @@ Libraries used in the whole application are:
 ### Home, Favorites and Settings 
 <p>
   <img src="screenshots/Screenshot_20210328-194352.png" width=150/>
-  <img src="screenshots/Screenshot_20210328-194436.png" width=150/>
   <img src="screenshots/Screenshot_20210328-194737.png" width=150/>
   <img src="screenshots/Screenshot_20210328-194809.png" width=150/>
+</p>
+
+### Item Details
+<p>
+  <img src="screenshots/Screenshot_20210328-194436.png" width=150/>
+   <img src="screenshots/Screenshot_20210328-205740.png" width=150/>
+   <img src="screenshots/Screenshot_20210328-205752.png" width=150/>
+</p>
+
+### Sell Item
+<p>
   <img src="screenshots/Screenshot_20210328-194625.png" width=150/>
   <img src="screenshots/Screenshot_20210328-194708.png" width=150/>
 </p>
