@@ -53,29 +53,29 @@ Libraries used in the whole application are:
 ### Splash Screen and Authentication
 
 <p float="left">
-<img src="screenshots/Screenshot_20210328-194252.png" width=150/>
-  <img src="screenshots/Screenshot_20210328-203642.png" width=150/>
-  <img src="screenshots/Screenshot_20210328-203625.png" width=150/>
+<img src="screenshots/Screenshot_20210328-194252.png" width=200/>
+  <img src="screenshots/Screenshot_20210328-203642.png" width=200/>
+  <img src="screenshots/Screenshot_20210328-203625.png" width=200/>
   </p>
   
 ### Home, Favorites and Settings 
 <p>
-  <img src="screenshots/Screenshot_20210328-194352.png" width=150/>
-  <img src="screenshots/Screenshot_20210328-194737.png" width=150/>
-  <img src="screenshots/Screenshot_20210328-194809.png" width=150/>
+  <img src="screenshots/Screenshot_20210328-194352.png" width=200/>
+  <img src="screenshots/Screenshot_20210328-194737.png" width=200/>
+  <img src="screenshots/Screenshot_20210328-194809.png" width=200/>
 </p>
 
 ### Item Details
 <p>
-  <img src="screenshots/Screenshot_20210328-194436.png" width=150/>
-   <img src="screenshots/Screenshot_20210328-205740.png" width=150/>
-   <img src="screenshots/Screenshot_20210328-205752.png" width=150/>
+  <img src="screenshots/Screenshot_20210328-194436.png" width=200/>
+   <img src="screenshots/Screenshot_20210328-205740.png" width=200/>
+   <img src="screenshots/Screenshot_20210328-205752.png" width=200/>
 </p>
 
 ### Sell Item
 <p>
-  <img src="screenshots/Screenshot_20210328-194625.png" width=150/>
-  <img src="screenshots/Screenshot_20210328-194708.png" width=150/>
+  <img src="screenshots/Screenshot_20210328-194625.png" width=200/>
+  <img src="screenshots/Screenshot_20210328-194708.png" width=200/>
 </p>
   
   ## Dark Mode
