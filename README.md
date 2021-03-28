@@ -79,10 +79,10 @@ Libraries used in the whole application are:
   ## Dark Mode
 
 <p float="left">
-<img src="screenshots/Screenshot_20210328-194829.png" width=250/>
-<img src="screenshots/Screenshot_20210328-194829.png" width=250/>
-  <img src="screenshots/Screenshot_20210328-194901.png" width=250/>
-  <img src="screenshots/Screenshot_20210328-194913.png" width=250/>
+<img src="screenshots/Screenshot_20210328-194829.png" width=200/>
+<img src="screenshots/Screenshot_20210328-194848.png" width=200/>
+  <img src="screenshots/Screenshot_20210328-194901.png" width=200/>
+  <img src="screenshots/Screenshot_20210328-194913.png" width=200/>
   </p>
 
 ## Support
