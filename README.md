@@ -50,15 +50,21 @@ Libraries used in the whole application are:
 
 ## Demo
 
+## Splash Screen
+
 <p float="left">
 <img src="screenshots/Screenshot_20210328-194252.png" width=150/>
-<img src="screenshots/Screenshot_20210328-194352.png" width=150/>
+  </p>
+  
+## SignUp and Login Screens
+<p>
+  <img src="screenshots/Screenshot_20210328-194352.png" width=150/>
   <img src="screenshots/Screenshot_20210328-194436.png" width=150/>
   <img src="screenshots/Screenshot_20210328-194737.png" width=150/>
   <img src="screenshots/Screenshot_20210328-194809.png" width=150/>
   <img src="screenshots/Screenshot_20210328-194625.png" width=150/>
   <img src="screenshots/Screenshot_20210328-194708.png" width=150/>
-  </p>
+</p>
   
   ## Dark Mode
 
