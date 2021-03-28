@@ -1,9 +1,8 @@
 <p align="center">
-<img src="screenshots/Blue Bag Internet Logo.svg" alt="home" width="150"/>
+<img src="screenshots/Blue Bag Internet Logo.svg" alt="home" width="250"/>
+<p align="center"># KIBU-OLX</p>
 
-# KIBU-OLX
-
-An android application to help students of Kibabii University in buying cheap items at an affordable price, also they can sell those items at their comfort zones by just a click of a button. 🚲 🛏️🖥️💻📱⌨️🪑🍻🪣👕👖👔👞👟🧤🧢👜💼🎒🧳🗑️📗🍴🍽️🔪
+An android application to help students of Kibabii University in buying cheap items at an affordable price, also they can sell those items at their comfort zones by just a click of a button. 🚲 🛏️ 🖥️ 💻 📱 ⌨️ 🪑 🍻 🪣 👕 👖 👔 👞 👟 🧤 🧢 👜 💼 🎒 🧳 🗑️ 📗 🍴 🍽️ 🔪
 
 Min Api Level : 21 
 
@@ -14,7 +13,6 @@ Min Api Level : 21
 - [Getting Started](#run)
 - [Libraries](#libraries)
 - [Demo](#demo)
-- [Contributors](#contributors)
 - [Support](#support)
 - [References](#references)
 
@@ -81,18 +79,11 @@ Libraries used in the whole application are:
   ## Dark Mode
 
 <p float="left">
-<img src="screenshots/Screenshot_20200809-151201.jpg" width=250/>
-<img src="screenshots/Screenshot_20200809-151215.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151429.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151445.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151457.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151504.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151510.jpg" width=250/>
+<img src="screenshots/Screenshot_20210328-194829.png" width=250/>
+<img src="screenshots/Screenshot_20210328-194829.png" width=250/>
+  <img src="screenshots/Screenshot_20210328-194901.png" width=250/>
+  <img src="screenshots/Screenshot_20210328-194913.png" width=250/>
   </p>
-
-## Contributors
-
-- Thanks to [Coding in Flow](https://codinginflow.com/) for amazing tutorial on the MVVM and android architectural components
 
 ## Support
 
