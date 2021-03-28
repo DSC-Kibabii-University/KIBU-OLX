@@ -1,5 +1,6 @@
 <p align="center">
 <img src="screenshots/Blue Bag Internet Logo.svg" alt="home" width="250"/>
+  
 # KIBU-OLX
 
 An android application to help students of Kibabii University in buying cheap items at an affordable price, also they can sell those items at their comfort zones by just a click of a button. 🚲 🛏️ 🖥️ 💻 📱 ⌨️ 🪑 🍻 🪣 👕 👖 👔 👞 👟 🧤 🧢 👜 💼 🎒 🧳 🗑️ 📗 🍴 🍽️ 🔪
