@@ -98,6 +98,7 @@ Libraries used in the whole application are:
 - https://codinginflow.com/
 - https://developer.android.com/
 - https://firebase.google.com/docs
+- https://developer.android.com/guide/navigation
 
 ## License
 
