@@ -10,8 +10,6 @@ Min Api Level : 21
 
 ## Table of Contents
 
-
-- [Getting Started](#run)
 - [Libraries](#libraries)
 - [Demo](#demo)
 - [Support](#support)
@@ -29,8 +27,9 @@ In order to get the app running yourself, you need to:
 
 1.  Clone this project
 2.  Import the project into Android Studio
-3.  Connect the android device with USB or just use your emulator
-4.  In Android Studio, click on the "Run" button.
+3.  Sync the project and make sure you rebuild the project to make sure it has downloaded all required libraries and dependecies
+4.  Connect the android device with USB or just use your emulator
+5.  In Android Studio, click on the "Run" button.
 
 ## Libraries
 
