@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +19,8 @@ import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.User;
 import com.ifixhubke.kibu_olx.databinding.FragmentRegisterBinding;
 import com.ifixhubke.kibu_olx.others.CheckInternet;
+
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -51,13 +51,10 @@ public class RegisterFragment extends Fragment {
 
 
         binding.registerButton.setOnClickListener(v -> {
-            String mail = binding.enterEmail.getEditText().getText().toString().trim();
-            String pass = binding.enterPassword.getEditText().getText().toString().trim();
-            String first_Name = binding.firstName.getEditText().getText().toString().trim();
-            String last_Name = binding.lastName.getEditText().getText().toString().trim();
-            binding.countryCodePicker.registerCarrierNumberEditText(binding.phoneNumber.getEditText());
-            String phone_Number = binding.countryCodePicker.getFullNumberWithPlus();
-            Timber.d(""+phone_Number);
+            String mail = Objects.requireNonNull(binding.enterEmail.getEditText()).getText().toString().trim();
+            String pass = Objects.requireNonNull(binding.enterPassword.getEditText()).getText().toString().trim();
+            String first_Name = Objects.requireNonNull(binding.firstName.getEditText()).getText().toString().trim();
+            String last_Name = Objects.requireNonNull(binding.lastName.getEditText()).getText().toString().trim();
             Boolean agree_with_rules = binding.materialCheckBox.callOnClick();
 
 
@@ -88,42 +85,35 @@ public class RegisterFragment extends Fragment {
             } else if (binding.lastName.getEditText().getText().toString().length() >= 15) {
                 binding.lastName.setError("Name is too long!");
                 return;
-            } else if (binding.phoneNumber.getEditText().getText().toString().isEmpty()) {
+            } else if (Objects.requireNonNull(binding.phoneNumber.getText()).toString().isEmpty()) {
                 binding.phoneNumber.setError("This field can't be empty!");
                 return;
             } else {
                 binding.registerProgressBar.setVisibility(View.VISIBLE);
             }
+            binding.countryCodePicker.registerCarrierNumberEditText(binding.phoneNumber);
+            String phone_Number = binding.countryCodePicker.getFullNumberWithPlus();
+            Timber.d("%s", phone_Number);
 
-            firebaseAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(getActivity(), task -> {
+            firebaseAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(requireActivity(), task -> {
                 if (task.isSuccessful()) {
                     //sending verification email
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                     assert firebaseUser != null;
-                    firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(requireContext(), "Check email for verification link", Toast.LENGTH_LONG).show();
-
-                            } else {
-                                Toast.makeText(requireContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-
+                    firebaseUser.sendEmailVerification().addOnSuccessListener(aVoid -> {
+                        if (task.isSuccessful()) {
+                            userID = firebaseAuth.getUid();
+                            saveUserDetails(mail, first_Name, last_Name, phone_Number);
+                            Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_loginFragment);
+                            Toast.makeText(requireContext(), "We have sent an email verification link to " + mail, Toast.LENGTH_LONG).show();
+                            Timber.d("createUserWithEmailAndPassword: Success");
+                            binding.registerProgressBar.setVisibility(View.INVISIBLE);
+                        } else {
+                            Toast.makeText(requireContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Timber.d("Not created");
-                        }
-                    });
-                    //
-                    userID = firebaseAuth.getUid();
-                    saveUserDetails(mail, first_Name, last_Name, phone_Number);
-                    Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_loginFragment);
-                    Toast.makeText(getContext(), "Welcome", Toast.LENGTH_SHORT).show();
-                    Timber.d("createUserWithEmailAndPassword: Success");
-                    binding.registerProgressBar.setVisibility(View.INVISIBLE);
+
+                    }).addOnFailureListener(e -> Timber.d("Not created"));
+
                 } else {
                     if (!(CheckInternet.isConnected(requireContext()))) {
                         Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();

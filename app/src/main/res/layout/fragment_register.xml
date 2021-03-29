@@ -153,48 +153,61 @@
                     android:textColor="?android:attr/textColorPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/phoneNumber"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/phoneNumberLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:elevation="10dp"
-                android:hint="@string/phone_number"
-                android:textColorHint="?android:attr/textColorPrimary"
-                app:boxStrokeColor="?attr/colorControlNormal"
-                app:boxStrokeWidthFocused="2dp"
-                app:endIconMode="clear_text"
-                app:endIconTint="?attr/colorControlNormal"
-                app:hintTextColor="?android:attr/textColorPrimary"
+                android:background="@drawable/curved_edittext"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/country_code_picker"
-                app:layout_constraintTop_toBottomOf="@+id/lastName"
-                app:startIconDrawable="@drawable/ic_phone_number"
-                app:startIconTint="?attr/colorControlNormal">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastName">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/country_code_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccpDialog_keyboardAutoPopup="false"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_showNameCode="true"
+                    app:ccp_textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:textColor="?android:attr/textColorPrimary" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:id="@+id/phoneNumber"
+                    android:hint="712345678"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textColorHint="?android:attr/textColorPrimary"
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/country_code_picker"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/country_code_picker"
+                    app:layout_constraintTop_toTopOf="@+id/country_code_picker" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/materialCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:checked="false"
-                android:textColor="?android:attr/textColorPrimary"
                 android:text="@string/i_agree_with_the_rules"
+                android:textColor="?android:attr/textColorPrimary"
                 android:transitionName="check_transition"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberLayout" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/registerButton"
@@ -236,21 +249,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/country_code_picker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center"
-                app:ccpDialog_keyboardAutoPopup="false"
-                app:ccp_autoDetectCountry="true"
-                app:ccp_showNameCode="true"
-                app:ccp_textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/lastName"
-                app:layout_constraintStart_toStartOf="@+id/lastName"
-                app:layout_constraintTop_toBottomOf="@+id/lastName" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
