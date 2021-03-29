@@ -46,6 +46,7 @@ Libraries used in the whole application are:
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - a class is designed to store and manage UI-related data in a lifecycle conscious way
 - [Navigation Components](https://developer.android.com/guide/navigation) - Navigation component helps you implement navigation, from simple button clicks to more complex patterns, such as app bars and the navigation drawer
 - [Timber](https://github.com/JakeWharton/timber) - a logger with a small, extensible API which provides utility on top of Android's normal Log class.
+- [Palette](https://developer.android.com/training/material/palette-colors) - A Palette object gives you access to the primary colors in an image, as well as the corresponding colors for overlaid text.
 
 ## Demo
 
