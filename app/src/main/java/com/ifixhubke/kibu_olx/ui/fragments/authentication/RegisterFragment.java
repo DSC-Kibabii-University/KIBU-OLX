@@ -34,7 +34,6 @@ public class RegisterFragment extends Fragment {
             "(?=.*[0-9])" +      //# a digit must occur at least once
             "(?=.*[a-z])" +      //# a lower case letter must occur at least once
             "(?=.*[A-Z])" +      //# an upper case letter must occur at least once
-            "(?=.*[@#$%^&+=])" + //# a special character must occur at least once
             "(?=\\S+$)" +         //# no whitespace allowed in the entire string
             ".{8,}" +          //# anything, at least eight places though
             "$";                 //# end-of-string;
@@ -50,12 +49,15 @@ public class RegisterFragment extends Fragment {
 
         binding.signupTextView.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_loginFragment));
 
+
         binding.registerButton.setOnClickListener(v -> {
             String mail = binding.enterEmail.getEditText().getText().toString().trim();
             String pass = binding.enterPassword.getEditText().getText().toString().trim();
             String first_Name = binding.firstName.getEditText().getText().toString().trim();
             String last_Name = binding.lastName.getEditText().getText().toString().trim();
-            String phone_Number = binding.phoneNumber.getEditText().getText().toString().trim();
+            binding.countryCodePicker.registerCarrierNumberEditText(binding.phoneNumber.getEditText());
+            String phone_Number = binding.countryCodePicker.getFullNumberWithPlus();
+            Timber.d(""+phone_Number);
             Boolean agree_with_rules = binding.materialCheckBox.callOnClick();
 
 
@@ -72,8 +74,7 @@ public class RegisterFragment extends Fragment {
                 binding.enterPassword.setError("Password is too weak.!"
                         + "\n Must contain" +
                         "\nat least 8 characters." + "\nAt least one digit"
-                        + "\nAt least one lowercase letter and one uppercase letter"
-                        + "\nA special character...@,#,$,%,^,&,+ or = and no spaces");
+                        + "\nAt least one lowercase letter and one uppercase letter");
                 return;
             } else if (binding.firstName.getEditText().getText().toString().isEmpty()) {
                 binding.firstName.setError("This field can't be empty!");

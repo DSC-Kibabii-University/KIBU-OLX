@@ -110,4 +110,7 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    //country code picker
+    implementation 'com.hbb20:ccp:2.4.7'
+
 }

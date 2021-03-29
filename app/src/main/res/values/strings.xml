@@ -28,7 +28,7 @@
     <string name="already_have_an_account_sign_in">Already Have An Account? Sign In</string>
     <string name="don_t_have_an_account_register">Don\'t Have An Account? Register</string>
     <string name="itemPrice">Price</string>
-    <string name="phone_number">Phone Number</string>
+    <string name="phone_number">Phone Number e.g 712345678</string>
     <string name="last_seen">Last seen</string>
     <string name="description">Description</string>
     <string name="contact">Contact</string>
