@@ -5,7 +5,10 @@
 
 An android application to help students of Kibabii University in buying cheap items at an affordable price, also they can sell those items at their comfort zones by just a click of a button. 🚲 🛏️ 🖥️ 💻 📱 ⌨️ 🪑 🍻 🪣 👕 👖 👔 👞 👟 🧤 🧢 👜 💼 🎒 🧳 🗑️ 📗 🍴 🍽️ 🔪
 
-Min Api Level : 21 
+
+Min Api Level : 21 [Supports Over 87% Devices ](https://developer.android.com/about/dashboards)
+
+Build System : [Gradle](https://gradle.org/)
 
 
 ## Table of Contents
