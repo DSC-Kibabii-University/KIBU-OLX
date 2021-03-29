@@ -90,8 +90,13 @@ Libraries used in the whole application are:
 ## Support
 
 - Found this project useful ❤️? Support by clicking the ⭐️ button on the upper right of this page. ✌️
+
+
+## Contributing
+
+- Please fork this repository and contribute back using pull requests.
+- Any contributions, large or small, major features, bug fixes, are welcomed and appreciated but will be thoroughly reviewed .
 - Notice anything else missing? File an issue 
-- Feel free to contribute in any way to the project from typos in docs to code review are all welcome.
 
 ## References
 
