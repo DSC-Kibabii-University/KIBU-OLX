@@ -86,9 +86,9 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
 
         binding.nextButton.setOnClickListener(v -> {
             //Passing data to sell2
-            if (binding.categorySpinner.getSelectedItem().toString().trim().equals("category")) {
-                Toast.makeText(requireContext(), "Please select cateory", Toast.LENGTH_SHORT).show();
-            } else if (binding.locationSpinner.getSelectedItem().toString().trim().equals("location")) {
+            if (binding.categorySpinner.getSelectedItem().toString().trim().equals("Choose Category")) {
+                Toast.makeText(requireContext(), "Please select category", Toast.LENGTH_SHORT).show();
+            } else if (binding.locationSpinner.getSelectedItem().toString().trim().equals("Choose Lgit addocation")) {
                 Toast.makeText(requireContext(), "Please select location", Toast.LENGTH_SHORT).show();
             } else if (imageURI1 == null) {
                 Toast.makeText(requireContext(), "Please upload your first image", Toast.LENGTH_SHORT).show();
