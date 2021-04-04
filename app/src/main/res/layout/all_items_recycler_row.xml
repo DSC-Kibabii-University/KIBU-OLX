@@ -89,14 +89,15 @@
             app:srcCompat="@drawable/ic_starred"
             tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/tagCondition"
+        <TextView
+            android:id="@+id/condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/itemImageImg"
-            app:srcCompat="@drawable/ic_tag_2_"
-            tools:layout_editor_absoluteY="4dp" />
+            android:textColor="@color/red"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

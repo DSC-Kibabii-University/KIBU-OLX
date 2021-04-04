@@ -6,4 +6,5 @@
     <color name="placeholder_color">#dddddd</color>
     <color name="light_gray">#eceded</color>
     <color name="dark_gray">#6c6866</color>
+    <color name="red">#ff0000</color>
 </resources>

@@ -87,7 +87,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
 
         holder.item_name.setText(items.get(position).getItemName());
         holder.item_price.setText("Ksh. " + items.get(position).getItemPrice());
-        holder.itemTag.setTag(items.get(position).getCondition());
+        holder.itemTag.setText(items.get(position).getCondition());
         /*Picasso.get()
                 .load(items.get(position).getItemImage2())
                 .fit().centerInside()
@@ -168,7 +168,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView item_image;
-        ImageView itemTag;
+        TextView itemTag;
         TextView item_name;
         TextView item_price;
         ImageView add_item_to_favorites;
@@ -180,7 +180,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
             super(itemView);
             item_image = itemView.findViewById(R.id.itemImageImg);
             item_name = itemView.findViewById(R.id.itemNameTxt);
-            itemTag = itemView.findViewById(R.id.tagCondition);
+            itemTag = itemView.findViewById(R.id.condition);
             item_price = itemView.findViewById(R.id.itemPriceTxt);
             add_item_to_favorites = itemView.findViewById(R.id.favoriteItemImg);
             card = itemView.findViewById(R.id.item_card_layout);
