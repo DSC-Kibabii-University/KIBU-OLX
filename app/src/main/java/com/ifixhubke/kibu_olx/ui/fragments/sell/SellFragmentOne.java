@@ -91,11 +91,11 @@ public class SellFragmentOne extends Fragment implements AdapterView.OnItemSelec
             } else if (binding.locationSpinner.getSelectedItem().toString().trim().equals("location")) {
                 Toast.makeText(requireContext(), "Please select location", Toast.LENGTH_SHORT).show();
             } else if (imageURI1 == null) {
-                Toast.makeText(requireContext(), "Please upload yuor first image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Please upload your first image", Toast.LENGTH_SHORT).show();
             } else if (imageURI2 == null) {
-                Toast.makeText(requireContext(), "Please upload yuor second image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Please upload your second image", Toast.LENGTH_SHORT).show();
             } else if (imageURI3 == null) {
-                Toast.makeText(requireContext(), "Please upload yuor Third image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Please upload your Third image", Toast.LENGTH_SHORT).show();
             } else {
                 Sell sell = new Sell(category, location, imagesArrayList);
                 NavDirections action = SellFragmentOneDirections.actionSellFragmentOneToSellFragmentTwo(sell);
