@@ -93,11 +93,13 @@
             android:id="@+id/condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="14sp"
+            android:background="@drawable/ic_tag_2_"
+            android:text="Refurbished"
+            android:gravity="center"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/itemImageImg"
-            android:textColor="@color/red"/>
+            android:textColor="@color/main"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
