@@ -87,6 +87,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
 
         holder.item_name.setText(items.get(position).getItemName());
         holder.item_price.setText("Ksh. " + items.get(position).getItemPrice());
+        holder.condition.setText(items.get(position).getCondition());
         /*Picasso.get()
                 .load(items.get(position).getItemImage2())
                 .fit().centerInside()
@@ -171,6 +172,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
         TextView item_price;
         ImageView add_item_to_favorites;
         CardView card;
+        TextView condition;
         ImageView starredItem;
         ProgressBar progressBar;
 
@@ -183,6 +185,7 @@ public class AllItemsAdapter extends RecyclerView.Adapter<AllItemsAdapter.ViewHo
             card = itemView.findViewById(R.id.item_card_layout);
             starredItem = itemView.findViewById(R.id.starredfavoriteItemImg);
             progressBar = itemView.findViewById(R.id.allItemsRowProgressBar);
+            condition = itemView.findViewById(R.id.itemCondition);
         }
     }
 }
