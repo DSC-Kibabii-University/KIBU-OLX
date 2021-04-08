@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentLoginBinding;
 import com.ifixhubke.kibu_olx.others.CheckInternet;
+import com.ifixhubke.kibu_olx.others.Utils;
 
 import timber.log.Timber;
 
@@ -44,6 +45,9 @@ public class LoginFragment extends Fragment {
         binding.dontHaveAccount.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_registerFragment));
 
         binding.signinButton.setOnClickListener(v -> {
+
+            Utils.hideSoftKeyboard(requireActivity());
+
             String mail = binding.emailEditText.getEditText().getText().toString().trim();
             String password = binding.passwordEditText.getEditText().getText().toString().trim();
 

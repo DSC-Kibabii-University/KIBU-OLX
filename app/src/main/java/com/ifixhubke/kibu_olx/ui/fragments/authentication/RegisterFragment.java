@@ -19,6 +19,7 @@ import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.User;
 import com.ifixhubke.kibu_olx.databinding.FragmentRegisterBinding;
 import com.ifixhubke.kibu_olx.others.CheckInternet;
+import com.ifixhubke.kibu_olx.others.Utils;
 
 import java.util.Objects;
 
@@ -54,6 +55,9 @@ public class RegisterFragment extends Fragment {
         });
 
         binding.registerButton.setOnClickListener(v -> {
+
+            Utils.hideSoftKeyboard(requireActivity());
+
             String mail = Objects.requireNonNull(binding.enterEmail.getEditText()).getText().toString().trim();
             String pass = Objects.requireNonNull(binding.enterPassword.getEditText()).getText().toString().trim();
             String first_Name = Objects.requireNonNull(binding.firstName.getEditText()).getText().toString().trim();
