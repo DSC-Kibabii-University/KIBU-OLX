@@ -14,6 +14,8 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentFilterBinding;
+import com.ifixhubke.kibu_olx.others.CheckInternet;
+import com.ifixhubke.kibu_olx.others.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -57,6 +59,11 @@ public class FilterFragment extends BottomSheetDialogFragment {
 
         binding.textViewDone.setOnClickListener(v -> {
             Timber.d(category + "" + condition);
+
+            if (!CheckInternet.isConnected(getContext())){
+                Toast.makeText(requireContext(), "It seems you are not connected to the internet", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             if (category == null || condition == null) {
                 Toast.makeText(requireContext(), "You must select an item category and its condition", Toast.LENGTH_SHORT).show();
