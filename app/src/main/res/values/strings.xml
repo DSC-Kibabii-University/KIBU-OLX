@@ -105,4 +105,8 @@ Vestibulum luctus diam tincidunt nisi fringilla iaculis. Cras fermentum sollicit
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="terms_and_condition">Terms and Condition</string>
     <string name="okay">Okay</string>
+    <string name="submit_feedback">Submit Feedback</string>
+    <string name="feedback">Feedback</string>
+    <string name="app_crashes_or_suggestion">App Crashes or Suggestion</string>
+    <string name="subject">Subject</string>
 </resources>

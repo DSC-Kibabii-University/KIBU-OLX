@@ -77,6 +77,11 @@
         <action
             android:id="@+id/action_homeFragment2_to_filterFragment"
             app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_helpFeedbackFragment"
+            app:destination="@id/helpFeedbackFragment"
+            app:popUpTo="@id/helpFeedbackFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -189,6 +194,17 @@
             android:id="@+id/action_termsConditionFragment_to_registerFragment"
             app:destination="@id/registerFragment"
             app:popUpTo="@id/termsConditionFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpFeedbackFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.HelpFeedbackFragment"
+        android:label="fragment_help_feedback"
+        tools:layout="@layout/fragment_help_feedback" >
+        <action
+            android:id="@+id/action_helpFeedbackFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2"
+            app:popUpTo="@id/helpFeedbackFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

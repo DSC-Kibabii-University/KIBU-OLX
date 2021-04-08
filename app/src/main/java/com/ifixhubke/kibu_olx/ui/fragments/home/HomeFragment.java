@@ -247,11 +247,12 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.helpMenu) {
-            Intent intent = new Intent(Intent.ACTION_SEND);
+            /*Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/email");
             intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"ifixhubke@gmail.com"});
             intent.putExtra(Intent.EXTRA_SUBJECT, "Help and Feedback");
-            startActivity(Intent.createChooser(intent, "Send Feedback"));
+            startActivity(Intent.createChooser(intent, "Send Feedback"));*/
+            Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment2_to_helpFeedbackFragment);
 
             return true;
         } else if (item.getItemId() == R.id.logoutMenu) {
