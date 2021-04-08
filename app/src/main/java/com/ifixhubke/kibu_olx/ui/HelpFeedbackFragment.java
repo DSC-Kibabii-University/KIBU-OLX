@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentHelpFeedbackBinding;
+import com.ifixhubke.kibu_olx.others.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -33,6 +34,8 @@ public class HelpFeedbackFragment extends Fragment {
         });
 
         binding.buttonSubmitFeedback.setOnClickListener(v -> {
+
+            Utils.hideSoftKeyboard(requireActivity());
             if (binding.editTextSubject.getText().toString().isEmpty()) {
                 binding.editTextSubject.setError("This field can't be empty!");
                 return;

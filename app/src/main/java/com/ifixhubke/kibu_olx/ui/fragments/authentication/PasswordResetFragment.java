@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ifixhubke.kibu_olx.databinding.FragmentPasswordResetBinding;
+import com.ifixhubke.kibu_olx.others.Utils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +29,8 @@ public class PasswordResetFragment extends DialogFragment {
 
         View view = binding.getRoot();
         binding.dialogConfirm.setOnClickListener(v -> {
+
+            Utils.hideSoftKeyboard(requireActivity());
 
             if (TextUtils.isEmpty(binding.userEmail.getText().toString())) {
                 binding.userEmail.setError("Required");

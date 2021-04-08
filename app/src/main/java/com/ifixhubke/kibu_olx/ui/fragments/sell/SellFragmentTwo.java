@@ -35,6 +35,7 @@ import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.data.Sell;
 import com.ifixhubke.kibu_olx.databinding.FragmentSellTwoBinding;
+import com.ifixhubke.kibu_olx.others.Utils;
 import com.ifixhubke.kibu_olx.viewmodels.MainViewModel;
 
 import java.io.ByteArrayOutputStream;
@@ -87,6 +88,9 @@ public class SellFragmentTwo extends Fragment implements AdapterView.OnItemSelec
         getCurrentUserDetails();
 
         binding.postAdButton.setOnClickListener(v -> {
+
+            Utils.hideSoftKeyboard(requireActivity());
+
             if (TextUtils.isEmpty(binding.productNameEditText.getText().toString())) {
                 binding.productNameEditText.setError("Field can't be empty!");
                 return;
