@@ -49,6 +49,9 @@ public class RegisterFragment extends Fragment {
 
         binding.signupTextView.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_loginFragment));
 
+        binding.termsCondition.setOnClickListener(v->{
+            Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_termsConditionFragment);
+        });
 
         binding.registerButton.setOnClickListener(v -> {
             String mail = Objects.requireNonNull(binding.enterEmail.getEditText()).getText().toString().trim();

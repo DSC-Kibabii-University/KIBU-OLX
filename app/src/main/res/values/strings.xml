@@ -4,8 +4,18 @@
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="cheap_and_affordable">Cheap and Affordable</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac libero ultricies, condimentum arcu vitae, ultrices purus. Nam tristique lectus in arcu consequat ornare.</string>
     <string name="easy_and_accessible">Easy and Accessible</string>
+    <string name="lorem_ipsum">
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget neque sed est pellentesque faucibus nec quis leo. Duis consequat turpis eget pretium vehicula. Fusce dictum augue pharetra libero pulvinar, quis viverra tellus porta. Fusce sed diam et nulla sagittis semper vel quis ex. Nunc eget luctus urna. Mauris tincidunt feugiat mauris at euismod. Quisque vel metus in justo placerat hendrerit a sed erat. Pellentesque vitae mollis nulla. Etiam eu cursus sapien. Ut laoreet condimentum lectus finibus lobortis.
+
+Nulla a rutrum dui. Vivamus non sem scelerisque, dignissim justo sed, scelerisque urna. Maecenas et velit vehicula, vehicula nisi at, aliquet metus. Nulla eu nisi id dui sollicitudin dapibus non a nulla. Sed tempus fringilla leo, id viverra sapien. Nulla eu nulla sem. Quisque vitae viverra diam, eget consectetur risus. Nulla dapibus nisi finibus, viverra mi ac, suscipit purus. Fusce vestibulum, est ut accumsan venenatis, mauris enim vulputate magna, non mollis massa justo eu eros. Sed aliquet nibh in commodo egestas. Donec nec dui sed libero efficitur mollis vitae quis diam. Aenean eget lectus quis ipsum tincidunt egestas. Donec rutrum ligula massa, vel condimentum leo hendrerit sit amet. Phasellus eget nunc id felis sollicitudin ultricies. Sed a vestibulum enim, a facilisis diam.
+
+Nullam tempus lacinia molestie. Suspendisse pulvinar justo vel turpis consequat, et gravida tellus egestas. Aliquam elementum mi at consectetur faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque purus justo, blandit eu aliquam eget, dignissim id orci. Pellentesque vel est in quam fermentum cursus. Morbi eleifend neque sit amet purus faucibus elementum. Pellentesque nunc elit, laoreet at neque pretium, finibus feugiat massa. Suspendisse tempor lobortis lorem non tincidunt. Praesent condimentum nisi non quam pulvinar eleifend. Proin aliquam fermentum orci, ut ultrices nisl commodo sit amet. Donec eu lorem at urna maximus lobortis. Nunc nunc ex, facilisis id faucibus ut, tincidunt et ante. Duis tempor iaculis nisl eu fermentum. Curabitur et placerat purus. Mauris molestie, augue ac facilisis volutpat, dolor orci facilisis sem, quis tempus nisi arcu et purus.
+
+Sed maximus imperdiet est, quis lacinia turpis porta sed. Aenean in erat eget mauris pharetra ultricies. Nullam eleifend turpis et iaculis tempus. Nullam ac lacus bibendum, ornare justo ac, vestibulum lorem. Integer vel nibh fermentum, condimentum est non, aliquam libero. Nulla faucibus turpis eget tellus tincidunt, auctor iaculis nisl interdum. Ut finibus orci et nisl vehicula gravida. Vestibulum gravida maximus porttitor. Vivamus id diam ex. Maecenas vel porttitor erat, et vestibulum augue. Sed facilisis sem purus, nec luctus dolor efficitur ac. Duis tristique nisl ac nulla lacinia finibus. Donec dictum lectus a nisi semper, id lobortis dui interdum.
+
+Vestibulum luctus diam tincidunt nisi fringilla iaculis. Cras fermentum sollicitudin vulputate. Fusce in nibh risus. Maecenas lobortis molestie lorem, eget mollis urna placerat nec. Sed et pharetra nisi. Sed a cursus ligula. Praesent commodo ex ac lectus mattis ullamcorper. Sed ac vestibulum enim. Phasellus id nunc facilisis, gravida nunc eu, ornare lorem. Etiam luctus quam ac nibh luctus, sed consectetur ligula luctus. Mauris consectetur ornare enim. Vestibulum dignissim id risus non malesuada. Vivamus varius eu eros vestibulum commodo. </string>
     <string name="all_items_in_one_place">All Items in One Place</string>
     <string name="filter">Filter</string>
     <string name="sign_in">Sign In</string>
@@ -91,4 +101,8 @@
     <string name="buy_sell_online_everything_you_need_get_a_variety_of_products_all_in_one_place"><![CDATA[Buy & Sell different items you need online, Get a Variety of products all in one place]]></string>
     <string name="easy_to_acquire_items_from_a_fellow_comrade_sell_faster_buy_smarter_at_kibu_olx">Easy to acquire items from a fellow comrade. Sell faster, buy smarter at KIBU-OLX</string>
     <string name="buy_items_at_best_and_cheap_comrade_prices">Buy different affordable items at a cheap and best comrade prices. </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="terms_and_condition">Terms and Condition</string>
+    <string name="okay">Okay</string>
 </resources>
