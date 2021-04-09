@@ -52,6 +52,14 @@ Libraries used in the whole application are:
 
 ## Demo
 
+### OnBoarding Screens
+
+<p>
+  <img src="screenshots/Screenshot_20210409-135911.png" width=200/>
+  <img src="screenshots/Screenshot_20210409-135922.png" width=200/>
+  <img src="screenshots/Screenshot_20210409-135933.png" width=200/>
+</p>
+
 ### Splash Screen and Authentication
 
 <p float="left">
