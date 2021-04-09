@@ -7,7 +7,7 @@
     android:id="@+id/imageLayout3"
     tools:context=".ui.fragments.Image3Fragment">
 
-    <ImageView
+    <com.ifixhubke.kibu_olx.ui.fragments.ZoomImageView
         android:id="@+id/imageViewImage3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

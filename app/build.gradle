@@ -3,6 +3,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
@@ -112,5 +113,10 @@ dependencies {
 
     //country code picker
     implementation 'com.hbb20:ccp:2.4.7'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+}
+repositories {
+    mavenCentral()
 }

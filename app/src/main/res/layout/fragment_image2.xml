@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.Image2Fragment">
 
-    <ImageView
+    <com.ifixhubke.kibu_olx.ui.fragments.ZoomImageView
         android:id="@+id/imageViewImage2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
