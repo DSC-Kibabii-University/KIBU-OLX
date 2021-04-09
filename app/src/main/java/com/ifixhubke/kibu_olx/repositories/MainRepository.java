@@ -4,18 +4,22 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.data.ItemsDao;
 import com.ifixhubke.kibu_olx.data.ItemsDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainRepository {
 
     private final ItemsDao itemsDao;
     private final LiveData<List<Item>> allItems;
+    MutableLiveData<ArrayList<Item>> itemsList = new MutableLiveData<>();
 
+    //var fragment2EditText: String? = null
     public MainRepository(Application application) {
         ItemsDatabase database = ItemsDatabase.getInstance(application);
         itemsDao = database.itemsDao();

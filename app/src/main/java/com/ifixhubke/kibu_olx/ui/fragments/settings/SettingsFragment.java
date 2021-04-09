@@ -95,6 +95,7 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                reference.keepSynced(true);
                 firstName = Objects.requireNonNull(snapshot.child("f_Name").getValue()).toString();
                 lastName = Objects.requireNonNull(snapshot.child("l_Name").getValue()).toString();
                 email = Objects.requireNonNull(snapshot.child("e_Mail").getValue()).toString();
