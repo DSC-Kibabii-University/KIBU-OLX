@@ -1,10 +1,15 @@
 package com.ifixhubke.kibu_olx.ui.fragments;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.PointF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.FloatMath;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -31,6 +36,7 @@ public class Image2Fragment extends Fragment {
         this.imageUrl = imageUrl;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +80,8 @@ public class Image2Fragment extends Fragment {
                     }
                 })
                 .into(binding.imageViewImage2);
+
+
 
         return view;
     }

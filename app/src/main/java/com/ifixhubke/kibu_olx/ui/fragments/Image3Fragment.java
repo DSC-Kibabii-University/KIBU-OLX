@@ -1,10 +1,13 @@
 package com.ifixhubke.kibu_olx.ui.fragments;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,17 +25,19 @@ import com.bumptech.glide.request.target.Target;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.databinding.FragmentImage3Binding;
 
-
+ 
 public class Image3Fragment extends Fragment {
 
     String imageUrl;
     FragmentImage3Binding binding;
     int col;
+    ScaleGestureDetector SGD;
 
     public Image3Fragment(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,6 +83,15 @@ public class Image3Fragment extends Fragment {
                     }
                 })
                 .into(binding.imageViewImage3);
+
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                SGD.onTouchEvent(motionEvent);
+                return true;
+            }
+        });
 
         return view;
     }

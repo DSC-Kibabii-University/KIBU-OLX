@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -76,8 +77,11 @@ public class Image1Fragment extends Fragment {
                 })
                 .into(binding.imageViewImage1);
 
+
         return view;
     }
+
+
 
 
 }
