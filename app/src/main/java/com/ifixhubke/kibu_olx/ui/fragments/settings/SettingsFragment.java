@@ -2,6 +2,7 @@ package com.ifixhubke.kibu_olx.ui.fragments.settings;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -193,9 +195,27 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
 
     @Override
     public void itemClick(Item item, int position) {
-        viewModel.updateSoldItem(true, position);
-        Timber.d("Item remove from advertisements");
-        Toast.makeText(requireContext(), "Item remove from advertisements", Toast.LENGTH_SHORT).show();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setMessage("Are you sure?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                viewModel.updateSoldItem(false, position);
+            }
+        });
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                viewModel.updateSoldItem(true, position);
+                Timber.d("Item remove from advertisements");
+                Toast.makeText(requireContext(), "Item remove from advertisements", Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
     @Override
