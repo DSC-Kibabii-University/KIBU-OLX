@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/itemImageImg"
             android:layout_width="match_parent"
@@ -90,17 +91,17 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/condition"
+            android:id="@+id/itemCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_tag_2_"
-            android:text="Refurbished"
-            android:gravity="center"
-            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/condition_background"
+            android:text="Used"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/itemImageImg"
-            android:textColor="@color/main"/>
-
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
