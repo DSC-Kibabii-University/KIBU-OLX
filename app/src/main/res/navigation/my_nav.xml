@@ -68,7 +68,10 @@
             app:destination="@id/detailsFragment" />
         <action
             android:id="@+id/action_homeFragment2_to_sellFragmentOne"
-            app:destination="@id/sellFragmentOne" />
+            app:destination="@id/sellFragmentOne"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/sellFragmentOne"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeFragment2_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -116,7 +119,8 @@
         tools:layout="@layout/fragment_sell_one">
         <action
             android:id="@+id/action_sellFragmentOne_to_sellFragmentTwo"
-            app:destination="@id/sellFragmentTwo" />
+            app:destination="@id/sellFragmentTwo"
+            app:popUpTo="@id/sellFragmentOne" />
     </fragment>
     <fragment
         android:id="@+id/sellFragmentTwo"
@@ -126,8 +130,7 @@
         <action
             android:id="@+id/action_sellFragmentTwo_to_homeFragment2"
             app:destination="@id/homeFragment2"
-            app:popUpTo="@id/sellFragmentTwo"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/sellFragmentTwo" />
         <argument
             android:name="sellTwoArguments"
             app:argType="com.ifixhubke.kibu_olx.data.Sell" />

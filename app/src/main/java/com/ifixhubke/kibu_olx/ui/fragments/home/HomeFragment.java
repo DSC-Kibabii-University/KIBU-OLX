@@ -44,11 +44,16 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
 
     FragmentHomeBinding binding;
     ArrayList<Item> itemsList = new ArrayList<>();
+    private View view;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+
+        if (view==null){
+            view = binding.getRoot();
+        }
+
         Timber.d("onCreateView");
 
         binding.allItemsRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
