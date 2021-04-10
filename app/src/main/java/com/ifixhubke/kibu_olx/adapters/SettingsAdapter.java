@@ -54,7 +54,6 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
     @Override
     public void onBindViewHolder(@NonNull SettingsHolder holder, int position) {
         holder.name.setText(itemArrayList.get(position).getItemName());
-        /* Picasso.get().load(itemArrayList.get(position).getItemImage()).placeholder(R.drawable.lottie_loading).into(holder.image);*/
         holder.price.setText("Kshs. " + itemArrayList.get(position).getItemPrice());
         holder.date.setText(itemArrayList.get(position).getDatePosted());
 
@@ -79,31 +78,12 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
         if (itemArrayList.get(position).getIsSoldOut()) {
             holder.checkBox.setChecked(true);
             holder.checkBox.setEnabled(false);
-        } else {
+        }else if (!itemArrayList.get(position).getIsSoldOut()){
+            holder.checkBox.setChecked(false);
+            holder.checkBox.setEnabled(true);
+
             holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 Timber.d(holder.name.getText().toString());
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                reference.child("all_items").orderByChild("itemUniqueId").equalTo(itemArrayList.get(position)
-                        .getItemUniqueId()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            for (DataSnapshot i : snapshot.getChildren()) {
-                                Timber.d(Objects.requireNonNull(i.getValue()).toString());
-                                i.getRef().removeValue();
-                                Timber.d("%s removed from advertisements", i.getValue().toString());
-                            }
-                        } else {
-                            Timber.d("Does not exist");
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Timber.d(error.getMessage());
-                    }
-                });
 
                 Item item = new Item(itemArrayList.get(position).getItemImage(),
                         itemArrayList.get(position).getItemName(),

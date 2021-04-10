@@ -208,6 +208,28 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                reference.child("all_items").orderByChild("itemUniqueId").equalTo(item.getItemUniqueId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            for (DataSnapshot i : snapshot.getChildren()) {
+                                Timber.d(Objects.requireNonNull(i.getValue()).toString());
+                                i.getRef().removeValue();
+                                Timber.d("%s removed from advertisements", i.getValue().toString());
+                            }
+                        } else {
+                            Timber.d("Does not exist");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Timber.d(error.getMessage());
+                    }
+                });
+
                 viewModel.updateSoldItem(true, position);
                 Timber.d("Item remove from advertisements");
                 Toast.makeText(requireContext(), "Item remove from advertisements", Toast.LENGTH_SHORT).show();
