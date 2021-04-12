@@ -1,4 +1,4 @@
-package com.ifixhubke.kibu_olx.ui.fragments;
+package com.ifixhubke.kibu_olx.ui.fragments.filter;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import com.google.android.material.chip.ChipGroup;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentFilterBinding;
 import com.ifixhubke.kibu_olx.others.CheckInternet;
-import com.ifixhubke.kibu_olx.others.Utils;
 
 import org.jetbrains.annotations.NotNull;
 

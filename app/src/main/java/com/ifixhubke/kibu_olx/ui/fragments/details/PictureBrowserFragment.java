@@ -12,9 +12,6 @@ import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.adapters.ViewPagerAdapter;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.databinding.FragmentPictureBrowserBinding;
-import com.ifixhubke.kibu_olx.ui.fragments.Image1Fragment;
-import com.ifixhubke.kibu_olx.ui.fragments.Image2Fragment;
-import com.ifixhubke.kibu_olx.ui.fragments.Image3Fragment;
 
 import org.jetbrains.annotations.NotNull;
 

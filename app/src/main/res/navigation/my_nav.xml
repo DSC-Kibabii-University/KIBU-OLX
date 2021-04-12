@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.ifixhubke.kibu_olx.ui.fragments.SplashFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.splash.SplashFragment"
         android:label="fragment_splash"
         app:startDestination="@id/action_splashFragment_to_viewPagerFragment"
         tools:layout="@layout/fragment_splash">
@@ -162,7 +162,7 @@
     </fragment>
     <dialog
         android:id="@+id/filterFragment"
-        android:name="com.ifixhubke.kibu_olx.ui.fragments.FilterFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.filter.FilterFragment"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_filter">
         <action
@@ -173,7 +173,7 @@
     </dialog>
     <fragment
         android:id="@+id/filteredItemsFragment"
-        android:name="com.ifixhubke.kibu_olx.ui.FilteredItemsFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.filter.FilteredItemsFragment"
         android:label="fragment_filtered_items"
         tools:layout="@layout/fragment_filtered_items">
         <action
@@ -190,7 +190,7 @@
     </fragment>
     <fragment
         android:id="@+id/termsConditionFragment"
-        android:name="com.ifixhubke.kibu_olx.ui.TermsConditionFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.terms.TermsConditionFragment"
         android:label="Terms and Conditions"
         tools:layout="@layout/fragment_terms_condition">
         <action
@@ -201,7 +201,7 @@
     </fragment>
     <fragment
         android:id="@+id/helpFeedbackFragment"
-        android:name="com.ifixhubke.kibu_olx.ui.HelpFeedbackFragment"
+        android:name="com.ifixhubke.kibu_olx.ui.fragments.help.HelpFeedbackFragment"
         android:label="fragment_help_feedback"
         tools:layout="@layout/fragment_help_feedback" >
         <action

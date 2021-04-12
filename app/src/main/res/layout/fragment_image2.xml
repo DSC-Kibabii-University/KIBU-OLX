@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:id="@+id/imageLayout2"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.Image2Fragment">
+    tools:context=".ui.fragments.details.Image2Fragment">
 
-    <com.ifixhubke.kibu_olx.ui.fragments.ZoomImageView
+    <com.ifixhubke.kibu_olx.ui.fragments.details.ZoomImageView
         android:id="@+id/imageViewImage2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

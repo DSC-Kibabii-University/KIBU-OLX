@@ -24,7 +24,7 @@ import com.bumptech.glide.request.target.Target;
 import com.ifixhubke.kibu_olx.R;
 import com.ifixhubke.kibu_olx.data.Item;
 import com.ifixhubke.kibu_olx.others.ItemClickListener;
-import com.ifixhubke.kibu_olx.ui.FilteredItemsFragmentDirections;
+import com.ifixhubke.kibu_olx.ui.fragments.filter.FilteredItemsFragmentDirections;
 
 import java.util.ArrayList;
 

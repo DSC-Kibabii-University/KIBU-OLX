@@ -1,4 +1,4 @@
-package com.ifixhubke.kibu_olx.ui;
+package com.ifixhubke.kibu_olx.ui.fragments.terms;
 
 import android.os.Bundle;
 

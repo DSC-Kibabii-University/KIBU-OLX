@@ -1,4 +1,4 @@
-package com.ifixhubke.kibu_olx.ui;
+package com.ifixhubke.kibu_olx.ui.fragments.help;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

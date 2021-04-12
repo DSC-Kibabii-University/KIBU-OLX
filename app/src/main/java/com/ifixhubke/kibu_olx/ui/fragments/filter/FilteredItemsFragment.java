@@ -1,4 +1,4 @@
-package com.ifixhubke.kibu_olx.ui;
+package com.ifixhubke.kibu_olx.ui.fragments.filter;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.ifixhubke.kibu_olx.ui.fragments
+package com.ifixhubke.kibu_olx.ui.fragments.details
 
 import android.content.Context
 import android.graphics.Matrix

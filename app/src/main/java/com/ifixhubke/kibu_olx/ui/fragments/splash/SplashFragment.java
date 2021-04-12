@@ -1,4 +1,4 @@
-package com.ifixhubke.kibu_olx.ui.fragments;
+package com.ifixhubke.kibu_olx.ui.fragments.splash;
 
 import android.content.Context;
 import android.content.SharedPreferences;

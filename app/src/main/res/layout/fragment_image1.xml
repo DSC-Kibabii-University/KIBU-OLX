@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/image1Layout"
-    tools:context=".ui.fragments.Image1Fragment">
+    tools:context=".ui.fragments.details.Image1Fragment">
 
 
-    <com.ifixhubke.kibu_olx.ui.fragments.ZoomImageView
+    <com.ifixhubke.kibu_olx.ui.fragments.details.ZoomImageView
         android:id="@+id/imageViewImage1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
