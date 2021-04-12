@@ -112,6 +112,7 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
 
         viewModel.fetchItems().observe(getViewLifecycleOwner(), items -> {
             if (!items.isEmpty()) {
+                itemsList = items;
                 Timber.d(items.toString());
                 binding.shimmerFrameLayout.setVisibility(View.GONE);
                 binding.allItemsRecyclerview.setVisibility(View.VISIBLE);
