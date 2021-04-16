@@ -12,7 +12,8 @@ Build System : [Gradle](https://gradle.org/)
 
 [![PlayStore][playstore-image]][playstore-url]
 
-[playstore-image]: https://mrpatiwi.github.io/app-badges/playstore.png
+[playstore-image]: https://github.com/DSC-Kibabii-University/KIBU-OLX/blob/master/screenshots/google-play-badge.png
+
 
 [playstore-url]: https://play.google.com/store/apps/details?id=com.ifixhubke.kibu_olx
 
