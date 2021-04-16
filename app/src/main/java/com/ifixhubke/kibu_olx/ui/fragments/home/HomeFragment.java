@@ -1,6 +1,7 @@
 package com.ifixhubke.kibu_olx.ui.fragments.home;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -206,10 +207,12 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
             startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.rateUsMenu) {
-            String url = "https://github.com/iFix-Hub-KE";
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(url));
-            startActivity(intent);
+            try{
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+ requireActivity().getPackageName())));
+            }
+            catch (ActivityNotFoundException e){
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+requireActivity().getPackageName())));
+            }
             return true;
         } else if (item.getItemId() == R.id.helpMenu) {
             Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment2_to_helpFeedbackFragment);
