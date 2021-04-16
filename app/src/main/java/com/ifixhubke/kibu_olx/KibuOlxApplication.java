@@ -15,7 +15,6 @@ public class KibuOlxApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         SharedPreferences sharedPreferences = getSharedPreferences("ui_mode", Context.MODE_PRIVATE);
         boolean itemUIMode = sharedPreferences.getBoolean("ISCHECKED", false);
         Timber.d("UI Theme: " + itemUIMode);

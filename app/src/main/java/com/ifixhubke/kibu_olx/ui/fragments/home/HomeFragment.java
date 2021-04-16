@@ -111,7 +111,14 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
         });
 
         viewModel.fetchItems().observe(getViewLifecycleOwner(), items -> {
-            if (!items.isEmpty()) {
+            if ((items.isEmpty() || items == null)) {
+
+                binding.imageView2.setVisibility(View.VISIBLE);
+                binding.textView.setVisibility(View.VISIBLE);
+                binding.shimmerFrameLayout.setVisibility(View.GONE);
+
+
+            } else {
                 itemsList = items;
                 Timber.d(items.toString());
                 binding.shimmerFrameLayout.setVisibility(View.GONE);
@@ -123,10 +130,6 @@ public class HomeFragment extends Fragment implements ItemClickListener, Materia
                 binding.buttonTryAgain.setVisibility(View.GONE);
                 Collections.reverse(items);
                 initializeRecycler(items);
-            } else {
-                binding.imageView2.setVisibility(View.VISIBLE);
-                binding.textView.setVisibility(View.VISIBLE);
-                binding.shimmerFrameLayout.setVisibility(View.GONE);
             }
         });
 

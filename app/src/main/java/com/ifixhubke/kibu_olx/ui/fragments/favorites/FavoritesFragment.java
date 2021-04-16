@@ -50,7 +50,6 @@ public class FavoritesFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         Query query = databaseReference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("favorite_items");
-        query.keepSynced(true);
 
         query.addValueEventListener(new ValueEventListener() {
             @Override

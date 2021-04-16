@@ -56,6 +56,8 @@ public class HomeRepository{
                     }
                 } else {
                     Timber.d("snapshot not found");
+                    items.clear();
+                    itemsList.setValue(items);
                 }
             }
 

@@ -93,11 +93,10 @@ public class SettingsFragment extends Fragment implements ItemClickListener, Too
 
     private void getUserDetails() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(userid).addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                reference.keepSynced(true);
                 firstName = Objects.requireNonNull(snapshot.child("f_Name").getValue()).toString();
                 lastName = Objects.requireNonNull(snapshot.child("l_Name").getValue()).toString();
                 email = Objects.requireNonNull(snapshot.child("e_Mail").getValue()).toString();
